@@ -109,6 +109,10 @@ alias   pause="spotify pause"
 alias   playtth="spotify play uri spotify:playlist:37i9dQZF1DXcBWIGoYBM5M" 
 alias   forceGPU="sudo pmset -c gpuswitch 1"
 alias   autoGPU="sudo pmset -c gpuswitch 2"
+alias   noDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
+alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
+
+
 #PROMPT='%F{240}%n%F{red}@%F{green}%m:%F{141}%d$ %F{reset}'
 #PROMPT=':~$'
 source /Users/ankitsachdeva/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
