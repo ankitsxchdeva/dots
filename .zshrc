@@ -1,8 +1,7 @@
-# Version 0.1.1
+# Version 1.3
 
 # Prompt
 autoload -U colors && colors
-#PROMPT="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}"
 PS1="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c "
 export CLICOLOR=1
 
@@ -12,8 +11,10 @@ alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; ki
 alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
 alias   mail="open https://mail.google.com/mail/u/0/#inbox/; open https://mail.google.com/mail/u/1/#inbox; open https://mail.google.com/mail/u/2/#inbox; open https://mail.google.com/mail/u/3/#inbox; open https://mail.google.com/mail/u/4/#inbox;" 
-alias   distract="open https://www.irccloud.com/; open https://discord.com/channels/@me; https://www.messenger.com/t/100000372900903/"
+alias   distract="open https://www.irccloud.com/; open https://discord.com/channels/@me; open https://www.messenger.com/t/100000372900903/"
 alias   ls="ls -p"
+alias   ssh1="ssh ankit@162.229.184.109" # Home-global (ubuntu 20.04.2)
+alias   ssh2="ssh ankit@192.168.1.79"    # Home-local  (manjaro 21.0.7)
 
 # History
 HISTSIZE=10000
@@ -31,5 +32,3 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
