@@ -17,18 +17,14 @@ set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
-set incsearch
 set autoread
 set nocompatible
-set completeopt=menuone,longest
-set shortmess+=c
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"
 
 call plug#begin('~/.vim/plugged')
-Plug 'valloric/youcompleteme'
-Plug 'vim-scripts/AutoComplPop'
+Plug 'Valloric/youcompleteme'
 Plug 'morhetz/gruvbox'
 Plug 'vim-utils/vim-man'
 call plug#end()
