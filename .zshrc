@@ -1,4 +1,4 @@
-# Version 1.3
+# Version 1.4
 
 # Prompt
 autoload -U colors && colors
@@ -12,9 +12,14 @@ alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
 alias   mail="open https://mail.google.com/mail/u/0/#inbox/; open https://mail.google.com/mail/u/1/#inbox; open https://mail.google.com/mail/u/2/#inbox; open https://mail.google.com/mail/u/3/#inbox; open https://mail.google.com/mail/u/4/#inbox;" 
 alias   distract="open https://www.irccloud.com/; open https://discord.com/channels/@me; open https://www.messenger.com/t/100000372900903/"
+alias   discord="open https://discord.com/channels/@me"
 alias   ls="ls -p"
+alias   vi="vim"
 alias   ssh1="ssh ankit@162.229.184.109" # Home-global (ubuntu 20.04.2)
 alias   ssh2="ssh ankit@192.168.1.79"    # Home-local  (manjaro 21.0.7)
+alias   tmux0="tmux attach -t 0"
+alias   tmux1="tmux attach -t 1"
+alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dotfiles; cp .vimrc ~/Documents/General/dotfiles; cd Documents/General/dotfiles; git add .; git status"
 
 # History
 HISTSIZE=10000
