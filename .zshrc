@@ -6,7 +6,7 @@ PS1="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c "
 export CLICOLOR=1
 
 # Shortcuts
-alias	clock="tty-clock -C black -t -c"
+alias   clock="tty-clock -C black -t -c"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
@@ -15,8 +15,8 @@ alias   distract="open https://www.irccloud.com/; open https://discord.com/chann
 alias   discord="open https://discord.com/channels/@me"
 alias   ls="ls -p"
 alias   vi="vim"
-alias   ssh1="ssh ankit@162.229.184.109" # Home-global (ubuntu 20.04.2)
-alias   ssh2="ssh ankit@192.168.1.79"    # Home-local  (manjaro 21.0.7)
+alias   ssh1="ssh ankit@192.168.1.79"    # Home-local  (manjaro 21.0.7)
+alias   ssh2="ssh ankit@162.229.184.109" # Home-global (ubuntu 20.04.2)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
 alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dotfiles; cp .vimrc ~/Documents/General/dotfiles; cd Documents/General/dotfiles; git add .; git status"

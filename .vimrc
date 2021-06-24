@@ -29,4 +29,3 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-utils/vim-man'
 call plug#end()
 
-inoremap {<cr> {<cr>}<esc>O
