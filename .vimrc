@@ -22,10 +22,3 @@ set nocompatible
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"
-
-call plug#begin('~/.vim/plugged')
-Plug 'Valloric/youcompleteme'
-Plug 'morhetz/gruvbox'
-Plug 'vim-utils/vim-man'
-call plug#end()
-
