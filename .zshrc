@@ -17,10 +17,10 @@ alias   ls="ls -p"
 alias   vi="vim"
 alias   ssh1="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
-alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOS 3.10.0)
+alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
-alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dotfiles; cp .vimrc ~/Documents/General/dotfiles; cd Documents/General/dotfiles; git add .; git status"
+alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dots; cp .vimrc ~/Documents/General/dots; cd Documents/General/dots; git add .; git status"
 
 # History
 HISTSIZE=10000
