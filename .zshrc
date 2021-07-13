@@ -21,6 +21,7 @@ alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
 alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dots; cp .vimrc ~/Documents/General/dots; cd Documents/General/dots; git add .; git status"
+alias   pip="pip3"
 
 # History
 HISTSIZE=10000
