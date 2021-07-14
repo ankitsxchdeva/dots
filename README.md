@@ -1,6 +1,6 @@
 Mac Setup
 1. Brew installation - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-2. 2. Brew install git, zoom, firefox, karabiner-elements, tmux, python
+2. Brew install git, zoom, firefox, karabiner-elements, tmux, python
 3. Copy zshrc and vimrc files from GitHub, add .hushlogin, add .tmux.conf
 4. Change mouse scroll to a sane setting
 5. Copy karabiner-elements conf
