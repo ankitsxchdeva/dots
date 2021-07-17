@@ -6,7 +6,7 @@ PS1="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c "
 export CLICOLOR=1
 
 # Shortcuts
-alias   clock="tty-clock -C black -t -c"
+alias   clock="tty-clock -C grey -t -c"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
@@ -21,8 +21,8 @@ alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
 alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated automatically"; git push"
-alias   weather="curl -s wttr.in | head -n 6 | tail -n 4"
-alias   weatherC="curl -s wttr.in | head -n 35"
+alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
+alias   battery="pmset -g batt"
 
 # History
 HISTSIZE=10000
