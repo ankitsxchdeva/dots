@@ -20,8 +20,9 @@ alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
-alias   updateDotfiles="cd; cp .zshrc ~/Documents/General/dots; cp .vimrc ~/Documents/General/dots; cd Documents/General/dots; git add .; git status"
-alias   pip="pip3"
+alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status"
+alias   weather="curl -s wttr.in > .weather; head -n 6 ./.weather"
+alias   weatherC="curl -s wttr.in > .weather; head -n 35 ./.weather"
 
 # History
 HISTSIZE=10000
@@ -39,3 +40,7 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+wallpaper() {
+    osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'"$1"\"
+}
