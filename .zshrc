@@ -20,8 +20,8 @@ alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
-alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status"
-alias   weather="curl -s wttr.in | head -n 6"
+alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated"; git push"
+alias   weather="curl -s wttr.in | head -n 6 | tail -n 4"
 alias   weatherC="curl -s wttr.in | head -n 35"
 
 # History
