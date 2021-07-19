@@ -23,6 +23,9 @@ alias   tmux1="tmux attach -t 1"
 alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated automatically"; git push"
 alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
+alias   gpu0="sudo pmset -b gpuswitch 0"   # 0 -- integrated
+alias   gpu1="sudo pmset -b gpuswitch 1"   # 1 -- discrete
+alias   gpu2="sudo pmset -b gpuswitch 2"   # 2 -- auto-switch
 
 # History
 HISTSIZE=10000
