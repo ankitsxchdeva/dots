@@ -21,8 +21,6 @@ set autoread
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'vim-utils/vim-man'
 call plug#end()
 
 let &t_SI="\033[3 q"
