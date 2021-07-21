@@ -21,6 +21,7 @@ set autoread
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 let &t_SI="\033[3 q"
