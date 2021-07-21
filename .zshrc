@@ -20,12 +20,12 @@ alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   tmux0="tmux attach -t 0"
 alias   tmux1="tmux attach -t 1"
-alias   updateDotfiles="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated automatically"; git push"
+alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated automatically"; git push"
 alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   gpu0="sudo pmset -b gpuswitch 0"   # 0 -- integrated
 alias   gpu1="sudo pmset -b gpuswitch 1"   # 1 -- discrete
-alias   gpu2="sudo pmset -b gpuswitch 2"   # 2 -- auto-switch
+alias   gpu2="sudo pmset -b gpuswitch 2"
 
 # History
 HISTSIZE=10000
