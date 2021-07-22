@@ -26,6 +26,7 @@ alias   battery="pmset -g batt"
 alias   gpu0="sudo pmset -b gpuswitch 0"   # 0 -- integrated
 alias   gpu1="sudo pmset -b gpuswitch 1"   # 1 -- discrete
 alias   gpu2="sudo pmset -b gpuswitch 2"
+alias   wordcount="pbpaste | wc -w"
 
 # History
 HISTSIZE=10000
