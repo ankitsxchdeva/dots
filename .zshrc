@@ -1,12 +1,11 @@
-# Version 1.4
-
 # Prompt
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c "
 export CLICOLOR=1
 
 # Shortcuts
-alias   clock="tty-clock -C grey -t -c"
+alias   clock="date +%r"
+alias   clockf="tty-clock -C grey -t -c"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
