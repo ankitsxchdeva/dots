@@ -5,26 +5,18 @@ export CLICOLOR=1
 
 # Shortcuts
 alias   clock="date +%r"
-alias   clockf="tty-clock -C grey -t -c"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   yesDock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias   resource="source ~/.zshrc"
 alias   mail="open https://mail.google.com/mail/u/0/#inbox/; open https://mail.google.com/mail/u/1/#inbox; open https://mail.google.com/mail/u/2/#inbox; open https://mail.google.com/mail/u/3/#inbox; open https://mail.google.com/mail/u/4/#inbox;" 
-alias   distract="open https://www.irccloud.com/; open https://discord.com/channels/@me; open https://www.messenger.com/t/100000372900903/"
-alias   discord="open https://discord.com/channels/@me"
 alias   ls="ls -p"
 alias   vi="vim"
 alias   ssh1="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
-alias   tmux0="tmux attach -t 0"
-alias   tmux1="tmux attach -t 1"
-alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m "updated automatically"; git push"
+alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git status; git add .; git commit -m 'updated automatically'; git push"
 alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
-alias   gpu0="sudo pmset -b gpuswitch 0"   # 0 -- integrated
-alias   gpu1="sudo pmset -b gpuswitch 1"   # 1 -- discrete
-alias   gpu2="sudo pmset -b gpuswitch 2"
 alias   wordcount="pbpaste | wc -w"
 
 # History
@@ -43,7 +35,3 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-wallpaper() {
-    osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'"$1"\"
-}
