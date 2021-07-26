@@ -17,7 +17,7 @@ alias   wordc="pbpaste | wc -w"
 # Shortcuts
 alias   resource="source ~/.zshrc"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push"
+alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
 
 # SSH setup
 alias   ssh1="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
