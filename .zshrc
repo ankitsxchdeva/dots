@@ -1,6 +1,6 @@
 # Prompt
 autoload -U colors && colors
-PS1="%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%c "
+PS1="%{$fg_bold[red]%}➜ %{$fg[blue]%}%c "
 export CLICOLOR=1
 
 # Basic Setup
