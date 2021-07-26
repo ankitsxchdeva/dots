@@ -4,7 +4,7 @@ PS1="%{$fg_bold[red]%}➜ %{$fg[blue]%}%c "
 export CLICOLOR=1
 
 # Basic Setup
-alias   ls="ls -p"
+alias   ls="tree -L 1"
 alias   vi="vim"
 
 # Utils
@@ -17,7 +17,7 @@ alias   wordc="pbpaste | wc -w"
 # Shortcuts
 alias   resource="source ~/.zshrc"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
+alias   updateDots="cd; cp .zshrc ~/Documents/dots; cp .vimrc ~/Documents/dots; cp .tmux.conf ~/Documents/.tmux.conf; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
 
 # SSH setup
 alias   ssh1="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)

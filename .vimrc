@@ -1,6 +1,7 @@
 filetype plugin indent on
 syntax on
 
+set t_Co=256
 set backspace=eol,start,indent
 set nu
 set relativenumber
@@ -18,9 +19,11 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set autoread
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'mhinz/vim-startify'
 call plug#end()
 
