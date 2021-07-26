@@ -11,6 +11,7 @@ alias   vi="vim"
 alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clock="date +%r"
+alias   clockf="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
 
 # Shortcuts
