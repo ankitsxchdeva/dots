@@ -19,8 +19,10 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set autoread
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set nocompatible
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+autocmd FileType markdown setlocal spell
 
 call plug#begin('~/.vim/plugged')
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
