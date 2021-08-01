@@ -1,3 +1,9 @@
+#           _              
+#   _______| |__  _ __ ___ 
+#  |_  / __| '_ \| '__/ __|
+# _ / /\__ \ | | | | | (__ 
+#(_)___|___/_| |_|_|  \___|
+
 # Prompt
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}➜ %{$fg[blue]%}%c "
@@ -13,6 +19,7 @@ alias   battery="pmset -g batt"
 alias   clock="date +%r"
 alias   clockf="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
+alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
 
 # Shortcuts
 alias   resource="source ~/.zshrc"
