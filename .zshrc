@@ -14,7 +14,7 @@ alias   ls="ls -p"
 alias   vi="vim"
 
 # Utils
-alias   weather="curl -s wttr.in | head -n 7 | tail -n 5"
+alias   weather="curl -s wttr.in/Cupertino+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clock="date +%r"
 alias   clockf="tty-clock -c -C 4 -t"
