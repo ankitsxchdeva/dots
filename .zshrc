@@ -15,8 +15,8 @@ alias   vi="vim"
 # Utils
 alias   weather="curl -s wttr.in/Cupertino+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
-alias   clock="date +%r"
-alias   clockf="tty-clock -c -C 4 -t"
+alias   clockf="date +%r"
+alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
 alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
 
