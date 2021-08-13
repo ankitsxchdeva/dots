@@ -19,6 +19,7 @@ alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
 alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
+alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 
 # Shortcuts
 alias   resource="source ~/.zshrc"
