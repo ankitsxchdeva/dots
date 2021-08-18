@@ -3,9 +3,13 @@
 # _ / /\__ \ | | | | | (__ 
 #(_)___|___/_| |_|_|  \___|
 
-# Prompt
+# Prompt color based on previous exit code
 autoload -U colors && colors
-PS1="%{$fg_bold[red]%}➜ %{$fg[blue]%}%c "
+arrow_color=$fg_bold[red]
+
+# Prompt
+PROMPT_COMMAND=set_exit_color
+PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 export CLICOLOR=1
 
 # Basic Setup
@@ -20,6 +24,7 @@ alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
 alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
+alias   grip="grip -b"
 
 # Shortcuts
 alias   resource="source ~/.zshrc"
