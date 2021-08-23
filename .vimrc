@@ -27,12 +27,15 @@ set undofile
 set autoread
 set nocompatible
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 autocmd FileType markdown setlocal spell
 
+" NERDTree Settings
+nmap <C-f> :NERDTreeToggle<CR>
+
 call plug#begin('~/.vim/plugged')
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
-Plug 'mhinz/vim-startify'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'mhinz/vim-startify'
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 let &t_SI="\033[3 q"
