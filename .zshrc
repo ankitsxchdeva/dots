@@ -25,6 +25,7 @@ alias   wordc="pbpaste | wc -w"
 alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip -b"
+alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 
 # Shortcuts
 alias   resource="source ~/.zshrc"
@@ -33,9 +34,14 @@ alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf}  ~/Documents/dots; cd Docu
 alias   mail="open https://mail.google.com/mail/u/0/#inbox"
 
 # SSH setup
-alias   ssh1="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
-alias   ssh2="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
-alias   ssh3="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
+alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
+alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
+alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
+
+# I dunno
+alias pip="pip3"
+alias py="python3"
+alias python="python3"
 
 # History
 HISTSIZE=10000
@@ -53,3 +59,4 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
