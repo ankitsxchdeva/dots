@@ -32,6 +32,12 @@ autocmd FileType markdown setlocal spell
 " NERDTree Settings
 nmap <C-f> :NERDTreeToggle<CR>
 
+" Hard mode
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 call plug#begin('~/.vim/plugged')
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'mhinz/vim-startify'
