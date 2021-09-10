@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'mhinz/vim-startify'
     Plug 'preservim/nerdtree'
+    Plug 'lervag/vimtex'
 call plug#end()
 
 let &t_SI="\033[3 q"
