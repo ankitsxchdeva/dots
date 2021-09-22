@@ -17,7 +17,7 @@ alias   ls="ls -p"
 alias   vi="vim"
 
 # Utils
-alias   weather="curl -s wttr.in/Cupertino+CA | head -n 7 | tail -n 5"
+alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
@@ -37,7 +37,7 @@ alias   mail="open https://mail.google.com/mail/u/0/#inbox"
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
-
+alias   ssh4="ssh -Y -p 8022 mininet@localhost" # Miniset virtualbox vm
 # I dunno
 alias pip="pip3"
 alias py="python3"

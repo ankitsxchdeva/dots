@@ -13,7 +13,7 @@
 	<key>saveposition</key>
 	<true/>
 	<key>showOnScreen</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>visibleresults</key>
 	<integer>4</integer>
 </dict>

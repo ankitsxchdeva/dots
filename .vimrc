@@ -10,6 +10,7 @@ set background=dark
 set t_Co=256
 set backspace=eol,start,indent
 set nu
+set showtabline=2
 set relativenumber
 set hidden
 set belloff=all
