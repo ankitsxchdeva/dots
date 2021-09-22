@@ -37,7 +37,8 @@ alias   mail="open https://mail.google.com/mail/u/0/#inbox"
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
-alias   ssh4="ssh -Y -p 8022 mininet@localhost" # Miniset virtualbox vm
+alias   ssh4="ssh -p 3022 mininet@127.0.0.1" # Miniset virtualbox vm
+
 # I dunno
 alias pip="pip3"
 alias py="python3"
