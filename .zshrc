@@ -16,6 +16,10 @@ export CLICOLOR=1
 alias   ls="ls -p"
 alias   vi="vim"
 
+# VPN -- openconnect
+alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
+alias   vpn-down="sudo killall -SIGINT openconnect"
+
 # Utils
 alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
