@@ -34,7 +34,7 @@ alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 # Shortcuts
 alias   resource="source ~/.zshrc"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf}  ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
+alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
 alias   mail="open https://mail.google.com/mail/u/0/#inbox"
 
 # SSH setup
@@ -65,3 +65,4 @@ _comp_options+=(globdots)
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
