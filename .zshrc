@@ -12,6 +12,11 @@ PROMPT_COMMAND=set_exit_color
 PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 export CLICOLOR=1
 
+# Exports
+export EDITOR='vim'
+export LC_ALL=en_US.utf-8
+export LANG="$LC_ALL"
+
 # Basic Setup
 alias   ls="ls -p"
 alias   vi="vim"
@@ -32,10 +37,15 @@ alias   grip="grip -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 
 # Shortcuts
-alias   resource="source ~/.zshrc"
+alias   resource="source ~/.zshrc; git config --global core.excludesfile ~/.gitignore_global"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
 alias   mail="open https://mail.google.com/mail/u/0/#inbox"
+
+# Class shortcuts
+alias   cd101="cd Documents/classes/101"
+alias   cd120="cd Documents/classes/120"
+alias   cd150="cd Documents/classes/150"
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
@@ -64,5 +74,3 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
