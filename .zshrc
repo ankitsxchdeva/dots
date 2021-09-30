@@ -42,9 +42,9 @@ alias   mail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.go
 alias   clr="clear"
 
 # Class shortcuts
-alias   cd101="cd Documents/classes/101"
-alias   cd120="cd Documents/classes/120"
-alias   cd150="cd Documents/classes/150"
+alias   cse101="cd Documents/classes/101"
+alias   cse120="cd Documents/classes/120"
+alias   cse150="cd Documents/classes/150"
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
