@@ -14,8 +14,6 @@ export CLICOLOR=1
 
 # Exports
 export EDITOR='vim'
-export LC_ALL=en_US.utf-8
-export LANG="$LC_ALL"
 
 # Basic Setup
 alias   ls="ls -p"
@@ -40,7 +38,8 @@ alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 alias   resource="source ~/.zshrc; git config --global core.excludesfile ~/.gitignore_global"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
-alias   mail="open https://mail.google.com/mail/u/0/#inbox"
+alias   mail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
+alias   clr="clear"
 
 # Class shortcuts
 alias   cd101="cd Documents/classes/101"
