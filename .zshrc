@@ -41,6 +41,11 @@ alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/.dots
 alias   mail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
 alias   clr="clear"
 
+# Terminal Resizing
+alias   t-s="printf '\e[8;20;70t'"
+alias   t-r="printf '\e[8;40;130t'"
+alias   t-l="printf '\e[8;60;200t'"
+
 # Class shortcuts
 alias   cse101="cd Documents/classes/101"
 alias   cse120="cd Documents/classes/120"
