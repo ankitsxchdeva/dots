@@ -37,14 +37,20 @@ alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 # Shortcuts
 alias   resource="source ~/.zshrc; git config --global core.excludesfile ~/.gitignore_global"
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/Documents/dots; cd Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
-alias   mail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
+alias   updateDots="cd; cp {.zshrc,.vimrc,.tmux.conf,.gitignore_global}  ~/Documents/dots; cd ~/Documents/dots; git add .; git commit -m 'updated automatically'; git push; cd"
+alias  fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
 alias   clr="clear"
 
+# Terminal Resizing
+alias   t-s="printf '\e[8;20;70t'"      # small
+alias   t-r="printf '\e[8;40;130t'"     # regular
+alias   t-l="printf '\e[8;60;200t'"     # large
+alias   t-h="printf '\e[6;0;0t'"        # hide
+
 # Class shortcuts
-alias   cd101="cd Documents/classes/101"
-alias   cd120="cd Documents/classes/120"
-alias   cd150="cd Documents/classes/150"
+alias   cse101="cd ~/Documents/classes/101"
+alias   cse120="cd ~/Documents/classes/120"
+alias   cse150="cd ~/Documents/classes/150"
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
