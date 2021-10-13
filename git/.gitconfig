@@ -1,0 +1,5 @@
+[user]
+	name = Ankit Sachdeva
+	email = ankitsachdeva001@gmail.com
+[core]
+	excludesfile = /Users/ankit/.gitignore_global
