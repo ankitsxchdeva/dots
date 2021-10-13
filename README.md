@@ -1,5 +1,5 @@
-Setup\
-1. `git clone git@github.com:ankitsxchdeva/.dots.git`\
+Setup
+1. `git clone git@github.com:ankitsxchdeva/.dots.git
 2. `sh install.sh`
 
 Mac specific
