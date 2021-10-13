@@ -1,0 +1,19 @@
+# Brewfile
+tap "homebrew/cask"
+tap "homebrew/core"
+
+brew "coreutils"
+brew "ffmpeg"
+brew "grip"
+brew "openconnect"
+brew "speedtest"
+brew "python"
+brew "tty-clock"
+# Casks
+cask "alfred"
+cask "discord"
+cask "firefox"
+cask "karabiner-elements"
+cask "spotify"
+cask "visual-studio-code"
+cask "zoom"

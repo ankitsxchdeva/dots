@@ -1,13 +1,14 @@
-Mac Setup
-1. Brew installation - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-2. Brew install zoom, firefox, karabiner-elements, tmux, python, spotify, gnu-util, grip, discord, etc.
-3. Copy zshrc, vimrc, and tmux files from GitHub, add .hushlogin
-4. Install [vim-plug](https://github.com/junegunn/vim-plug) and [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) in a new directory called .zsh_plugins
-5. Change mouse scroll to a sane setting
-6. Copy karabiner-elements conf
+Setup
+`git clone git@github.com:ankitsxchdeva/.dots.git`\
+`sh install.sh`
+
+Mac specific
+1. Install brew - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` 
+2. cd into .dots/apple/ and run `brew bundle` 
+3. Use general instructions above for dotfiles
+4. Change mouse scroll to a sane setting
+5. Copy karabiner-elements settings
 7. Menu bar -> auto hide, dock -> smallest size and auto hide
-8. magnet setup from app store (no homebrew so manual installation for these)
-
-I should eventually write a script to do most of this
-
-
+8. magnet setup from app store, copy configs from apple/magnet.png
+9. Set alfred settings to .dots/alfred/
+10. Change DNS to google/1.1.1.1
