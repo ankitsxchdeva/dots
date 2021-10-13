@@ -1,6 +1,6 @@
-Setup
-`git clone git@github.com:ankitsxchdeva/.dots.git`\
-`sh install.sh`
+Setup\
+1. `git clone git@github.com:ankitsxchdeva/.dots.git`\
+2. `sh install.sh`
 
 Mac specific
 1. Install brew - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` 
