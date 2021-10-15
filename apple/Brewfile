@@ -9,6 +9,10 @@ brew "openconnect"
 brew "speedtest"
 brew "python"
 brew "tty-clock"
+brew "neofetch"
+brew "stow"
+brew "tmux"
+
 
 # Casks
 cask "alfred"

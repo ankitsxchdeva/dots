@@ -6,10 +6,10 @@
 #                                    |___/  |___/           
 
 window:
-  decorations: buttonless 
+  decorations: Full 
   dimentions:
-    columns: 140
-    rows: 80
+    columns: 120
+    rows: 40
   padding:
     x: 5
     y: 5
@@ -27,7 +27,15 @@ font:
   normal:
     family: 'SF Mono'
     style: Regular
-    
+  bold:
+    family: 'SF Mono'
+    style: Bold
+  italic:
+    family: 'SF Mono'
+    style: Italic
+  bold_italic:
+    family: 'SF Mono'
+    style: Bold Italic    
   size: 12
   use_thin_strokes: true
 
