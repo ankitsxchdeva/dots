@@ -18,6 +18,7 @@ export EDITOR='vim'
 # Basic Setup
 alias   ls="ls -p"
 alias   vi="vim"
+alias   v="vim"
 
 # VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"

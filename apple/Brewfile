@@ -9,8 +9,10 @@ brew "openconnect"
 brew "speedtest"
 brew "python"
 brew "tty-clock"
+
 # Casks
 cask "alfred"
+cask "alacritty"
 cask "discord"
 cask "firefox"
 cask "karabiner-elements"
