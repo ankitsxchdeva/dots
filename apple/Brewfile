@@ -12,11 +12,10 @@ brew "tty-clock"
 brew "neofetch"
 brew "stow"
 brew "tmux"
-
+brew "youtube-dl"
 
 # Casks
 cask "alfred"
-cask "alacritty"
 cask "discord"
 cask "firefox"
 cask "karabiner-elements"
@@ -24,3 +23,4 @@ cask "spotify"
 cask "visual-studio-code"
 cask "zoom"
 cask "monitorcontrol"
+cask "vlc"
