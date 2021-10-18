@@ -48,8 +48,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'preservim/nerdtree'
     Plug 'lervag/vimtex'
+    Plug 'arcticicestudio/nord-vim'
+"    Plug 'vim-airline/vim-airline'
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 
+" lightline config
+if !has('gui_running')
+  set t_Co=256
+endif
+colorscheme nord
+set laststatus=2
+set noshowmode
+let g:lightline = {
+            \ 'colorscheme': 'nord',
+            \ }
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"

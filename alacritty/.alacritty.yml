@@ -6,10 +6,10 @@
 #                                    |___/  |___/           
 
 window:
-  decorations: Full 
-  dimentions:
-    columns: 120
-    rows: 40
+  decorations: Buttonless 
+  dimensions:
+    columns: 100
+    rows: 60
   padding:
     x: 5
     y: 5
