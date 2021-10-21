@@ -10,3 +10,7 @@ Mac specific
 5. magnet setup from app store, copy configs from apple/magnet.png
 6. Set alfred settings to .dots/alfred/
 7. Change DNS to google/1.1.1.1
+
+Notes:
+- Now using starship prompt which requires a nerdfont.
+- Simpler prompt still included in .zshrc

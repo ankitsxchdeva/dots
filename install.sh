@@ -2,7 +2,7 @@
 
 set -eu
 cd ~/.dots
-stow -vt ~ git tmux vim zsh alacritty
+stow -vt ~ git tmux vim zsh #alacritty kitty
 cd
 if [ ! -d ~/.zsh_plugins ]; then
     mkdir .zsh_plugins

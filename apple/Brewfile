@@ -1,6 +1,7 @@
 # Brewfile
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "homebrew/cask-fonts"
 
 brew "coreutils"
 brew "ffmpeg"
@@ -13,6 +14,8 @@ brew "neofetch"
 brew "stow"
 brew "tmux"
 brew "youtube-dl"
+brew "starship"
+# brew "svn"
 
 # Casks
 cask "alfred"
@@ -24,3 +27,4 @@ cask "visual-studio-code"
 cask "zoom"
 cask "monitorcontrol"
 cask "vlc"
+cask "font-jetbrains-mono-nerd-font"

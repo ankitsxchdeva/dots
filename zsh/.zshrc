@@ -3,22 +3,18 @@
 # _ / /\__ \ | | | | | (__ 
 #(_)___|___/_| |_|_|  \___|
 
-# Prompt color based on previous exit code
 autoload -U colors && colors
-arrow_color=$fg_bold[red]
-
-# Prompt
-PROMPT_COMMAND=set_exit_color
-PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 export CLICOLOR=1
-
-# Exports
 export EDITOR='vim'
 
+# Simple non-starship prompt
+ arrow_color=$fg_bold[red]
+ PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
+
 # Basic Setup
-alias   ls="ls -p"
-alias   vi="vim"
 alias   v="vim"
+alias   vi="vim"
+alias   ls="ls -p"
 
 # VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
@@ -78,3 +74,8 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# starship stuff
+#export STARSHIP_CONFIG=~/.starship.config.toml
+#eval "$(starship init zsh)"
+
