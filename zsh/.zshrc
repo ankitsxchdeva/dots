@@ -8,8 +8,8 @@ export CLICOLOR=1
 export EDITOR='vim'
 
 # Simple non-starship prompt
- arrow_color=$fg_bold[red]
- PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
+#  arrow_color=$fg_bold[red]
+#  PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 
 # Basic Setup
 alias   v="vim"
@@ -76,6 +76,6 @@ _comp_options+=(globdots)
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # starship stuff
-#export STARSHIP_CONFIG=~/.starship.config.toml
-#eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.starship.config.toml
+eval "$(starship init zsh)"
 

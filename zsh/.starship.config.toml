@@ -1,88 +1,234 @@
-[directory]
-truncation_length = 0
-truncate_to_repo = true
-truncation_symbol = "repo:"
+# ~/.starship.config.toml
+# Note, requires a nerd font to be installed
 
-# Before all the version info (python, nodejs, php, etc.)
-[git_status]
-style = "white"
-ahead = "⇡${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-behind = "⇣${count}"
-deleted = "x"
-
-[character]
-success_symbol = "[─➜](bold blue)"
-error_symbol = "[─](bold blue)[×](bold red)"
-use_symbol_for_status = true
+add_newline = false
+format = """$directory $character"""
+right_format = """$all"""
 
 [aws]
-symbol = " "
+disabled = true
 
-[conda]
-symbol = " "
+[battery]
+disabled = false
+# Defaults are , , , , 
+
+[[battery.display]]
+threshold = 25
+style = "bold red"
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[](bold red)"
+
+[cmake]
+disabled = true
+
+[cobol]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[crystal]
+disabled = true
 
 [dart]
-symbol = " "
+disabled = true
 
-[docker]
-symbol = " "
+[deno]
+disabled = true
+
+[directory]
+truncation_length = 1
+truncate_to_repo = false
+read_only = " "
+read_only_style = "red"
+truncation_symbol = ""
+home_symbol = "~"
+style="bold blue"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[docker_context]
+disabled = true
+
+[dotnet]
+disabled = true
 
 [elixir]
-symbol = " "
+disabled = true
 
 [elm]
-symbol = " "
+disabled = true
+
+[env_var]
+disabled = true
+
+[erlang]
+disabled = true
+
+[fill]
+disabled = true
+
+[gcloud]
+disabled = true
 
 [git_branch]
-symbol = " "
+disabled = false
+format = " [$symbol$branch]($style) "
+always_show_remote = false
+symbol = " "
+style = "bold purple"
+only_attached = "true"
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = false
+# defaults for now, might fix this later
+
+[git_metrics]
+disabled = true
+
+[git_status]
+disabled = false
+format = '([\[ $all_status$ahead_behind\]]($style) )'
+conflicted = "✗"
+ahead = "⇡ "
+behind = "⇣ "
+diverged = "✂ "
+up_to_date = ""
+untracked = "✱ "
+stashed = "✭ "
+modified = "✈ "
+staged = "+ "
+renamed = "➦ "
+style = "bold cyan"
 
 [golang]
-symbol = " "
+disabled = true
 
-[haskell]
-symbol = " "
+[helm]
+disabled = true
 
-[hg_branch]
-symbol = " "
+[hostname]
+disabled = false
+ssh_only = true
+format =  "on [$hostname](bold yellow) "
+trim_at = ".ucsc.edu"
 
 [java]
-symbol = " "
+disabled = true
+
+[jobs]
+disabled = false
+symbol_threshold = 1
+style = "white bold"
 
 [julia]
-symbol = " "
+disabled = true
+
+[kotlin]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[line_break]
+disabled = false
+
+[lua]
+disabled = true
 
 [memory_usage]
-symbol = " "
+disabled = false
+threshold = 60
+symbol = " "
+format = " $symbol  ${ram}($style) "
+
+[hg_branch]
+disabled = true
 
 [nim]
-symbol = " "
+disabled = true
 
 [nix_shell]
-symbol = " "
+disabled = true
 
 [nodejs]
-symbol = " "
+disabled = true
+
+[ocaml]
+disabled = true
+
+[openstack]
+disabled = true
 
 [package]
-symbol = " "
+disabled = true
 
 [perl]
-symbol = " "
+disabled = true
 
 [php]
-symbol = " "
+disabled = true
+
+[purescript]
+disabled = true
 
 [python]
-symbol = " "
+disabled = true
+
+[rlang]
+disabled = true
+
+[red]
+disabled = true
 
 [ruby]
-symbol = " "
+disabled = true
 
 [rust]
-symbol = " "
+disabled = true
+
+[scala]
+disabled = true
+
+[shell]
+disabled = true
+# this might be cool if you decide to switch between bash/fish/zsh etc
+
+[shlvl]
+disabled = true
+
+[singularity]
+disabled = true
+
+[status]
+disabled = true
+# add the back eventually
 
 [swift]
-symbol = "ﯣ "
+disabled = true
 
+[terraform]
+disabled = true
 
+[time]
+disabled = true
+
+[username]
+disabled = true
+# would be cool for DO droplet with multiple users
+
+[vagrant]
+disabled = true
+
+[vlang]
+disabled = true
+
+[vcsh]
+disabled = true
+
+[zig]
+disabled = true
