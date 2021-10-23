@@ -14,3 +14,7 @@ Mac specific
 Notes:
 - Now using starship prompt which requires a nerdfont, (already added in apple/Brewfile)
 - Simpler prompt still included in .zshrc for temporary machines
+
+Code attributions:
+- Makefiles stolen from [Eugebe](https://github.com/euugenechou/dotfiles/tree/master/makefiles)
+- Stow settings config from [Miles](https://github.com/glapa-grossklag/dotfiles/blob/main/install.sh)

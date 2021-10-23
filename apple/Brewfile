@@ -15,7 +15,10 @@ brew "stow"
 brew "tmux"
 brew "youtube-dl"
 brew "starship"
-# brew "svn"
+brew "llvm"
+brew "svn"
+brew "git"
+brew "vim"
 
 # Casks
 cask "alfred"
