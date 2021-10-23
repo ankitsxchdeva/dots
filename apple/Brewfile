@@ -28,3 +28,5 @@ cask "zoom"
 cask "monitorcontrol"
 cask "vlc"
 cask "font-fira-code-nerd-font"
+cask "basictex"
+# cask "adobe-creative-cloud" # actual bloat, only install if needed

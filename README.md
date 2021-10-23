@@ -12,5 +12,5 @@ Mac specific
 7. Change DNS to google/1.1.1.1
 
 Notes:
-- Now using starship prompt which requires a nerdfont.
-- Simpler prompt still included in .zshrc
+- Now using starship prompt which requires a nerdfont, (already added in apple/Brewfile)
+- Simpler prompt still included in .zshrc for temporary machines
