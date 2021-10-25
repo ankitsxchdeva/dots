@@ -8,8 +8,12 @@ export CLICOLOR=1
 export EDITOR='vim'
 
 # Simple non-starship prompt
-#  arrow_color=$fg_bold[red]
-#  PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
+#arrow_color=$fg_bold[red]
+#PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
+
+# starship prompt
+export STARSHIP_CONFIG=~/.starship.config.toml
+eval "$(starship init zsh)"
 
 # Basic Setup
 alias   v="vim"
@@ -22,6 +26,7 @@ alias   vpn-down="sudo killall -SIGINT openconnect"
 
 # Utils
 alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
+#alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
@@ -30,6 +35,7 @@ alias   shee="tree -L 1 | ghead -n -2 | tail -n +2"
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
+alias   neofetch="pfetch" # bloat
 
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
@@ -74,8 +80,3 @@ _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# starship stuff
-export STARSHIP_CONFIG=~/.starship.config.toml
-eval "$(starship init zsh)"
-

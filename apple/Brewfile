@@ -3,14 +3,16 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/cask-fonts"
 
+# The usual stuff
 brew "coreutils"
 brew "ffmpeg"
 brew "grip"
-brew "openconnect"
+brew "openconnect" #  anyconnect alternative for school vpn
 brew "speedtest"
 brew "python"
 brew "tty-clock"
-brew "neofetch"
+brew "neofetch"  # fucking ricers dude
+brew "pfetch" # omg just stop
 brew "stow"
 brew "tmux"
 brew "youtube-dl"
@@ -32,4 +34,6 @@ cask "monitorcontrol"
 cask "vlc"
 cask "font-fira-code-nerd-font"
 cask "basictex"
+cask "obs"
 # cask "adobe-creative-cloud" # actual bloat, only install if needed
+cask "teamviewer"
