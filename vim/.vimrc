@@ -49,8 +49,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'lervag/vimtex'
     Plug 'arcticicestudio/nord-vim'
-"    Plug 'vim-airline/vim-airline'
     Plug 'itchyny/lightline.vim'
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 " lightline config
@@ -66,3 +67,5 @@ let g:lightline = {
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"
+
+

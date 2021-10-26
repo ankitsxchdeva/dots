@@ -21,6 +21,8 @@ brew "llvm"
 brew "svn"
 brew "git"
 brew "vim"
+brew "fzf"
+brew "ripgrep"
 
 # Casks
 cask "alfred"
