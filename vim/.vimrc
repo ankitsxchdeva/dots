@@ -32,6 +32,9 @@ autocmd FileType markdown setlocal spell
 " NERDTree Settings
 nmap <C-f> :NERDTreeToggle<CR>
 
+" FZF Settings
+nnoremap <silent> <C-p> :Files<CR>
+
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs

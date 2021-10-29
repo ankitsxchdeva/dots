@@ -19,8 +19,9 @@ eval "$(starship init zsh)"
 alias   v="vim"
 alias   vi="vim"
 alias   ls="ls -p"
+alias   clr="clear"
 
-# VPN -- openconnect
+# School VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
 alias   vpn-down="sudo killall -SIGINT openconnect"
 
@@ -40,7 +41,10 @@ alias   neofetch="pfetch" # bloat
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias  fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
-alias   clr="clear"
+alias   nodrop="defaults write com.apple.screencapture disable-shadow -bool TRUE" # remove the drop shadow from command+shift+4 screenshots
+alias   ahhh="defaults write -g ApplePressAndHoldEnabled -bool FALSE"
+alias   no-ahhh="defaults write -g ApplePressAndHoldEnabled -bool TRUE"
+alias   power-chime="defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app"
 
 # Terminal Resizing
 alias   t-s="printf '\e[8;20;70t'"      # small
@@ -87,4 +91,6 @@ if type rg > /dev/null; then
     export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ARM="/usr/local/bin/gcc-arm-none-eabi-7-2017-q2-update/bin:${PATH}"
+export ARM
+

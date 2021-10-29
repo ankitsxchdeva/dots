@@ -2,7 +2,7 @@
 # Note, requires a nerd font to be installed
 
 add_newline = false
-format = """$directory $character"""
+format = """$character $directory"""
 right_format = """$all"""
 
 [aws]
@@ -17,7 +17,7 @@ threshold = 25
 style = "bold red"
 
 [character]
-success_symbol = "[▶](bold green)"
+success_symbol = "[->](bold green)"
 error_symbol = "[](bold red)"
 
 [cmake]
@@ -41,7 +41,7 @@ disabled = true
 [directory]
 truncation_length = 1
 truncate_to_repo = false
-read_only = " "
+read_only = "  "
 read_only_style = "red"
 truncation_symbol = ""
 home_symbol = "~"
