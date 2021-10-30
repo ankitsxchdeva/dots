@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -eu
-cd ~/.dots
-stow -vt ~ git tmux vim zsh #alacritty kitty
 cd
 if [ ! -d ~/.zsh_plugins ]; then
     mkdir .zsh_plugins
@@ -21,6 +19,9 @@ if [[ $OSTYPE == 'darwin'* ]] ; then
     cd ~/.dots/apple
     brew bundle
     fi
+fi
 cd
-fi;
+cd ~/.dots
+stow -vt ~ git tmux vim zsh #alacritty kitty
+echo "done!"
 

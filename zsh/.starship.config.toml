@@ -93,14 +93,14 @@ disabled = true
 [git_status]
 disabled = false
 format = '([\[ $all_status$ahead_behind\]]($style) )'
-conflicted = "✗  "
+conflicted = "✗ "
 ahead = "⇡ "
 behind = "⇣ "
 diverged = "✂ "
 up_to_date = ""
 untracked = "✱ "
 stashed = "✭ "
-modified = "✈ "
+modified = " ✈ "
 staged = "+ "
 renamed = "➦ "
 style = "bold cyan"
