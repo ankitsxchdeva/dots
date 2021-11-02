@@ -23,5 +23,6 @@ fi
 cd
 cd ~/.dots
 stow -vt ~ git tmux vim zsh #alacritty kitty
+stow -vt ~/.config/kitty kitty
 echo "done!"
 

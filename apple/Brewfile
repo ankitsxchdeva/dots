@@ -25,6 +25,7 @@ brew "vim"
 brew "fzf"
 brew "ripgrep"
 brew "tree"
+brew "mpv"
 
 # Casks
 cask "alfred"

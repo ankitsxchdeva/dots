@@ -26,6 +26,7 @@ alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asach
 alias   vpn-down="sudo killall -SIGINT openconnect"
 
 # Utils
+alias   music="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
 #alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
