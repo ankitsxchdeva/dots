@@ -26,7 +26,7 @@ alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asach
 alias   vpn-down="sudo killall -SIGINT openconnect"
 
 # Utils
-alias   music="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
+alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
 #alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
@@ -41,7 +41,7 @@ alias   neofetch="pfetch" # bloat
 
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-alias  fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
+alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
 alias   nodrop="defaults write com.apple.screencapture disable-shadow -bool TRUE" # remove the drop shadow from command+shift+4 screenshots
 alias   ahhh="defaults write -g ApplePressAndHoldEnabled -bool FALSE"
 alias   no-ahhh="defaults write -g ApplePressAndHoldEnabled -bool TRUE"

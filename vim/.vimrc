@@ -54,6 +54,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'arcticicestudio/nord-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf.vim'
+    Plug 'cjuniet/clang-format.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
@@ -70,5 +71,4 @@ let g:lightline = {
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"
-
 
