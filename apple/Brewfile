@@ -10,7 +10,8 @@ brew "ffmpeg"
 brew "grip"
 brew "openconnect" #  anyconnect alternative for school vpn
 brew "speedtest"
-brew "python"
+brew "python@3.9"
+brew "python@3.10"
 brew "tty-clock"
 brew "pfetch" # omg just stop
 brew "stow"
@@ -26,6 +27,8 @@ brew "ripgrep"
 brew "tree"
 brew "mpv"
 brew "clang-format"
+brew "hugo"
+brew "wget"
 
 # Casks
 cask "alfred"

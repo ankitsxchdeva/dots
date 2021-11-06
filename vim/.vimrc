@@ -55,7 +55,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf.vim'
     Plug 'cjuniet/clang-format.vim'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " lightline config

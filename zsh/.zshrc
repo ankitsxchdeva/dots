@@ -28,7 +28,6 @@ alias   vpn-down="sudo killall -SIGINT openconnect"
 # Utils
 alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
-#alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
@@ -63,7 +62,7 @@ alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh4="ssh -p 3022 mininet@127.0.0.1" # Miniset virtualbox vm
-
+alias   codio="ssh codio@forwarding.codio.com -p 50932"
 # I dunno
 alias pip="pip3"
 alias py="python3"
