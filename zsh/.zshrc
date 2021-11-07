@@ -12,7 +12,6 @@ export EDITOR='vim'
 #PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 
 # starship prompt
-export STARSHIP_CONFIG=~/.starship.config.toml
 eval "$(starship init zsh)"
 
 # Basic Setup
