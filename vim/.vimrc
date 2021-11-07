@@ -54,7 +54,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'arcticicestudio/nord-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf.vim'
-    Plug 'cjuniet/clang-format.vim'
+    Plug 'ankitsxchdeva/clang-format.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'psf/black', { 'branch': 'stable' }
