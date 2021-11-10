@@ -29,6 +29,7 @@ brew "mpv"
 brew "clang-format"
 brew "hugo"
 brew "wget"
+brew "gh"
 
 # Casks
 cask "alfred"
