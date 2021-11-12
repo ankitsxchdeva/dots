@@ -3,3 +3,5 @@
 	email = ankitsachdeva001@gmail.com
 [core]
 	excludesfile = /Users/ankit/.gitignore_global
+[init]
+	defaultBranch = main

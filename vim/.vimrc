@@ -50,7 +50,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'mhinz/vim-startify'
     Plug 'preservim/nerdtree'
-    Plug 'lervag/vimtex'
     Plug 'arcticicestudio/nord-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf.vim'
