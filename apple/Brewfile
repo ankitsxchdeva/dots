@@ -30,6 +30,7 @@ brew "clang-format"
 brew "hugo"
 brew "wget"
 brew "gh"
+brew "watch"
 
 # Casks
 cask "alfred"
