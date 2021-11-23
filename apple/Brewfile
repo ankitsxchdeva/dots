@@ -32,6 +32,12 @@ brew "wget"
 brew "gh"
 brew "watch"
 
+# haskell
+brew "ghc"
+cask "cabal-install"
+brew "haskell-stack"
+brew "haskell-language-server"
+
 # Casks
 cask "alfred"
 cask "discord"
@@ -46,3 +52,5 @@ cask "font-fira-code-nerd-font"
 cask "basictex"
 cask "obs"
 cask "teamviewer"
+cask "parallels"
+cask "docker"

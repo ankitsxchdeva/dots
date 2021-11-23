@@ -61,7 +61,7 @@ alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh4="ssh -p 3022 mininet@127.0.0.1" # Miniset virtualbox vm
-alias   codio="ssh codio@forwarding.codio.com -p 50932"
+alias   codio=" ssh codio@forwarding.codio.com -p 50989"
 # I dunno
 alias pip="pip3"
 alias py="python3"
@@ -93,3 +93,4 @@ fi
 ARM="/usr/local/bin/gcc-arm-none-eabi-7-2017-q2-update/bin:${PATH}"
 export ARM
 
+export PATH="/usr/local/sbin:$PATH"
