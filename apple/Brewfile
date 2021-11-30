@@ -12,6 +12,8 @@ brew "openconnect" #  anyconnect alternative for school vpn
 brew "speedtest"
 brew "python@3.9"
 brew "python@3.10"
+brew "go"
+brew "rust"
 brew "tty-clock"
 brew "pfetch" # omg just stop
 brew "stow"
@@ -31,10 +33,8 @@ brew "hugo"
 brew "wget"
 brew "gh"
 brew "watch"
-
-# haskell
 brew "ghc"
-cask "cabal-install"
+brew "cabal-install"
 brew "haskell-stack"
 brew "haskell-language-server"
 
@@ -57,3 +57,5 @@ cask "docker"
 cask "eagle"
 cask "minecraft"
 cask "qbittorrent"
+cask "chatterino"
+cask "via"
