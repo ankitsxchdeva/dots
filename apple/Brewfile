@@ -33,6 +33,7 @@ brew "ghc"
 brew "cabal-install"
 brew "haskell-stack"
 brew "haskell-language-server"
+brew "via"
 
 # Casks
 cask "alfred"
