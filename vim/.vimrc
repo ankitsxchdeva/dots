@@ -14,8 +14,8 @@ set relativenumber
 set hidden
 set belloff=all
 set noerrorbells
-set tabstop=2 softtabstop=2
-set shiftwidth=2
+set tabstop=4 softtabstop=4
+set shiftwidth=4
 set expandtab
 set smartindent
 set wrap

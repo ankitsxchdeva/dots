@@ -62,10 +62,14 @@ alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
 alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
 alias   ssh4="ssh -p 3022 mininet@127.0.0.1" # Miniset virtualbox vm
 alias   codio=" ssh codio@forwarding.codio.com -p 50989"
-# I dunno
+
+# Python stuff
 alias pip="pip3"
 alias py="python3"
 alias python="python3"
+
+# Embedded stuff
+alias serial="ls /dev/tty.*; echo 'screen [port] [baud]'"
 
 # History
 HISTSIZE=10000
