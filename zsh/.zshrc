@@ -10,7 +10,6 @@ export EDITOR='vim'
 # Simple non-starship prompt
 #arrow_color=$fg_bold[red]
 #PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
-
 # starship prompt
 eval "$(starship init zsh)"
 
@@ -19,7 +18,7 @@ alias   v="vim"
 alias   vi="vim"
 alias   ls="ls -p"
 alias   clr="clear"
-
+alias   room-temp="echo 'Pinging raspi.....                 38°'"
 # School VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
 alias   vpn-down="sudo killall -SIGINT openconnect"
@@ -35,12 +34,11 @@ alias   shee="tree -L 1"
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
-alias   neofetch="pfetch" # bloat
 
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
-alias   nodrop="defaults write com.apple.screencapture disable-shadow -bool TRUE" # remove the drop shadow from command+shift+4 screenshots
+alias   nodrop="defaults write com.apple.screencapture disable-shadow -bool TRUE" 
 alias   ahhh="defaults write -g ApplePressAndHoldEnabled -bool FALSE"
 alias   no-ahhh="defaults write -g ApplePressAndHoldEnabled -bool TRUE"
 alias   power-chime="defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app"
@@ -67,9 +65,6 @@ alias   codio=" ssh codio@forwarding.codio.com -p 50989"
 alias pip="pip3"
 alias py="python3"
 alias python="python3"
-
-# Embedded stuff
-alias serial="ls /dev/tty.*; echo 'screen [port] [baud]'"
 
 # History
 HISTSIZE=10000
