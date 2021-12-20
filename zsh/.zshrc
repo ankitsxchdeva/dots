@@ -18,7 +18,6 @@ alias   v="vim"
 alias   vi="vim"
 alias   ls="ls -p"
 alias   clr="clear"
-alias   room-temp="echo 'Pinging raspi.....                 38°'"
 # School VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
 alias   vpn-down="sudo killall -SIGINT openconnect"
