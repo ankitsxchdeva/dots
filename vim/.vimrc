@@ -71,4 +71,4 @@ let g:lightline = {
 
 let &t_SI="\033[3 q"
 let &t_EI="\033[2 q"
-
+set rtp+=/usr/local/opt/fzf
