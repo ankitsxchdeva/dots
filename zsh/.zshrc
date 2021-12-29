@@ -48,11 +48,6 @@ alias   t-r="printf '\e[8;40;130t'"     # regular
 alias   t-l="printf '\e[8;60;200t'"     # large
 alias   t-h="printf '\e[6;0;0t'"        # hide
 
-# Class shortcuts
-alias   cse101="cd ~/Documents/classes/101"
-alias   cse120="cd ~/Documents/classes/120"
-alias   cse150="cd ~/Documents/classes/150"
-
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)

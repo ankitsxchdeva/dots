@@ -36,6 +36,7 @@ brew "haskell-language-server"
 brew "via"
 brew "cmake"
 brew "jq"
+brew "imagemagick"
 
 # Casks
 cask "alfred"
