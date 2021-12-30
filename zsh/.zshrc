@@ -17,7 +17,9 @@ eval "$(starship init zsh)"
 alias   v="vim"
 alias   vi="vim"
 alias   ls="ls -p"
+alias   la="ls -a -p"
 alias   clr="clear"
+
 # School VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
 alias   vpn-down="sudo killall -SIGINT openconnect"
@@ -50,10 +52,9 @@ alias   t-h="printf '\e[6;0;0t'"        # hide
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
-alias   ssh2="ssh ankit@192.168.1.79"        # Home-local  (manjaro 21.0.7)
-alias   ssh3="ssh ankit@162.229.184.109"     # Home-global (ubuntu 20.04.2)
-alias   ssh4="ssh -p 3022 mininet@127.0.0.1" # Miniset virtualbox vm
-alias   codio=" ssh codio@forwarding.codio.com -p 50989"
+
+# Winter 2022 Classes
+alias 114a="cd ~/Documents/classes/114a"
 
 # Python stuff
 alias pip="pip3"
