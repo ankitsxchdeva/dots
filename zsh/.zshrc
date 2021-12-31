@@ -33,7 +33,7 @@ alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
 alias   shee="tree -L 1" 
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
-alias   grip="grip -b"
+alias   grip="grip --quiet -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 
 # Shortcuts

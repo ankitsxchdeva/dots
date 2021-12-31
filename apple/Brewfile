@@ -37,6 +37,8 @@ brew "via"
 brew "cmake"
 brew "jq"
 brew "imagemagick"
+brew "scc"
+brew "tokei"
 
 # Casks
 cask "alfred"

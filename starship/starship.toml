@@ -13,8 +13,8 @@ disabled = false
 # Defaults are , , , , 
 
 [[battery.display]]
-threshold = 25
-style = "bold red"
+threshold = 35
+style = "red"
 
 [character]
 success_symbol = "[->](bold green)"
@@ -215,7 +215,10 @@ disabled = true
 disabled = true
 
 [time]
-disabled = true
+disabled = true 
+use_12hr = true
+style = "bold yellow"
+format = " [$time]($style) "
 
 [username]
 disabled = true
