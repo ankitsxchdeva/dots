@@ -35,6 +35,7 @@ alias   shee="tree -L 1"
 alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip --quiet -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
+alias   discord="open -a discord"
 
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
@@ -52,9 +53,12 @@ alias   t-h="printf '\e[6;0;0t'"        # hide
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
+alias   ssh2="ssh asachde2@olaf.soe.ucsc.edu" # UCSC-teaching servers
 
 # Winter 2022 Classes
 alias 114a="cd ~/Documents/classes/114a"
+alias c130="cd ~/Documents/classes/130"
+alias c178="cd ~/Documents/classes/178"
 
 # Python stuff
 alias pip="pip3"

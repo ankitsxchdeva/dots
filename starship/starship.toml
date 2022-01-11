@@ -13,7 +13,7 @@ disabled = false
 # Defaults are , , , , 
 
 [[battery.display]]
-threshold = 35
+threshold = 50
 style = "red"
 
 [character]
