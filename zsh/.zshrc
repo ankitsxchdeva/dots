@@ -53,7 +53,7 @@ alias   t-h="printf '\e[6;0;0t'"        # hide
 
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
-alias   ssh2="ssh asachde2@olaf.soe.ucsc.edu" # UCSC-teaching servers
+alias   ssh130="ssh asachde2@olaf.soe.ucsc.edu" # UCSC-teaching servers
 
 # Winter 2022 Classes
 alias 114a="cd ~/Documents/classes/114a"
