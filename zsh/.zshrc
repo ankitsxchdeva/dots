@@ -36,7 +36,7 @@ alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip --quiet -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 alias   discord="open -a discord"
-
+alias   yt-dlp="youtube-dl"
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
