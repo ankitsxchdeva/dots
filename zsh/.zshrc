@@ -36,7 +36,9 @@ alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
 alias   grip="grip --quiet -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 alias   discord="open -a discord"
-alias   yt-dlp="youtube-dl"
+alias   youtube-dl="yt-dlp"
+alias   mt="open http://monkeytype.com"
+
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
@@ -45,7 +47,7 @@ alias   ahhh="defaults write -g ApplePressAndHoldEnabled -bool FALSE"
 alias   no-ahhh="defaults write -g ApplePressAndHoldEnabled -bool TRUE"
 alias   power-chime="defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app"
 
-# Terminal Resizing
+# Terminal sizing
 alias   t-s="printf '\e[8;20;70t'"      # small
 alias   t-r="printf '\e[8;40;130t'"     # regular
 alias   t-l="printf '\e[8;60;200t'"     # large
