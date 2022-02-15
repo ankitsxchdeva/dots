@@ -1,6 +1,6 @@
-"__   _(_)_ __ ___  _ __ ___ 
+"__   _(_)_ __ ___  _ __ ___
 "\ \ / / | '_ ` _ \| '__/ __|
-" \ V /| | | | | | | | | (__ 
+" \ V /| | | | | | | | | (__
 "(_)_/ |_|_| |_| |_|_|  \___|
 
 filetype plugin indent on
@@ -28,6 +28,10 @@ set autoread
 set nocompatible
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
+set list
+set showbreak=↪\
+set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
+match ErrorMsg '\s\+$'
 
 " NERDTree Settings
 nmap <C-f> :NERDTreeToggle<CR>
