@@ -39,6 +39,7 @@ brew "jq"
 brew "imagemagick"
 brew "scc"
 brew "tokei"
+brew "rust"
 
 # Casks
 cask "alfred"
