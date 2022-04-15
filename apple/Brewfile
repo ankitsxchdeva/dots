@@ -6,6 +6,7 @@ tap "teamookla/speedtest"
 
 # The usual stuff
 brew "coreutils"
+brew "tmux"
 brew "ffmpeg"
 brew "grip"
 brew "openconnect"
@@ -50,7 +51,8 @@ cask "zoom"
 cask "monitorcontrol"
 cask "vlc"
 cask "font-fira-code-nerd-font"
-cask "basictex"
+#cask "basictex" -- lighter installation but less compatibility
+cask "mactext"
 cask "obs"
 cask "parallels"
 cask "docker"
