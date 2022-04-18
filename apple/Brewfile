@@ -59,6 +59,7 @@ cask "docker"
 cask "qbittorrent"
 cask "microsoft-teams"
 cask "teamviewer"
+cask "pomotroid"
 
 # Personal
 brew "pfetch"

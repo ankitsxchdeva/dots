@@ -28,10 +28,10 @@ set autoread
 set nocompatible
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
-set list
-set showbreak=↪\
-set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
-match ErrorMsg '\s\+$'
+"set list
+"set showbreak=↪\
+"set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
+"match ErrorMsg '\s\+$'
 
 " NERDTree Settings
 nmap <C-f> :NERDTreeToggle<CR>
