@@ -60,6 +60,7 @@ cask "qbittorrent"
 cask "microsoft-teams"
 cask "teamviewer"
 cask "pomotroid"
+cask "ghidra"
 
 # Personal
 brew "pfetch"
