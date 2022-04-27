@@ -78,7 +78,7 @@ format = " [$symbol$branch]($style) "
 always_show_remote = false
 symbol = " "
 style = "bold purple"
-only_attached = "true"
+
 
 [git_commit]
 disabled = true
