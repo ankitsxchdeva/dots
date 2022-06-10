@@ -52,7 +52,7 @@ cask "monitorcontrol"
 cask "vlc"
 cask "font-fira-code-nerd-font"
 #cask "basictex" -- lighter installation but less compatibility
-cask "mactex"
+#cask "mactex"   -- massive, will take a while to download/install
 cask "obs"
 cask "parallels"
 cask "docker"
@@ -61,7 +61,7 @@ cask "microsoft-teams"
 cask "teamviewer"
 cask "pomotroid"
 cask "ghidra"
-cask "kicad"
+#cask "kicad" -- massive, will also take a whilt to download/install
 
 # Personal
 brew "pfetch"

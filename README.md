@@ -5,11 +5,12 @@ Setup
 Mac specific
 1. Same instructions as above
 2. Change mouse scroll to a sane setting
-3. Copy karabiner-elements settings
+3. (only for macbook) Copy karabiner-elements settings
 4. Menu bar -> auto hide, dock -> smallest size and auto hide
 5. magnet setup from app store, copy configs from apple/magnet.png
 6. Set alfred settings to .dots/alfred/
 7. Change DNS to google/1.1.1.1
+8. Download RODE connect and shit 
 
 Notes:
 - Now using starship prompt which requires a nerdfont, (already added in apple/Brewfile)
