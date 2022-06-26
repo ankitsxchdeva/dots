@@ -61,6 +61,7 @@ cask "microsoft-teams"
 cask "teamviewer"
 cask "pomotroid"
 cask "ghidra"
+cask "microsoft-teams"
 #cask "kicad" -- massive, will also take a whilt to download/install
 
 # Personal
@@ -72,5 +73,6 @@ cask "chatterino"
 cask "via"
 cask "vial"
 cask "discord"
+cask "betterdiscord-installer"
 cask "bitwarden"
 cask "mullvadvpn"
