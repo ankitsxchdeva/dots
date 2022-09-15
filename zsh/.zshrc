@@ -19,6 +19,7 @@ alias   vi="vim"
 alias   ls="ls -p"
 alias   la="ls -a -p"
 alias   clr="clear"
+alias   rf="rm -rf"
 
 # School VPN -- openconnect
 alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
