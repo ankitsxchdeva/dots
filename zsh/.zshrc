@@ -97,3 +97,4 @@ export ARM
 export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
