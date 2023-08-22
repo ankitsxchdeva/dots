@@ -28,7 +28,7 @@ set autoread
 set nocompatible
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
 "xnoremap <silent><leader>c :w !pbcopy<CR><CR>
 "nnoremap <silent><leader>v :r !pbpaste<CR><CR>
 "set list

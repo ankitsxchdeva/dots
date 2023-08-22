@@ -27,7 +27,7 @@ alias   vpn-down="sudo killall -SIGINT openconnect"
 
 # Utils
 alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
-alias   weather="curl -s wttr.in/Santa+Cruz+CA | head -n 7 | tail -n 5"
+alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
@@ -57,11 +57,6 @@ alias   t-h="printf '\e[6;0;0t'"        # hide
 # SSH setup
 alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
 alias   ssh130="ssh asachde2@olaf.soe.ucsc.edu" # UCSC-teaching servers
-
-# Winter 2022 Classes
-alias 114a="cd ~/Documents/classes/114a"
-alias c130="cd ~/Documents/classes/130"
-alias c178="cd ~/Documents/classes/178"
 
 # Python stuff
 alias pip="pip3"
