@@ -9,12 +9,9 @@ right_format = """$all"""
 disabled = true
 
 [battery]
-disabled = false
-# Defaults are , , , , 
+disabled = true
 
-[[battery.display]]
-threshold = 50
-style = "red"
+# Defaults are , , , , 
 
 [character]
 success_symbol = "[->](bold green)"
