@@ -36,6 +36,14 @@ alias   discord="open -a discord"
 alias   youtube-dl="yt-dlp"
 alias   mt="open http://monkeytype.com"
 
+function mkcd() {
+    if [[ -z "$1" ]]; then
+        echo "No directory name provided"
+        return 1
+    fi
+    mkdir -p "$1" && cd "$1"
+}
+
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
