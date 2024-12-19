@@ -21,10 +21,6 @@ alias   la="ls -a -p"
 alias   clr="clear"
 alias   rf="rm -rf"
 
-# School VPN -- openconnect
-alias   vpn-up="sudo openconnect --protocol=anyconnect --background --user=asachde2 vpn.ucsc.edu"
-alias   vpn-down="sudo killall -SIGINT openconnect"
-
 # Utils
 alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
@@ -93,3 +89,4 @@ export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+export PATH="/Users/ankit/.cargo/bin:$PATH"
