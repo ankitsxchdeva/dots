@@ -8,10 +8,10 @@ export CLICOLOR=1
 export EDITOR='vim'
 
 # Simple non-starship prompt
-#arrow_color=$fg_bold[red]
-#PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
+arrow_color=$fg_bold[red]
+PS1="%{$arrow_color%}➜ %{$fg[blue]%}%c %(?..[%?] )"
 # starship prompt
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 # Basic Setup
 alias   v="vim"
