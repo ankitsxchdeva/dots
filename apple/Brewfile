@@ -1,17 +1,16 @@
 # Brewfile
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "homebrew/cask-fonts"
 tap "teamookla/speedtest"
 
 # The usual stuff
 brew "coreutils"
 brew "tmux"
+brew "pfetch"
 brew "ffmpeg"
 brew "grip"
 brew "openconnect"
 brew "speedtest"
-brew "python@3.10"
+brew "python@3.13"
 brew "go"
 brew "rust"
 brew "tty-clock"
@@ -54,25 +53,23 @@ cask "font-fira-code-nerd-font"
 #cask "basictex" -- lighter installation but less compatibility
 #cask "mactex"   -- massive, will take a while to download/install
 cask "obs"
-cask "parallels"
+#cask "parallels"
 cask "docker"
-cask "qbittorrent"
+#cask "qbittorrent"
 cask "microsoft-teams"
-cask "teamviewer"
-cask "pomotroid"
+#cask "teamviewer"
+#cask "pomotroid"
 cask "ghidra"
-cask "microsoft-teams"
 #cask "kicad" -- massive, will also take a whilt to download/install
+cask "ghostty"
 
-# Personal
-brew "pfetch"
+# Personal trash, do not install on work
 cask "minecraft"
-cask "eagle"
+#cask "eagle"
 brew "yt-dlp"
 cask "chatterino"
-cask "via"
+#cask "via"
 cask "vial"
 cask "discord"
-cask "betterdiscord-installer"
 cask "bitwarden"
 cask "mullvadvpn"
