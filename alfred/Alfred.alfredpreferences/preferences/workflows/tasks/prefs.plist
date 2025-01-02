@@ -2,11 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>pages</key>
-	<array>
-		<string>088756A7-949B-443D-A2EF-D36EA532C1EA</string>
-	</array>
-	<key>uid</key>
-	<string>42372E6E-B29B-4209-91F5-ACC9C73B9CB2</string>
+	<key>autoUpdate</key>
+	<true/>
+	<key>showInPalette</key>
+	<true/>
 </dict>
 </plist>
