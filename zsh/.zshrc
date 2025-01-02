@@ -47,20 +47,6 @@ function mkcd() {
 # Shortcuts
 alias   removeDock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
 alias   fmail="open https://mail.google.com/mail/u/0/#inbox; open https://mail.google.com/mail/u/1/#inbox; open https://calendar.google.com/calendar/u/0/r"
-alias   nodrop="defaults write com.apple.screencapture disable-shadow -bool TRUE" 
-alias   ahhh="defaults write -g ApplePressAndHoldEnabled -bool FALSE"
-alias   no-ahhh="defaults write -g ApplePressAndHoldEnabled -bool TRUE"
-alias   power-chime="defaults write com.apple.PowerChime ChimeOnAllHardware -bool true; open /System/Library/CoreServices/PowerChime.app"
-
-# Terminal sizing
-alias   t-s="printf '\e[8;20;70t'"      # small
-alias   t-r="printf '\e[8;40;130t'"     # regular
-alias   t-l="printf '\e[8;60;200t'"     # large
-alias   t-h="printf '\e[6;0;0t'"        # hide
-
-# SSH setup
-alias   ssh1="ssh asachde2@unix.ucsc.edu"    # UCSC-global (CentOs 3.10.0)
-alias   ssh130="ssh asachde2@olaf.soe.ucsc.edu" # UCSC-teaching servers
 
 # Python stuff
 alias pip="pip3"
