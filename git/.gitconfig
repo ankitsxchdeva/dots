@@ -5,3 +5,6 @@
 	excludesfile = /Users/banana/.gitignore_global
 [init]
 	defaultBranch = main
+[safe]
+	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/
+	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/connectmls.regression

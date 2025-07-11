@@ -20,10 +20,11 @@ alias   ls="ls -p"
 alias   la="ls -a -p"
 alias   clr="clear"
 alias   rf="rm -rf"
+alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
 
 # Utils
 alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
-alias   weather="curl -s wttr.in/San+Jose+CA | head -n 7 | tail -n 5"
+alias   weather="curl -s wttr.in/Austin+TX | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
