@@ -20,7 +20,6 @@ alias   ls="ls -p"
 alias   la="ls -a -p"
 alias   clr="clear"
 alias   rf="rm -rf"
-alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
 
 # Utils
 alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
@@ -76,12 +75,14 @@ if type rg > /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
     export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ARM="/usr/local/bin/gcc-arm-none-eabi-7-2017-q2-update/bin:${PATH}"
 export ARM
-
 export PATH="/usr/local/sbin:$PATH"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="/Users/ankit/.cargo/bin:$PATH"
+
+# Dynaconnections specific stuff
+[ -f ~/.server_aliases ] && source ~/.server_aliases
+alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
