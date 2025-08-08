@@ -3,9 +3,12 @@
 # _ / /\__ \ | | | | | (__ 
 #(_)___|___/_| |_|_|  \___|
 
+
+export PATH="/opt/homebrew/sbin:$PATH"
 autoload -U colors && colors
 export CLICOLOR=1
 export EDITOR='vim'
+
 
 # Simple non-starship prompt
 arrow_color=$fg_bold[red]
@@ -61,8 +64,8 @@ HISTFILE=~/.zsh_history
 # Autocomplete
 autoload -U compinit
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
-zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suffix 
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
@@ -82,6 +85,8 @@ export ARM
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="/Users/ankit/.cargo/bin:$PATH"
+export PATH=/opt/instantclient_23_3:$PATH
+export DYLD_LIBRARY_PATH=/opt/instantclient_23_3:$DYLD_LIBRARY_PATH
 
 # Dynaconnections specific stuff
 [ -f ~/.server_aliases ] && source ~/.server_aliases
