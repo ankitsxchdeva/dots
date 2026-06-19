@@ -79,15 +79,43 @@ if type rg > /dev/null; then
     export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-ARM="/usr/local/bin/gcc-arm-none-eabi-7-2017-q2-update/bin:${PATH}"
-export ARM
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
-export PATH="/Users/ankit/.cargo/bin:$PATH"
-export PATH=/opt/instantclient_23_3:$PATH
-export DYLD_LIBRARY_PATH=/opt/instantclient_23_3:$DYLD_LIBRARY_PATH
-
 # Dynaconnections specific stuff
 [ -f ~/.server_aliases ] && source ~/.server_aliases
 alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
+
+
+### ---- dev env (clean) ----
+
+# Core locations (adjust if needed)
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
+export TOMCAT_HOME="$HOME/Documents/dc/tomcat-8.5.96"
+
+# Oracle — pick ONE location and stick to it
+export ORACLE_CLIENT="$HOME/Documents/instantclient_23_3"
+# Use zsh's path array + de-dupe
+typeset -U path
+
+# IMPORTANT: define the full order explicitly (do NOT append $path here)
+path=(
+  # System first so basic tools work while sourcing
+  /usr/local/bin
+  /usr/bin
+  /bin
+  /usr/sbin
+  /sbin
+
+  # Homebrew (Apple Silicon)
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+
+  # Your toolchains
+  "$JAVA_HOME/bin"
+  "$TOMCAT_HOME/bin"
+  "$HOME/.cargo/bin"
+  "$ORACLE_CLIENT"
+)
+
+export PATH="/Library/TeX/texbin:$PATH"
+
+# Added by codebase-memory-mcp install
+export PATH="/Users/Ankit/.local/bin:$PATH"
