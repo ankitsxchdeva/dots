@@ -57,28 +57,66 @@ alias py="python3"
 alias python="python3"
 
 # History
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.zsh_history
+setopt SHARE_HISTORY          # live-share history across open shells
+setopt HIST_IGNORE_ALL_DUPS   # drop older duplicate commands
+setopt HIST_IGNORE_SPACE      # leading space = don't record (handy for secrets)
+setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY        # record timestamps
+setopt INC_APPEND_HISTORY
+
+# Navigation
+setopt AUTO_CD                 # type a dir name to cd into it
+setopt AUTO_PUSHD              # cd maintains a dir stack (cd -2, etc.)
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
 
 # Autocomplete
-autoload -U compinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
+autoload -Uz compinit
+# Only run the slow security check once a day; use the cache otherwise
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit; else compinit -C; fi
 zmodload zsh/complist
-compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
 _comp_options+=(globdots)
 
 # Plugins
 source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+    source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# FZF + repgrep
+# FZF + ripgrep
 if type rg > /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files'
     export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf keybindings + completion (Ctrl-R history, Ctrl-T files, Alt-C cd)
+if (( $+commands[fzf] )); then
+    if fzf --zsh > /dev/null 2>&1; then
+        source <(fzf --zsh)
+    elif [ -f ~/.fzf.zsh ]; then
+        source ~/.fzf.zsh
+    fi
+fi
+
+# Modern CLI tools (only override if installed, so this stays portable)
+if (( $+commands[eza] )); then
+    alias ls="eza --group-directories-first"
+    alias la="eza -a --group-directories-first"
+    alias ll="eza -lah --group-directories-first --git"
+    alias tree="eza --tree"
+fi
+if (( $+commands[bat] )); then
+    alias cat="bat --paging=never"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # syntax-highlighted man pages
+    export MANROFFOPT="-c"                               # fix formatting gaps in man output
+fi
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+
 # Dynaconnections specific stuff
 [ -f ~/.server_aliases ] && source ~/.server_aliases
 alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
@@ -115,7 +153,10 @@ path=(
   "$ORACLE_CLIENT"
 )
 
+# Oracle Instant Client needs its libs on the dynamic linker path
+export DYLD_LIBRARY_PATH="$ORACLE_CLIENT:$DYLD_LIBRARY_PATH"
+
 export PATH="/Library/TeX/texbin:$PATH"
 
 # Added by codebase-memory-mcp install
-export PATH="/Users/Ankit/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

@@ -15,6 +15,9 @@ remove_plugins() {
     if [ -d "$zsh_plugins_dir/zsh-syntax-highlighting" ]; then
         rm -rf "$zsh_plugins_dir/zsh-syntax-highlighting"
     fi
+    if [ -d "$zsh_plugins_dir/zsh-autosuggestions" ]; then
+        rm -rf "$zsh_plugins_dir/zsh-autosuggestions"
+    fi
     if [ -d "$zsh_plugins_dir/gitstatus" ]; then
         rm -rf "$zsh_plugins_dir/gitstatus"
     fi

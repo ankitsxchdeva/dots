@@ -1,81 +1,92 @@
-# Brewfile
-tap "teamookla/speedtest"
+# Brewfile — `brew bundle --file=apple/Brewfile`
 
-# The usual stuff
-brew "coreutils"
+# ─── Shell & modern CLI ──────────────────────────────────────────────
+brew "stow"           # dotfile symlink manager
+brew "starship"       # prompt
 brew "tmux"
-brew "pfetch"
-brew "ffmpeg"
-brew "grip"
-brew "openconnect"
-brew "speedtest"
-brew "python"
+brew "fzf"            # fuzzy finder (Ctrl-R / Ctrl-T)
+brew "ripgrep"        # rg — fast grep
+brew "fd"             # friendlier find
+brew "bat"            # cat with syntax highlighting
+brew "eza"            # modern ls with git/icons
+brew "zoxide"         # smarter cd (z)
+brew "tree"
+brew "jq"             # JSON wrangling
+brew "wget"
+brew "watch"
+brew "coreutils"
+brew "fastfetch"     # system info (pfetch was removed from Homebrew)
+brew "mole"          # reclaims disk space
+
+# ─── Languages & build ───────────────────────────────────────────────
+brew "python@3.13"
+brew "node"
 brew "go"
 brew "rust"
-brew "tty-clock"
-brew "stow"
-brew "starship"
-brew "llvm"
-brew "svn"
-brew "git"
-brew "vim"
-brew "fzf"
-brew "ripgrep"
-brew "tree"
-brew "mpv"
-brew "clang-format"
-brew "hugo"
-brew "wget"
-brew "gh"
-brew "watch"
 brew "ghc"
-brew "cabal-install"
-brew "haskell-stack"
-brew "haskell-language-server"
+brew "llvm"
+brew "clang-format"
 brew "cmake"
-brew "jq"
-brew "imagemagick"
+brew "git"
+brew "gh"             # GitHub CLI
+brew "svn"
+brew "vim"
+
+# ─── Code stats ──────────────────────────────────────────────────────
 brew "scc"
 brew "tokei"
-brew "rust"
+brew "cloc"
 
-# DC
-cask "slack"
-cask "microsoft-outlook"
-cask "viscosity"
-cask "postman"
+# ─── Media & misc ────────────────────────────────────────────────────
+brew "ffmpeg"
+brew "mpv"
+brew "yt-dlp"
+brew "grip"           # GitHub-flavored markdown preview
+brew "hugo"           # static site generator
+brew "tty-clock"
 
-# Casks
-cask "alfred"
-cask "firefox"
-cask "karabiner-elements"
-cask "spotify"
+# ─── Casks: applications ─────────────────────────────────────────────
+cask "ghostty"
 cask "visual-studio-code"
-cask "zoom"
-#cask "monitorcontrol"
-cask "vlc"
-cask "font-fira-code-nerd-font"
-#cask "basictex" -- lighter installation but less compatibility
-#cask "mactex"   -- massive, will take a while to download/install
+cask "firefox"
+cask "spotify"
+#cask "vlc"
 #cask "obs"
+cask "docker-desktop"
+cask "zoom"
+cask "ghidra"
+cask "claude"
+cask "claude-code"
+#cask "cursor"
+#cask "chatgpt"
+#cask "qflipper"        # Flipper Zero companion
 #cask "parallels"
-cask "docker"
-##cask "qbittorrent"
 #cask "microsoft-teams"
+#cask "alfred"
 #cask "teamviewer"
 #cask "pomotroid"
-cask "ghidra"
-#cask "kicad" -- massive, will also take a whilt to download/install
-cask "ghostty"
+#cask "qbittorrent"
+#cask "kicad"     -- massive, takes a while to download/install
 
-# Personal trash, do not install on work
-#cask "minecraft"
-#cask "eagle"
-#brew "yt-dlp"
-#cask "chatterino"
-#cask "via"
-#cask "vial"
+# ─── Work / DC (work machine only) ───────────────────────────────────
+cask "slack"
+cask "microsoft-outlook"
+cask "viscosity"           # Cisco-compatible VPN client
+cask "postman"             # API testing
+
+# ─── Casks: fonts ────────────────────────────────────────────────────
+cask "font-fira-code-nerd-font"
+
+# ─── TeX (pick one) ──────────────────────────────────────────────────
+#cask "basictex"  -- lighter installation but less compatibility
+#cask "mactex"    -- massive, will take a while to download/install
+
+# ─── Personal — do NOT install on a work machine ─────────────────────
 cask "discord"
-cask "bitwarden"
-#cask "mullvadvpn"
+cask "chatterino"
+cask "mullvad-vpn"
+cask "vial"           # keyboard firmware config
+#cask "minecraft"
 #cask "league-of-legends"
+#cask "via"
+#cask "eagle"

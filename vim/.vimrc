@@ -3,6 +3,8 @@
 " \ V /| | | | | | | | | (__
 "(_)_/ |_|_| |_| |_|_|  \___|
 
+let mapleader=" "
+
 filetype plugin indent on
 syntax on
 
@@ -19,7 +21,13 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set wrap
+set ignorecase
 set smartcase
+set incsearch
+set hlsearch
+set scrolloff=8
+set signcolumn=yes
+set updatetime=300
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -28,6 +36,9 @@ set autoread
 set nocompatible
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
+
+" Clear search highlight
+nnoremap <silent> <leader>n :nohl<CR>
 "set clipboard+=unnamedplus
 "xnoremap <silent><leader>c :w !pbcopy<CR><CR>
 "nnoremap <silent><leader>v :r !pbpaste<CR><CR>
@@ -62,6 +73,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'ankitsxchdeva/clang-format'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-commentary'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 

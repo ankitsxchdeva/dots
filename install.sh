@@ -12,11 +12,14 @@ stow_config() {
 
 install_plugins() {
     local zsh_plugins_dir=~/.zsh_plugins
-    if [ ! -d "$zsh_plugins_dir" ]; then
-        mkdir "$zsh_plugins_dir"
-    fi
+    mkdir -p "$zsh_plugins_dir"
     if [ ! -d "$zsh_plugins_dir/zsh-syntax-highlighting" ]; then
-        git clone git@github.com:zsh-users/zsh-syntax-highlighting.git "$zsh_plugins_dir/zsh-syntax-highlighting"
+        git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$zsh_plugins_dir/zsh-syntax-highlighting"
+    fi
+    if [ ! -d "$zsh_plugins_dir/zsh-autosuggestions" ]; then
+        git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "$zsh_plugins_dir/zsh-autosuggestions"
+    fi
+    if [ ! -d "$zsh_plugins_dir/gitstatus" ]; then
         git clone --depth=1 https://github.com/romkatv/gitstatus.git "$zsh_plugins_dir/gitstatus"
     fi
 }
