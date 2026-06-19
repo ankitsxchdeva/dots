@@ -1,9 +1,12 @@
-theme = catppuccin-Mocha
 font-family = "FiraCode Nerd Font"
 font-size = 12
 cursor-style = block_hollow
 cursor-style-blink = true
-background-opacity = 0.99
+background-opacity = 0.97
+background-blur = 20
 unfocused-split-opacity = 0.90
+window-padding-x = 14
+window-padding-y = 14
+window-padding-balance = true
 title = "terminal"
 #initial-command = "macchina"

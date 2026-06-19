@@ -2,7 +2,7 @@
 	name = Ankit Sachdeva
 	email = ankitsachdeva001@gmail.com
 [core]
-	excludesfile = /Users/banana/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
 [safe]
