@@ -82,6 +82,11 @@ call plug#end()
 if !has('gui_running')
   set t_Co=256
 endif
+" True 24-bit color so Nord renders exactly (not a 256-color approximation)
+if has('termguicolors')
+  set termguicolors
+endif
+set cursorline
 colorscheme nord
 set laststatus=2
 set noshowmode

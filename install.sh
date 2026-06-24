@@ -7,7 +7,8 @@ stow_home() {
 }
 
 stow_config() {
-    stow --restow -vt ~/.config starship ghostty
+    # starship disabled (native zsh prompt instead) — stow ghostty only
+    stow --restow -vt ~/.config ghostty
 }
 
 install_plugins() {
@@ -18,9 +19,6 @@ install_plugins() {
     fi
     if [ ! -d "$zsh_plugins_dir/zsh-autosuggestions" ]; then
         git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "$zsh_plugins_dir/zsh-autosuggestions"
-    fi
-    if [ ! -d "$zsh_plugins_dir/gitstatus" ]; then
-        git clone --depth=1 https://github.com/romkatv/gitstatus.git "$zsh_plugins_dir/gitstatus"
     fi
 }
 

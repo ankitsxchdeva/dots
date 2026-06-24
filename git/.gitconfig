@@ -3,8 +3,77 @@
 	email = ankitsachdeva001@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
+	# delta = syntax-highlighted diffs; falls back to less if not installed
+	pager = delta || less -R
+[interactive]
+	diffFilter = delta --color-only || cat
+[delta]
+	navigate = true          ; n / N to move between diff hunks
+	line-numbers = true
+	syntax-theme = Nord
+	hyperlinks = true
 [init]
 	defaultBranch = main
 [safe]
 	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/
 	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/connectmls.regression
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+# ─── sane modern defaults ────────────────────────────────────────────
+[pull]
+	rebase = true            ; linear history instead of merge bubbles
+[push]
+	autoSetupRemote = true   ; first `git push` just works on new branches
+	default = current
+	followTags = true
+[fetch]
+	prune = true             ; drop local refs for deleted remote branches
+[rebase]
+	autoStash = true
+	autoSquash = true
+[merge]
+	conflictStyle = zdiff3   ; clearer 3-way conflict markers
+[diff]
+	algorithm = histogram
+	colorMoved = default     ; highlight moved (vs added/removed) lines
+	mnemonicPrefix = true
+[branch]
+	sort = -committerdate    ; most-recent branches first
+[column]
+	ui = auto
+[help]
+	autocorrect = prompt
+[color]
+	ui = auto
+[rerere]
+	enabled = true           ; remember conflict resolutions
+
+# ─── aliases ─────────────────────────────────────────────────────────
+[alias]
+	st = status -sb
+	co = checkout
+	sw = switch
+	br = branch
+	cm = commit -m
+	ca = commit --amend
+	can = commit --amend --no-edit
+	aa = add -A
+	unstage = restore --staged
+	last = log -1 HEAD --stat
+	d = diff
+	ds = diff --staged
+	ll = log --oneline --graph --decorate -20
+	lg = log --graph --abbrev-commit --decorate --all \
+		--format=format:'%C(bold blue)%h%C(reset) %C(dim white)%an%C(reset)%C(auto)%d%C(reset) %s %C(dim green)(%ar)%C(reset)'
+	wip = !git add -A && git commit -m 'wip' --no-verify
+	undo = reset --soft HEAD~1     ; undo last commit, keep changes staged
+	pf = push --force-with-lease   ; safe force-push
+	amend = commit --amend --no-edit
+	cleanup = !git branch --merged | grep -vE '^[*+]|main|master' | xargs -r git branch -d
+	root = rev-parse --show-toplevel
+	aliases = !git config --get-regexp '^alias\\.' | sed 's/alias\\.//' | sort

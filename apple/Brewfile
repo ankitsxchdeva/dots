@@ -2,12 +2,13 @@
 
 # ─── Shell & modern CLI ──────────────────────────────────────────────
 brew "stow"           # dotfile symlink manager
-brew "starship"       # prompt
+#brew "starship"      # prompt — disabled; using a native zsh prompt instead
 brew "tmux"
 brew "fzf"            # fuzzy finder (Ctrl-R / Ctrl-T)
 brew "ripgrep"        # rg — fast grep
 brew "fd"             # friendlier find
 brew "bat"            # cat with syntax highlighting
+brew "git-delta"      # syntax-highlighted git diffs (git pager)
 brew "eza"            # modern ls with git/icons
 brew "zoxide"         # smarter cd (z)
 brew "tree"

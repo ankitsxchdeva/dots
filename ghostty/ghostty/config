@@ -1,12 +1,22 @@
+theme = Nord
+
 font-family = "FiraCode Nerd Font"
 font-size = 16
-cursor-style = block_hollow
+font-thicken = true
+
+cursor-style = underline
 cursor-style-blink = true
+
 background-opacity = 0.99
 background-blur = 40
 unfocused-split-opacity = 0.90
+window-colorspace = display-p3
+macos-titlebar-style = transparent
+
 window-padding-x = 14
 window-padding-y = 14
 window-padding-balance = true
+mouse-hide-while-typing = true
+window-save-state = always
 title = "terminal"
 #initial-command = "macchina"
