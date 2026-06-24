@@ -4,11 +4,11 @@
 #(_)___|___/_| |_|_|  \___|
 
 
-export PATH="/opt/homebrew/sbin:$PATH"
 autoload -U colors && colors
-export CLICOLOR=1
-export EDITOR='vim'
 
+# Environment (PATH, EDITOR, toolchain homes, …) lives in ~/.zprofile so it is
+# inherited by non-interactive shells too. This file is interactive-only:
+# aliases, functions, prompt, completion and plugins.
 
 # Prompt is defined at the bottom of this file: a simple native zsh prompt
 # (path + arrow). starship is intentionally NOT used — it forks a subprocess
@@ -126,46 +126,6 @@ fi
 # Dynaconnections specific stuff
 [ -f ~/.server_aliases ] && source ~/.server_aliases
 alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
-
-
-### ---- dev env (clean) ----
-
-# Core locations (adjust if needed)
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
-export TOMCAT_HOME="$HOME/Documents/dc/tomcat-8.5.96"
-
-# Oracle — pick ONE location and stick to it
-export ORACLE_CLIENT="$HOME/Documents/instantclient_23_3"
-# Use zsh's path array + de-dupe
-typeset -U path
-
-# IMPORTANT: define the full order explicitly (do NOT append $path here)
-path=(
-  # System first so basic tools work while sourcing
-  /usr/local/bin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-
-  # Homebrew (Apple Silicon)
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-
-  # Your toolchains
-  "$JAVA_HOME/bin"
-  "$TOMCAT_HOME/bin"
-  "$HOME/.cargo/bin"
-  "$ORACLE_CLIENT"
-)
-
-# Oracle Instant Client needs its libs on the dynamic linker path
-export DYLD_LIBRARY_PATH="$ORACLE_CLIENT:$DYLD_LIBRARY_PATH"
-
-export PATH="/Library/TeX/texbin:$PATH"
-
-# Added by codebase-memory-mcp install
-export PATH="$HOME/.local/bin:$PATH"
 
 
 # ─────────────────────────────────────────────────────────────────────────

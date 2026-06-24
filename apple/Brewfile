@@ -50,6 +50,8 @@ brew "tty-clock"
 cask "ghostty"
 cask "visual-studio-code"
 cask "firefox"
+cask "karabiner-elements"   # keyboard remapping (caps→ctrl, backslash⇄delete)
+cask "monitorcontrol"       # brightness/volume for external displays
 cask "spotify"
 #cask "vlc"
 #cask "obs"
