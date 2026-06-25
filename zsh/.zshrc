@@ -160,9 +160,10 @@ _set_prompt() {
         fi
     fi
 
-    # single line:  path (last 3 dirs) · arrow (green ok / red after a failure)
+    # single line:  path · arrow (green ok / red after a failure)
+    # %2~ = trailing 2 dirs (e.g. dc/qa-tooling), but keeps ~ when at/near home.
     local arrow; (( last == 0 )) && arrow="${_N_OK}" || arrow="${_N_ERR}"
-    PROMPT="%B${_N_DIR}%(4~|…/%3~|%~)${_R}%b ${arrow}➜${_R} "
+    PROMPT="%B${_N_DIR}%2~${_R}%b ${arrow}➜${_R} "
 }
 add-zsh-hook precmd _set_prompt
 
