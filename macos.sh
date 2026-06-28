@@ -29,8 +29,9 @@ dock() {
 }
 
 menubar() {
-    log "Menu bar — auto-hide always"
-    defaults write NSGlobalDomain _HIHideMenuBar -bool true
+    log "Menu bar — auto-hide in full screen only"
+    defaults write NSGlobalDomain _HIHideMenuBar -bool false
+    defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 }
 
 finder() {
