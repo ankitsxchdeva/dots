@@ -14,13 +14,27 @@ vim, ghostty, and git.
 ├── tmux/       # .tmux.conf (Nord status line)   → ~
 ├── vim/        # .vimrc (vim-plug, Nord)         → ~
 ├── zsh/        # .zprofile (env) + .zshrc        → ~
-├── alfred/     # Alfred preferences (sync folder)
-├── misc/       # reference material — Makefile templates, keyboard (VIA) configs
-├── install.sh  # stow everything + clone zsh plugins
+├── alfred/      # Alfred preferences (sync folder)
+├── misc/        # reference material — Makefile templates, keyboard (VIA) configs
+├── bootstrap.sh # fresh Mac → fully configured, one command
+├── install.sh   # stow everything + clone zsh plugins
+├── macos.sh     # macOS system prefs as code (defaults write)
 └── uninstall.sh
 ```
 
 ## Setup
+
+### Fresh machine — one command
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/ankitsxchdeva/dots/main/bootstrap.sh | bash
+```
+
+`bootstrap.sh` installs Homebrew (+ Xcode CLT) if missing, clones this repo to
+`~/.dots`, backs up any conflicting dotfiles, runs `brew bundle` and
+`install.sh`, then offers to apply `macos.sh`. It's safe to re-run.
+
+### Manual
 
 1. `git clone git@github.com:ankitsxchdeva/dots.git ~/.dots`
 2. `cd ~/.dots && sh install.sh`
@@ -49,37 +63,37 @@ can link this one in: `rm ~/.zprofile && sh install.sh`.
    - The Brewfile flags which casks are work-only vs. personal — comment out the
      ones you don't want before bundling.
 
-### System Settings
+### System settings — scripted
 
-- **Trackpad → Scroll & Zoom** and **Mouse** → turn *Natural scrolling* **off**.
-- **Desktop & Dock** → *Automatically hide and show the Dock* **on**; drag the
-  Dock **Size** to the smallest setting.
-- **Control Center → Menu Bar** → *Automatically hide and show the menu bar* →
-  **Always**. Remove everything else you don't need from the menu bar
-  (⌘-drag items out, or toggle them off per-app in Control Center).
+`macos.sh` scripts the system preferences (`defaults write`) so you don't have
+to click through System Settings. Run it directly or let `bootstrap.sh` offer
+it:
+
+```sh
+cd ~/.dots && ./macos.sh
+```
+
+It sets, among others: Dock auto-hide at smallest size, menu-bar auto-hide,
+Finder (path/status bar, list view, folders-on-top, show hidden), natural
+scrolling off, tap-to-click, fast key repeat (no press-and-hold), Caps Lock →
+Control, screenshots as PNG in `~/Documents` (matching the `scrot` alias), and
+Google DNS on Wi-Fi. The screenshots in [`apple/finder/`](apple/finder) and
+[`apple/general/keyboard/`](apple/general/keyboard) are now *verification* —
+your machine should match them after running the script.
+
+### Manual leftovers
+
+A few things macOS won't let a script set reliably — `macos.sh` prints these as
+a checklist at the end:
+
 - **Displays → Night Shift…** → schedule *Sunset to Sunrise*.
-
-### Finder
-
-Match the screenshots in [`apple/finder/`](apple/finder):
-
-- Show the path bar and status bar (View menu).
-- Show hidden files: ⌘⇧. (period).
-- Set "New Finder windows show" to your home/preferred folder.
-- Default to list view and "Keep folders on top".
-
-### Keyboard & Karabiner
-
-Reference screenshots in [`apple/general/keyboard/`](apple/general/keyboard).
-
-- **Keyboard → Keyboard Shortcuts… → Modifier Keys** → remap **Caps Lock →
-  Control**.
-- **Trackpad** → enable tap to click / tracking speed to taste (see
-  `touchbar.png` / `keyboard.png`).
-- Install **Karabiner-Elements** (`brew install --cask karabiner-elements`) and:
-  - swap **backslash ⇄ delete** (see `karabiner.png`).
-  - remove its icon from the menu bar (Karabiner-Elements → Preferences →
-    *Show icon in menu bar* off).
+- **Karabiner-Elements** (`brew install --cask karabiner-elements`): swap
+  **backslash ⇄ delete** (see `karabiner.png`) and hide its menu-bar icon.
+- Caps Lock → Control is applied immediately via `hidutil`, but resets on
+  reboot — for a permanent remap, also set it in **Keyboard → Keyboard
+  Shortcuts… → Modifier Keys**.
+- Trim the rest of the menu bar to taste (⌘-drag items out / toggle per-app in
+  Control Center).
 
 ### Apps
 
@@ -98,5 +112,5 @@ Reference screenshots in [`apple/general/keyboard/`](apple/general/keyboard).
 
 ### Network
 
-- Change DNS to Google: `8.8.8.8` / `8.8.4.4`
-  (**Network → Wi-Fi/Ethernet → Details… → DNS**).
+- `macos.sh` sets Google DNS (`8.8.8.8` / `8.8.4.4`) on **Wi-Fi**. For Ethernet
+  or other services, set it under **Network → … → Details… → DNS**.
