@@ -1,6 +1,24 @@
 # dots
 
 My macOS dotfiles, managed with [GNU stow](https://www.gnu.org/software/stow/).
+A Nord-themed terminal setup: zsh + a native (subprocess-free) prompt, tmux,
+vim, ghostty, and git.
+
+## Layout
+
+```
+.
+├── apple/      # macOS — Brewfile, terminal theme, reference screenshots
+├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
+├── git/        # .gitconfig + global gitignore   → ~
+├── tmux/       # .tmux.conf (Nord status line)   → ~
+├── vim/        # .vimrc (vim-plug, Nord)         → ~
+├── zsh/        # .zprofile (env) + .zshrc        → ~
+├── alfred/     # Alfred preferences (sync folder)
+├── misc/       # reference material — Makefile templates, keyboard (VIA) configs
+├── install.sh  # stow everything + clone zsh plugins
+└── uninstall.sh
+```
 
 ## Setup
 

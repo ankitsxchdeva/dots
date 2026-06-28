@@ -7,21 +7,15 @@ unstow_home() {
 }
 
 unstow_config() {
-    stow -D -vt ~/.config starship ghostty
+    stow -D -vt ~/.config ghostty
 }
 
 remove_plugins() {
     local zsh_plugins_dir=~/.zsh_plugins
-    if [ -d "$zsh_plugins_dir/zsh-syntax-highlighting" ]; then
-        rm -rf "$zsh_plugins_dir/zsh-syntax-highlighting"
-    fi
-    if [ -d "$zsh_plugins_dir/zsh-autosuggestions" ]; then
-        rm -rf "$zsh_plugins_dir/zsh-autosuggestions"
-    fi
-    if [ -d "$zsh_plugins_dir/gitstatus" ]; then
-        rm -rf "$zsh_plugins_dir/gitstatus"
-    fi
-    # Optionally remove the whole plugin dir if it's now empty
+    for plugin in zsh-syntax-highlighting zsh-autosuggestions; do
+        rm -rf "$zsh_plugins_dir/$plugin"
+    done
+    # Remove the plugin dir if it's now empty
     if [ -d "$zsh_plugins_dir" ] && [ -z "$(ls -A "$zsh_plugins_dir")" ]; then
         rmdir "$zsh_plugins_dir"
     fi

@@ -23,14 +23,12 @@ alias   clr="clear"
 alias   rf="rm -rf"
 
 # Utils
-alias   lofi="mpv --no-video --volume=100 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias   weather="curl -s wttr.in/Austin+TX | head -n 7 | tail -n 5"
 alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
-alias   shee="tree -L 1" 
-alias   stonks="curl https://terminal-stocks.herokuapp.com/market-summary"
+alias   shee="tree -L 1"
 alias   grip="grip --quiet -b"
 alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
 alias   discord="open -a discord"
@@ -174,8 +172,8 @@ add-zsh-hook precmd _set_prompt
 # ─────────────────────────────────────────────────────────────────────────
 if [[ -o interactive && -o login ]]; then
     print -P ""
-    print -P "  ${_N_DIR}%B%n%b${_R} ${_N_MUT}at${_R} ${_N_FROST}%m${_R}  ${_N_MUT}·${_R}  ${_N_OK}%D{%A %d %B}${_R}  ${_N_MUT}·${_R}  ${_N_WARN}%D{%H:%M}${_R}"
-    print -P "  ${_N_MUT}────────────────────────────────────────────────────${_R}"
+    print -P "  ${_N_DIR}%B%n%b${_R} ${_N_MUT}at${_R} ${_N_FROST}%m${_R}  ${_N_MUT}·${_R}  ${_N_OK}%D{%A %d %B}${_R}  ${_N_MUT}·${_R}  ${_N_WARN}%D{%-I:%M %p}${_R}"
+    print -P "${_N_MUT}${(pl:COLUMNS::─:)}${_R}"
     print -P ""
 fi
 
