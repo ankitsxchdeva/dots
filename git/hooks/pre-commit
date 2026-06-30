@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# pre-commit — refuse to commit secrets or internal-only strings.
+# install.sh symlinks this into .git/hooks/pre-commit. Bypass a false positive
+# with:  git commit --no-verify
+set -u
+
+patt='connectmls|Dynaconn|AnkitSachdeva|/Documents/dc|-----BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|xox[baprs]-[0-9A-Za-z-]+|(password|secret|api[_-]?key)[[:space:]]*[:=]'
+
+# Inspect only ADDED lines (^+, not the +++ header). Exclude this hook itself so
+# its own pattern list can't trip the check.
+hits=$(git diff --cached -U0 --no-color -- . ':(exclude)git/hooks/pre-commit' \
+        | grep -E '^\+[^+]' \
+        | grep -inE "$patt" \
+        | grep -viE 'HIST_IGNORE_SPACE|handy for secrets')
+
+if [ -n "$hits" ]; then
+  printf '\033[0;31m✗ commit blocked — staged changes look sensitive:\033[0m\n' >&2
+  printf '%s\n' "$hits" | head -8 | sed 's/^/    /' >&2
+  echo >&2
+  echo "  Move secrets/work strings to a local-only file (*.local, ~/.server_aliases)." >&2
+  echo "  False positive? Re-run with:  git commit --no-verify" >&2
+  exit 1
+fi
+exit 0

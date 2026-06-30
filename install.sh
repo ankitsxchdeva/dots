@@ -24,10 +24,20 @@ install_plugins() {
     fi
 }
 
+install_git_hooks() {
+    # Symlink the leak-guard into this repo's .git/hooks so commits are scanned
+    # for secrets / internal strings before they land.
+    local dots
+    dots="$(cd "$(dirname "$0")" && pwd)"
+    [ -d "$dots/.git" ] || return 0
+    ln -sf ../../git/hooks/pre-commit "$dots/.git/hooks/pre-commit"
+}
+
 main() {
     stow_home
     stow_config
     install_plugins
+    install_git_hooks
     echo "Installation complete!"
 }
 
