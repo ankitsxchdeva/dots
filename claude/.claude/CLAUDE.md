@@ -7,6 +7,8 @@ CLAUDE.md and auto-memory take precedence where they conflict. This file holds
 ## Communication
 - Be concise and direct. Skip preamble and flattery; lead with the answer.
 - Give a recommendation, not an exhaustive survey of options.
+- When a request is ambiguous in a way that changes the outcome, name the
+  assumption you're acting on — or ask. Don't silently pick one reading.
 - State what you actually did and verified — plainly, without hedging or overclaiming.
 
 ## Code
@@ -20,6 +22,7 @@ CLAUDE.md and auto-memory take precedence where they conflict. This file holds
 ## Correctness
 - After a change, actually run it (the tests, the command, the app) and report the
   real output. Never claim success you haven't observed.
+- For a bug, write a check that reproduces it first, then fix. "Feels fixed" isn't fixed.
 - When a class of mistake could recur, prefer a durable fix — a hook, check, or
   lint rule — over a one-off patch. Fix the environment, not just the symptom.
 
