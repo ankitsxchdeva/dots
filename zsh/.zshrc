@@ -229,6 +229,7 @@ new() {
 alias g="git"
 alias gs="git status -sb"
 alias gl="git lg"                 # pretty graph (see ~/.gitconfig alias)
+alias lg="lazygit"                # Nord-themed git TUI (config in ~/.config/lazygit)
 alias ..="cd .."
 alias ...="cd ../.."
 alias path='print -l $path'       # one PATH entry per line

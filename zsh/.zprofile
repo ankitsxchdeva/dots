@@ -15,6 +15,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export CLICOLOR=1
 export EDITOR='vim'
 
+# Point XDG-aware tools at ~/.config (the conventional default). On macOS
+# lazygit otherwise reads ~/Library/Application Support/lazygit — this makes it
+# pick up the stowed ~/.config/lazygit/config.yml instead.
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # ─── dev env ─────────────────────────────────────────────────────────
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
 export TOMCAT_HOME="$HOME/Documents/dc/tomcat-8.5.96"

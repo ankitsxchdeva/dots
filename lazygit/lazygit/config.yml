@@ -1,0 +1,57 @@
+# lazygit — Nord-themed config.  Stowed to ~/.config/lazygit/config.yml
+# (lazygit finds it there because $XDG_CONFIG_HOME=~/.config — see ~/.zprofile).
+# Schema reference: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+#
+# Nord palette
+#   Polar Night  nord0 #2e3440  nord1 #3b4252  nord2 #434c5e  nord3 #4c566a
+#   Snow Storm   nord4 #d8dee9  nord5 #e5e9f0  nord6 #eceff4
+#   Frost        nord7 #8fbcbb  nord8 #88c0d0  nord9 #81a1c1  nord10 #5e81ac
+#   Aurora       red #bf616a  orange #d08770  yellow #ebcb8b  green #a3be8c  purple #b48ead
+
+gui:
+  # ─── Nord theme ──────────────────────────────────────────────────────
+  theme:
+    activeBorderColor:               ['#88c0d0', bold]   # frost cyan — focused panel
+    inactiveBorderColor:             ['#4c566a']         # polar night — unfocused
+    searchingActiveBorderColor:      ['#ebcb8b', bold]   # yellow while searching
+    optionsTextColor:                ['#81a1c1']         # frost — bottom keybind hints
+    selectedLineBgColor:             ['#3b4252']         # selection highlight
+    inactiveViewSelectedLineBgColor: ['#434c5e']         # dimmer selection when unfocused
+    cherryPickedCommitFgColor:       ['#88c0d0']         # copied (cherry-picked) commit
+    cherryPickedCommitBgColor:       ['#434c5e']
+    markedBaseCommitFgColor:         ['#ebcb8b']         # marked base commit (rebase)
+    markedBaseCommitBgColor:         ['#434c5e']
+    unstagedChangesColor:            ['#bf616a']         # aurora red — unstaged
+    defaultFgColor:                  ['#d8dee9']         # snow storm — default text
+
+  # All commit authors in frost; matches the prompt/fzf accent.
+  authorColors:
+    '*': '#81a1c1'
+
+  # Color branches by purpose (key is a regex matched against the branch name).
+  branchColorPatterns:
+    '^(main|master)$':         '#a3be8c'   # green — the trunk
+    '^(feat|feature)/':        '#88c0d0'   # frost — features
+    '^(fix|hotfix|bug)/':      '#bf616a'   # red   — fixes
+    '^(chore|docs|refactor)/': '#b48ead'   # purple — housekeeping
+
+  nerdFontsVersion: "3"        # FiraCode Nerd Font is installed (Brewfile)
+  showFileIcons: true
+  showFileTree: true           # tree view of changed files (toggle with `)
+  border: rounded              # matches the rounded fzf border
+  filterMode: fuzzy            # fuzzy filtering, like fzf
+  showRandomTip: false         # no tip clutter in the status line
+  showCommandLog: false        # hide the bottom command-log pane for a cleaner UI
+  showDivergenceFromBaseBranch: arrowAndNumber   # ↑3↓1 ahead/behind in branch list
+  scrollHeight: 2
+  skipDiscardChangeWarning: false
+
+# ─── Diffs through delta (Nord), same as the git pager in ~/.gitconfig ───
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --line-numbers --syntax-theme=Nord
+  mainBranches: [main, master]
+  parseEmoji: true             # render :emoji: in commit messages
+
+disableStartupPopups: true     # don't nag on first launch / version bumps

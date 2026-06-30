@@ -7,7 +7,7 @@ unstow_home() {
 }
 
 unstow_config() {
-    stow -D -vt ~/.config ghostty
+    stow -D -vt ~/.config ghostty lazygit
 }
 
 remove_plugins() {

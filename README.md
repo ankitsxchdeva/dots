@@ -2,7 +2,7 @@
 
 My macOS dotfiles, managed with [GNU stow](https://www.gnu.org/software/stow/).
 A Nord-themed terminal setup: zsh + a native (subprocess-free) prompt, tmux,
-vim, ghostty, and git.
+vim, ghostty, git, and lazygit (`lg`).
 
 ## Layout
 
@@ -10,6 +10,7 @@ vim, ghostty, and git.
 .
 ├── apple/      # macOS — Brewfile, terminal theme, reference screenshots
 ├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
+├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
 ├── git/        # .gitconfig + global gitignore   → ~
 ├── tmux/       # .tmux.conf (Nord status line)   → ~
 ├── vim/        # .vimrc (vim-plug, Nord)         → ~

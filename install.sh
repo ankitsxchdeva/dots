@@ -7,8 +7,8 @@ stow_home() {
 }
 
 stow_config() {
-    # starship disabled (native zsh prompt instead) — stow ghostty only
-    stow --restow -vt ~/.config ghostty
+    # starship disabled (native zsh prompt instead)
+    stow --restow -vt ~/.config ghostty lazygit
 }
 
 install_plugins() {

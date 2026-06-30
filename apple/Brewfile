@@ -9,6 +9,7 @@ brew "ripgrep"        # rg — fast grep
 brew "fd"             # friendlier find
 brew "bat"            # cat with syntax highlighting
 brew "git-delta"      # syntax-highlighted git diffs (git pager)
+brew "lazygit"        # Nord-themed git TUI (config: lazygit/ → ~/.config/lazygit)
 brew "eza"            # modern ls with git/icons
 brew "zoxide"         # smarter cd (z)
 brew "tree"
