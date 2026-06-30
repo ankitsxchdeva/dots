@@ -1,96 +1,123 @@
 # Brewfile — `brew bundle --file=apple/Brewfile`
+#
+# ─────────────────────────────────────────────────────────────────────
+#  Two sections:
+#
+#    1. REQUIRED — the bare-minimum tools the dotfiles actually configure.
+#       With these installed, every stowed config (zsh/ git/ tmux/ vim/
+#       ghostty/ lazygit/) works as intended. Keep them on every machine.
+#
+#    2. OPTIONAL — everything else, commented out. `brew bundle` ignores
+#       commented lines, so a fresh `brew bundle` installs ONLY the
+#       required set. Uncomment per machine (personal vs work), or just
+#       `brew install <name>` ad-hoc.
+#
+#  Each REQUIRED item notes inline which dotfile depends on it.
+# ─────────────────────────────────────────────────────────────────────
 
-# ─── Shell & modern CLI ──────────────────────────────────────────────
-brew "stow"           # dotfile symlink manager
-#brew "starship"      # prompt — disabled; using a native zsh prompt instead
-brew "tmux"
-brew "fzf"            # fuzzy finder (Ctrl-R / Ctrl-T)
-brew "ripgrep"        # rg — fast grep
-brew "fd"             # friendlier find
-brew "bat"            # cat with syntax highlighting
-brew "git-delta"      # syntax-highlighted git diffs (git pager)
-brew "lazygit"        # Nord-themed git TUI (config: lazygit/ → ~/.config/lazygit)
-brew "eza"            # modern ls with git/icons
+
+# ═══ REQUIRED ════════════════════════════════════════════════════════
+
+# ── Install mechanism ────────────────────────────────────────────────
+brew "stow"           # install.sh symlinks every dotfile with this
+brew "git"            # the repo IS a git config; bootstrap/install clone with it
+brew "gh"             # .gitconfig credential helper hard-codes /opt/homebrew/bin/gh
+
+# ── Shell experience (.zshrc / .zprofile wire these up) ──────────────
+brew "fzf"            # sourced (fzf --zsh) + Nord theme + Ctrl-R/Ctrl-T binds
+brew "ripgrep"        # rg — FZF_DEFAULT_COMMAND + fast grep
+brew "bat"            # cat alias, MANPAGER, BAT_THEME=Nord
+brew "eza"            # ls/la/ll/lt/tree aliases (needs a Nerd Font for --icons)
 brew "zoxide"         # smarter cd (z)
-brew "tree"
-brew "jq"             # JSON wrangling
-brew "wget"
-brew "watch"
-brew "coreutils"
-brew "fastfetch"     # system info (pfetch was removed from Homebrew)
-brew "mole"          # reclaims disk space
+brew "git-delta"      # .gitconfig pager + diffFilter (syntax-theme Nord)
+brew "lazygit"        # `lg` alias + stowed lazygit/config.yml (Nord TUI)
 
-# ─── Languages & build ───────────────────────────────────────────────
-brew "python@3.13"
-brew "node"
-brew "go"
-brew "rust"
-brew "ghc"
-brew "llvm"
-brew "clang-format"
-brew "cmake"
-brew "git"
-brew "gh"             # GitHub CLI
-brew "svn"
-brew "vim"
+# ── Editor & multiplexer (dedicated stowed configs) ──────────────────
+brew "vim"            # $EDITOR + stowed .vimrc
+brew "tmux"           # stowed .tmux.conf
 
-# ─── Code stats ──────────────────────────────────────────────────────
-brew "scc"
-brew "tokei"
-brew "cloc"
+# ── Terminal & font ──────────────────────────────────────────────────
+cask "ghostty"                  # the terminal these dotfiles theme (ghostty/config)
+                                #   ↳ drop this if the machine uses another terminal
+cask "font-fira-code-nerd-font" # ghostty font-family + eza/lazygit nerd-font glyphs
 
-# ─── Media & misc ────────────────────────────────────────────────────
-brew "ffmpeg"
-brew "mpv"
-brew "yt-dlp"
-brew "grip"           # GitHub-flavored markdown preview
-brew "hugo"           # static site generator
-brew "tty-clock"
 
-# ─── Casks: applications ─────────────────────────────────────────────
-cask "ghostty"
-cask "visual-studio-code"
-cask "firefox"
-cask "karabiner-elements"   # keyboard remapping (caps→ctrl, backslash⇄delete)
-cask "monitorcontrol"       # brightness/volume for external displays
-cask "spotify"
+# ═══ OPTIONAL — uncomment per machine ════════════════════════════════
+# Nothing below is needed for the dotfiles to function.
+
+# ── Extra CLI niceties ───────────────────────────────────────────────
+#brew "fd"             # friendlier find
+#brew "tree"
+#brew "jq"             # JSON wrangling
+#brew "wget"
+#brew "watch"
+#brew "coreutils"
+#brew "fastfetch"      # system info (pfetch was removed from Homebrew)
+#brew "mole"           # reclaims disk space
+#brew "grip"           # GitHub-flavored markdown preview (zsh `grip` alias)
+#brew "tty-clock"      # zsh `clock` alias
+#brew "yt-dlp"         # zsh `youtube-dl` alias
+#brew "starship"       # prompt — intentionally NOT used; native zsh prompt is faster
+
+# ── Languages & build ────────────────────────────────────────────────
+#brew "python@3.13"    # zsh `py`/`python`/`pip` aliases point at python3
+#brew "node"           # `new <name> js` scaffolder uses npm
+#brew "go"             # `new <name> go` scaffolder uses go
+#brew "rust"           # $HOME/.cargo/bin is on PATH; `new <name> rs` uses cargo
+#brew "ghc"
+#brew "llvm"
+#brew "clang-format"
+#brew "cmake"
+#brew "svn"
+
+# ── Code stats ───────────────────────────────────────────────────────
+#brew "scc"
+#brew "tokei"
+#brew "cloc"
+
+# ── Media & misc ─────────────────────────────────────────────────────
+#brew "ffmpeg"
+#brew "mpv"
+#brew "hugo"           # static site generator
+
+# ── Apps (personal + general) ────────────────────────────────────────
+#cask "visual-studio-code"
+#cask "firefox"
+#cask "karabiner-elements"   # keyboard remapping (caps→ctrl, backslash⇄delete; see macos.sh)
+#cask "monitorcontrol"       # brightness/volume for external displays
+#cask "spotify"
+#cask "docker-desktop"
+#cask "zoom"
+#cask "ghidra"
+#cask "claude"
+#cask "claude-code"
+#cask "discord"
+#cask "chatterino"
+#cask "mullvad-vpn"
+#cask "vial"                 # keyboard firmware config
 #cask "vlc"
 #cask "obs"
-cask "docker-desktop"
-cask "zoom"
-cask "ghidra"
-cask "claude"
-cask "claude-code"
 #cask "cursor"
 #cask "chatgpt"
-#cask "qflipper"        # Flipper Zero companion
+#cask "qflipper"             # Flipper Zero companion
 #cask "parallels"
 #cask "microsoft-teams"
 #cask "alfred"
 #cask "teamviewer"
 #cask "pomotroid"
 #cask "qbittorrent"
-#cask "kicad"     -- massive, takes a while to download/install
-
-# ─── Work / DC (work machine only) ───────────────────────────────────
-cask "slack"
-cask "microsoft-outlook"
-cask "viscosity"           # Cisco-compatible VPN client
-cask "postman"             # API testing
-
-# ─── Casks: fonts ────────────────────────────────────────────────────
-cask "font-fira-code-nerd-font"
-
-# ─── TeX (pick one) ──────────────────────────────────────────────────
-#cask "basictex"  -- lighter installation but less compatibility
-#cask "mactex"    -- massive, will take a while to download/install
-
-# ─── Personal — do NOT install on a work machine ─────────────────────
-cask "discord"
-cask "chatterino"
-cask "mullvad-vpn"
-cask "vial"           # keyboard firmware config
+#cask "kicad"                # massive — slow download/install
 #cask "minecraft"
 #cask "league-of-legends"
 #cask "via"
 #cask "eagle"
+
+# ── Work / DC (work machine only) ────────────────────────────────────
+#cask "slack"
+#cask "microsoft-outlook"
+#cask "viscosity"            # Cisco-compatible VPN client
+#cask "postman"              # API testing
+
+# ── TeX (pick one) ───────────────────────────────────────────────────
+#cask "basictex"             # lighter install, less compatibility
+#cask "mactex"               # massive — slow download/install
