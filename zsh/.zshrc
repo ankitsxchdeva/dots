@@ -6,6 +6,13 @@
 
 autoload -U colors && colors
 
+# Standard terminal line editing (the conventional default: backspace deletes
+# freely, arrows recall history, ^A/^E/^U/^W work). zsh only has two keymaps —
+# this "emacs" one is the normal default everywhere; the other is vi. Without
+# this line zsh silently picks VI keys because $EDITOR contains "vi" (vim),
+# which breaks backspace. Keep it before fzf so its ^R/^T bind to this keymap.
+bindkey -e
+
 # Environment (PATH, EDITOR, toolchain homes, …) lives in ~/.zprofile so it is
 # inherited by non-interactive shells too. This file is interactive-only:
 # aliases, functions, prompt, completion and plugins.
