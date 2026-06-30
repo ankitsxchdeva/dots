@@ -29,11 +29,3 @@ CLAUDE.md and auto-memory take precedence where they conflict. This file holds
   never in tracked configs.
 - Don't commit or push unless I ask. Branch off main before committing if needed.
 - Confirm before destructive or hard-to-reverse actions.
-
-## Tools
-- Use `rg`, `fd`, `bat`, `eza`, `zoxide` when available — they're installed.
-- Prefer non-interactive invocations (e.g. `git --no-pager`); never spawn a pager.
-
-## Aesthetic
-- Nord palette for anything themed (prompts, configs, UIs) unless told otherwise.
-- Minimal and fast over heavy — I dropped starship for speed; respect that bias.
