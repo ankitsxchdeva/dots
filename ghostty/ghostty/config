@@ -18,5 +18,10 @@ window-padding-y = 14
 window-padding-balance = true
 mouse-hide-while-typing = true
 window-save-state = always
-title = "terminal"
+
+# `title` is intentionally NOT set: a fixed title makes Ghostty ignore ALL
+# title escape sequences, which would block per-session tab titles set by the
+# Claude Code hook (~/.claude/hooks/ghostty-tab-title). Leave it unset so
+# programs (Claude, shell integration) can drive the tab title.
+#title = "terminal"
 #initial-command = "macchina"
