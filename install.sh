@@ -3,7 +3,9 @@
 set -eu
 
 stow_home() {
-    stow --restow -vt ~ git tmux vim zsh
+    # `claude` links ~/.claude/CLAUDE.md (folds into the existing ~/.claude dir,
+    # leaving Claude Code's runtime state untouched).
+    stow --restow -vt ~ claude git tmux vim zsh
 }
 
 stow_config() {

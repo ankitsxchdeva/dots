@@ -3,7 +3,7 @@
 set -eu
 
 unstow_home() {
-    stow -D -vt ~ git tmux vim zsh
+    stow -D -vt ~ claude git tmux vim zsh
 }
 
 unstow_config() {

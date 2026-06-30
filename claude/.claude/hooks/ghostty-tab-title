@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# ghostty-tab-title — drive the terminal tab title from the Claude Code session
+# so multiple threads are easy to tell apart at a glance.
+#
+#   Title format:  <status> <project> · <prompt context>
+#   example:       ▸ dots · fix backspace in ghostty
+#
+# Invoked from ~/.claude/settings.json hooks. Reads the hook JSON on stdin.
+#   $1 = state:  working | done | waiting   (default: working)
+#
+# - project: basename of the git repo (or cwd), leading dot stripped.
+# - prompt context: locked to the session's FIRST prompt so follow-up prompts
+#   ("commit this", "now fix the test") don't relabel the thread. To instead
+#   show the latest prompt, delete the `if [ -s "$store" ] … else` branch and
+#   always take the `jq '.prompt'` path.
+#
+# The title is written to the session's controlling tty DEVICE (e.g.
+# /dev/ttys003), located by walking up the process tree. Claude Code runs hooks
+# WITHOUT a controlling terminal, so the /dev/tty alias fails with ENXIO
+# ("Device not configured") — we must target the device node directly.
+# Always exits 0 so a missing tty never surfaces as a hook error.
+
+set -u
+command -v jq >/dev/null 2>&1 || exit 0
+
+json=$(cat)
+sid=$(printf '%s' "$json" | jq -r '.session_id // empty')
+[ -n "$sid" ] || exit 0
+cwd=$(printf '%s' "$json" | jq -r '.cwd // empty')
+
+# ── project: git repo basename, else cwd basename (leading dot stripped) ─────
+proj=""
+if [ -n "$cwd" ]; then
+  root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || root=""
+  [ -n "$root" ] || root=$cwd
+  proj=${root##*/}
+  proj=${proj#.}
+  proj=${proj:0:16}
+fi
+
+# ── prompt context: locked to the session's first prompt ─────────────────────
+store="${TMPDIR:-/tmp}/claude-tab-${sid}"
+if [ -s "$store" ]; then
+  task=$(cat "$store")
+else
+  task=$(printf '%s' "$json" | jq -r '.prompt // empty' \
+           | tr -d '\000-\037' | sed -E 's/^ +| +$//g; s/ +/ /g')
+  task=${task:0:40}
+  [ -n "$task" ] && printf '%s' "$task" >| "$store"
+fi
+
+# ── status glyph ─────────────────────────────────────────────────────────────
+case "${1:-working}" in
+  done)    glyph='✓' ;;
+  waiting) glyph='●' ;;
+  *)       glyph='▸' ;;
+esac
+
+# ── assemble: <glyph> <proj> · <task> ────────────────────────────────────────
+title=$glyph
+[ -n "$proj" ] && title="$title $proj"
+if [ -n "${task:-}" ]; then
+  if [ -n "$proj" ]; then title="$title · $task"; else title="$title $task"; fi
+fi
+
+# ── locate the session's controlling tty by walking up the process tree ──────
+dev=""
+pid=$PPID
+for _ in 1 2 3 4 5 6 7 8; do
+  case "$pid" in ''|0|1) break ;; esac
+  t=$(ps -o tty= -p "$pid" 2>/dev/null | tr -d '[:space:]')
+  case "$t" in
+    ttys*)   dev="/dev/$t";    break ;;
+    s[0-9]*) dev="/dev/tty$t"; break ;;
+  esac
+  pid=$(ps -o ppid= -p "$pid" 2>/dev/null | tr -d '[:space:]')
+done
+[ -n "$dev" ] || dev=/dev/tty   # last-ditch fallback
+
+printf '\033]2;%s\033\\' "$title" >"$dev" 2>/dev/null || true
+exit 0

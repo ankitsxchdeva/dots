@@ -43,7 +43,7 @@ cd "$DOTS"
 backup_conflicts() {
     local stamp f
     stamp="$(date +%Y%m%d-%H%M%S)"
-    for f in .gitconfig .gitignore_global .tmux.conf .vimrc .zprofile .zshrc .hushlogin; do
+    for f in .gitconfig .gitignore_global .tmux.conf .vimrc .zprofile .zshrc .hushlogin .claude/CLAUDE.md .claude/settings.json; do
         if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
             warn "backing up existing ~/$f → ~/$f.pre-dots.$stamp"
             mv "$HOME/$f" "$HOME/$f.pre-dots.$stamp"

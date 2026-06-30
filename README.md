@@ -11,12 +11,13 @@ vim, ghostty, git, and lazygit (`lg`).
 ├── apple/      # macOS — Brewfile, terminal theme, reference screenshots
 ├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
 ├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
+├── claude/     # global Claude Code CLAUDE.md    → ~/.claude
 ├── git/        # .gitconfig + global gitignore   → ~
 ├── tmux/       # .tmux.conf (Nord status line)   → ~
 ├── vim/        # .vimrc (vim-plug, Nord)         → ~
 ├── zsh/        # .zprofile (env) + .zshrc        → ~
-├── alfred/      # Alfred preferences (sync folder)
 ├── misc/        # reference material — Makefile templates, keyboard (VIA) configs
+├── old/         # retired configs (e.g. alfred)
 ├── bootstrap.sh # fresh Mac → fully configured, one command
 ├── install.sh   # stow everything + clone zsh plugins
 ├── macos.sh     # macOS system prefs as code (defaults write)
