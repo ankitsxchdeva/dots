@@ -20,35 +20,31 @@ export EDITOR='vim'
 # pick up the stowed ~/.config/lazygit/config.yml instead.
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# ─── dev env ─────────────────────────────────────────────────────────
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
-export TOMCAT_HOME="$HOME/Documents/dc/tomcat-8.5.96"
-export ORACLE_CLIENT="$HOME/Documents/instantclient_23_3"
-
 # Define PATH explicitly and de-dupe (first occurrence wins).
 typeset -U path
 path=(
-  # System first so basic tools work while sourcing
+  # Homebrew (Apple Silicon) FIRST — must precede /usr/bin so brew's python,
+  # git, vim, … win over the older macOS system copies (e.g. system python3 is
+  # 3.9; brew's is current). This matches what `brew shellenv` does.
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+
+  # System
   /usr/local/bin
   /usr/bin
   /bin
   /usr/sbin
   /sbin
 
-  # Homebrew (Apple Silicon)
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-
   # Toolchains
-  "$JAVA_HOME/bin"
-  "$TOMCAT_HOME/bin"
   "$HOME/.cargo/bin"
-  "$ORACLE_CLIENT"
 )
-
-# Oracle Instant Client needs its libs on the dynamic linker path
-export DYLD_LIBRARY_PATH="$ORACLE_CLIENT:$DYLD_LIBRARY_PATH"
 
 # Prepend user/TeX bins so they win over the system copies
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# Machine-local / work-specific environment: toolchain homes (JAVA_HOME,
+# Tomcat, Oracle), extra PATH entries, DYLD libs, … Kept out of the tracked
+# repo — see ~/.zprofile.local. Sourced last so it can append to $path.
+[ -f ~/.zprofile.local ] && source ~/.zprofile.local

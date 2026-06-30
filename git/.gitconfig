@@ -14,9 +14,11 @@
 	hyperlinks = true
 [init]
 	defaultBranch = main
-[safe]
-	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/
-	directory = /mnt/c/Users/AnkitSachdeva/Documents/dc/connectmls.regression
+# Machine-local / work-specific git config (safe.directory entries, etc.).
+# Kept out of the tracked repo — see ~/.gitconfig.local. git silently skips
+# the include when the file is absent, so this stays portable.
+[include]
+	path = ~/.gitconfig.local
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential

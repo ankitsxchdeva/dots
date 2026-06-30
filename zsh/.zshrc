@@ -128,9 +128,8 @@ if (( $+commands[bat] )); then
 fi
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
-# Dynaconnections specific stuff
+# Work / machine-local aliases (server shortcuts, project cd's, …). Not tracked.
 [ -f ~/.server_aliases ] && source ~/.server_aliases
-alias   cddc="cd /mnt/c/Users/AnkitSachdeva/Documents/dc/"
 
 
 # ─────────────────────────────────────────────────────────────────────────
