@@ -2,14 +2,47 @@
 
 set -eu
 
+command -v stow >/dev/null || { echo "install stow first (e.g. brew install stow)"; exit 1; }
+
+BACKUP_SUFFIX="bak.$(date +%Y%m%d%H%M%S)"
+
+# Physical path of a file: resolves symlinks in the *directory* portion, keeping
+# the final component as-is (so a symlinked file is reported at its own location).
+phys() {
+    ( cd "$(dirname "$1")" && printf '%s/%s\n' "$(pwd -P)" "$(basename "$1")" )
+}
+
+# Back up any target that already exists as a real, unmanaged regular file so
+# `stow` won't abort on the conflict. The old content is preserved as
+# <file>.bak.<timestamp> for manual reconciliation. Repo is the source of truth.
+backup_conflicts() {
+    local target="$1"; shift
+    local pkg file rel dest
+    for pkg in "$@"; do
+        find "$pkg" -type f | while IFS= read -r file; do
+            rel="${file#"$pkg"/}"
+            dest="$target/$rel"
+            [ -e "$dest" ] || continue          # nothing there
+            [ -L "$dest" ] && continue          # already a symlink
+            # A folded parent symlink can make the repo's own file appear as a
+            # plain file at the target — that's already stowed, not a conflict.
+            [ "$(phys "$dest")" = "$(phys "$file")" ] && continue
+            mv "$dest" "$dest.$BACKUP_SUFFIX"
+            echo "BACKUP: $dest => $dest.$BACKUP_SUFFIX"
+        done
+    done
+}
+
 stow_home() {
     # `claude` links ~/.claude/CLAUDE.md (folds into the existing ~/.claude dir,
     # leaving Claude Code's runtime state untouched).
+    backup_conflicts ~ claude git tmux vim zsh
     stow --restow -vt ~ claude git tmux vim zsh
 }
 
 stow_config() {
     # starship disabled (native zsh prompt instead)
+    backup_conflicts ~/.config ghostty lazygit
     stow --restow -vt ~/.config ghostty lazygit
 }
 
@@ -34,6 +67,7 @@ install_git_hooks() {
 }
 
 main() {
+    cd "$(dirname "$0")"
     stow_home
     stow_config
     install_plugins
