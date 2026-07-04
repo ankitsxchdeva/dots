@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Nord statusline for Claude Code — subtle, compact, fast (one git call).
+# Nord statusline for Claude Code — subtle, compact, fast (three git calls).
 # Low-contrast by design: mostly muted greys, with a colour accent ONLY when
 # something wants attention (risky permission mode, dirty tree, high context).
 #
@@ -23,10 +23,11 @@ R=$'\033[0m'
 json=$(cat)
 
 if command -v jq >/dev/null 2>&1; then
-  IFS=$'\t' read -r model dir pct < <(printf '%s' "$json" | jq -r '[
+  # dir last: it can be empty, and read collapses consecutive tabs
+  IFS=$'\t' read -r model pct dir < <(printf '%s' "$json" | jq -r '[
       .model.display_name // "claude",
-      .workspace.current_dir // .cwd // "",
-      (.context_window.used_percentage // 0 | floor)
+      (.context_window.used_percentage // 0 | floor),
+      .workspace.current_dir // .cwd // ""
     ] | @tsv')
 else
   model="claude"; dir=""; pct=0

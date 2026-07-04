@@ -1,26 +1,34 @@
 {
-  "permissions": {
-    "defaultMode": "default"
-  },
+  "skillListingBudgetFraction": 0.02,
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.claude/hooks/ghostty-tab-title working" }
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/ghostty-tab-title working"
+          }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.claude/hooks/ghostty-tab-title done" }
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/ghostty-tab-title done"
+          }
         ]
       }
     ],
     "Notification": [
       {
         "hooks": [
-          { "type": "command", "command": "~/.claude/hooks/ghostty-tab-title waiting" }
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/ghostty-tab-title waiting"
+          }
         ]
       }
     ],
@@ -28,7 +36,10 @@
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "~/.claude/hooks/auto-format" }
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/auto-format"
+          }
         ]
       }
     ]
@@ -39,7 +50,10 @@
     "padding": 0
   },
   "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi",
-  "tui": "fullscreen"
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  }
 }
