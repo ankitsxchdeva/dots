@@ -5,9 +5,8 @@
 #   curl -fsSL https://raw.githubusercontent.com/ankitsxchdeva/dots/main/bootstrap.sh | bash
 #
 # Installs Homebrew (+ Xcode Command Line Tools) if missing, clones this repo,
-# backs up any conflicting dotfiles, then runs brew bundle + install.sh and
-# offers to apply macos.sh. Safe to re-run: it pulls instead of re-cloning and
-# only backs up real files (never clobbers existing symlinks).
+# then runs brew bundle + install.sh (which backs up any conflicting dotfiles)
+# and offers to apply macos.sh. Safe to re-run: it pulls instead of re-cloning.
 
 set -euo pipefail
 
@@ -37,24 +36,12 @@ else
 fi
 cd "$DOTS"
 
-# ── Back up conflicting real files so stow can link cleanly ──────────────
-# stow refuses to overwrite a regular file. Move any pre-existing ones aside;
-# leave existing symlinks alone (re-stowing those is a no-op).
-backup_conflicts() {
-    local stamp f
-    stamp="$(date +%Y%m%d-%H%M%S)"
-    for f in .gitconfig .gitignore_global .tmux.conf .vimrc .zprofile .zshrc .hushlogin .claude/CLAUDE.md .claude/settings.json; do
-        if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
-            warn "backing up existing ~/$f → ~/$f.pre-dots.$stamp"
-            mv "$HOME/$f" "$HOME/$f.pre-dots.$stamp"
-        fi
-    done
-}
-backup_conflicts
-
 # ── Packages, then symlinks ──────────────────────────────────────────────
 log "Installing packages with brew bundle"
-brew bundle --file=apple/Brewfile
+brew bundle --file=apple/Brewfile || warn "some packages failed — re-run 'brew bundle' later"
+
+# stow is the one hard dependency for linking; everything else can wait.
+command -v stow >/dev/null 2>&1 || { warn "stow is missing — cannot link dotfiles"; exit 1; }
 
 log "Linking dotfiles (install.sh)"
 ./install.sh

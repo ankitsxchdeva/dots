@@ -34,8 +34,8 @@ backup_conflicts() {
 }
 
 stow_home() {
-    # `claude` links ~/.claude/CLAUDE.md (folds into the existing ~/.claude dir,
-    # leaving Claude Code's runtime state untouched).
+    # `claude` folds CLAUDE.md, settings, statusline, hooks and commands into
+    # the existing ~/.claude dir, leaving Claude Code's runtime state untouched.
     backup_conflicts ~ claude git tmux vim zsh
     stow --restow -vt ~ claude git tmux vim zsh
 }

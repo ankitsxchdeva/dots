@@ -21,10 +21,20 @@ remove_plugins() {
     fi
 }
 
+remove_git_hooks() {
+    # Undo the pre-commit symlink install.sh created — only if it's ours.
+    local hook=.git/hooks/pre-commit
+    if [ -L "$hook" ] && [ "$(readlink "$hook")" = "../../git/hooks/pre-commit" ]; then
+        rm "$hook"
+    fi
+}
+
 main() {
+    cd "$(dirname "$0")"
     unstow_home
     unstow_config
     remove_plugins
+    remove_git_hooks
     echo "Uninstall complete!"
 }
 
