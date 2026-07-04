@@ -35,9 +35,8 @@ alias   battery="pmset -g batt"
 alias   clockf="date +%r"
 alias   clock="tty-clock -c -C 4 -t"
 alias   wordc="pbpaste | wc -w"
-alias   shee="tree -L 1"
 alias   grip="grip --quiet -b"
-alias   scrot="screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png"
+alias   scrot='screencapture ~/Documents/$(date "+%m.%d-%H.%M.%S").png'
 alias   discord="open -a discord"
 alias   youtube-dl="yt-dlp"
 alias   mt="open http://monkeytype.com"
@@ -68,7 +67,6 @@ setopt HIST_IGNORE_ALL_DUPS   # drop older duplicate commands
 setopt HIST_IGNORE_SPACE      # leading space = don't record (handy for secrets)
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY        # record timestamps
-setopt INC_APPEND_HISTORY
 
 # Navigation
 setopt AUTO_CD                 # type a dir name to cd into it
@@ -87,8 +85,7 @@ zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 _comp_options+=(globdots)
 
-# Plugins
-source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Plugins (zsh-syntax-highlighting is sourced at the bottom of this file)
 [ -f ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
     source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -103,6 +100,9 @@ export FZF_DEFAULT_OPTS="
   --color=bg+:#3b4252,bg:#2e3440,spinner:#81a1c1,hl:#616e88
   --color=fg:#d8dee9,header:#616e88,info:#81a1c1,pointer:#88c0d0
   --color=marker:#a3be8c,fg+:#eceff4,prompt:#88c0d0,hl+:#88c0d0,border:#4c566a"
+# Previews: bat for Ctrl-T files, eza tree for Alt-C dirs
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:300 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always --icons=auto {}'"
 # fzf keybindings + completion (Ctrl-R history, Ctrl-T files, Alt-C cd)
 if (( $+commands[fzf] )); then
     if fzf --zsh > /dev/null 2>&1; then
@@ -234,3 +234,7 @@ alias ...="cd ../.."
 alias path='print -l $path'       # one PATH entry per line
 alias reload="exec zsh"           # reload the shell cleanly
 alias ports="lsof -iTCP -sTCP:LISTEN -nP"   # what's listening
+
+# zsh-syntax-highlighting must be sourced last so it wraps all ZLE widgets
+[ -f ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+    source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

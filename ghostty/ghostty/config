@@ -4,10 +4,12 @@ font-family = "FiraCode Nerd Font"
 font-size = 16
 font-thicken = true
 
-cursor-style = underline
-cursor-style-blink = true
+# Cursor scheme: shell integration turns this into a bar at the prompt;
+# block everywhere else; vim drives its own shapes per mode.
+cursor-style = block
+cursor-style-blink = false
 
-background-opacity = 0.99
+background-opacity = 0.985
 background-blur = 40
 unfocused-split-opacity = 0.90
 window-colorspace = display-p3
@@ -19,9 +21,10 @@ window-padding-balance = true
 mouse-hide-while-typing = true
 window-save-state = always
 
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
 # `title` is intentionally NOT set: a fixed title makes Ghostty ignore ALL
 # title escape sequences, which would block per-session tab titles set by the
 # Claude Code hook (~/.claude/hooks/ghostty-tab-title). Leave it unset so
 # programs (Claude, shell integration) can drive the tab title.
 #title = "terminal"
-#initial-command = "macchina"

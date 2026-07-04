@@ -38,13 +38,6 @@ autocmd FileType markdown setlocal spell
 
 " Clear search highlight
 nnoremap <silent> <leader>n :nohl<CR>
-"set clipboard+=unnamedplus
-"xnoremap <silent><leader>c :w !pbcopy<CR><CR>
-"nnoremap <silent><leader>v :r !pbpaste<CR><CR>
-"set list
-"set showbreak=↪\
-"set listchars=eol:§,tab:¤›,extends:»,precedes:«,nbsp:‡
-"match ErrorMsg '\s\+$'
 
 " NERDTree Settings
 nmap <C-f> :NERDTreeToggle<CR>
@@ -64,7 +57,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 call plug#begin('~/.vim/plugged')
-    Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'mhinz/vim-startify'
     Plug 'preservim/nerdtree'
     Plug 'arcticicestudio/nord-vim'
@@ -93,6 +85,7 @@ let g:lightline = {
             \ 'colorscheme': 'nord',
             \ }
 
-let &t_SI="\033[3 q"
+" Cursor shape per mode: bar in insert, underline in replace, block in normal
+let &t_SI="\033[6 q"
+let &t_SR="\033[4 q"
 let &t_EI="\033[2 q"
-set rtp+=/usr/local/opt/fzf
