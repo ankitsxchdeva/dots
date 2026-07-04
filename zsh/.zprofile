@@ -9,8 +9,13 @@
 # are inherited by every program — including non-interactive ones. Aliases,
 # functions, the prompt, completion and plugins stay in .zshrc.
 
-# Homebrew (Apple Silicon) — sets PATH / MANPATH / INFOPATH and HOMEBREW_*.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew — sets PATH / MANPATH / INFOPATH and HOMEBREW_*. Probe both
+# prefixes (Apple Silicon, then Intel), same as the bootstrap script.
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 export CLICOLOR=1
 export EDITOR='vim'
@@ -20,29 +25,17 @@ export EDITOR='vim'
 # pick up the stowed ~/.config/lazygit/config.yml instead.
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Define PATH explicitly and de-dupe (first occurrence wins).
+# Define PATH explicitly and de-dupe (first occurrence wins). User/TeX bins
+# lead so they win over system copies; homebrew ($HOMEBREW_PREFIX, set by
+# shellenv above) precedes /usr/bin so brew's python, git, vim, … win over
+# the older macOS system copies (e.g. system python3 is 3.9; brew's is current).
 typeset -U path
 path=(
-  # Homebrew (Apple Silicon) FIRST — must precede /usr/bin so brew's python,
-  # git, vim, … win over the older macOS system copies (e.g. system python3 is
-  # 3.9; brew's is current). This matches what `brew shellenv` does.
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-
-  # System
-  /usr/local/bin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-
-  # Toolchains
+  "$HOME/.local/bin" /Library/TeX/texbin
+  "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+  /usr/local/bin /usr/bin /bin /usr/sbin /sbin
   "$HOME/.cargo/bin"
 )
-
-# Prepend user/TeX bins so they win over the system copies
-export PATH="/Library/TeX/texbin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 # Machine-local / work-specific environment: toolchain homes (JAVA_HOME,
 # Tomcat, Oracle), extra PATH entries, DYLD libs, … Kept out of the tracked

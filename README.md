@@ -11,14 +11,14 @@ vim, ghostty, git, and lazygit (`lg`).
 ├── apple/      # macOS — Brewfile, terminal theme, reference screenshots
 ├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
 ├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
-├── claude/     # global Claude Code CLAUDE.md    → ~/.claude
+├── claude/     # Claude Code hooks + statusline  → ~/.claude
 ├── git/        # .gitconfig + global gitignore   → ~
 ├── tmux/       # .tmux.conf (Nord status line)   → ~
 ├── vim/        # .vimrc (vim-plug, Nord)         → ~
 ├── zsh/        # .zprofile (env) + .zshrc        → ~
 ├── misc/        # reference material — Makefile templates, keyboard (VIA) configs
-├── old/         # retired configs (e.g. alfred)
 ├── bootstrap.sh # fresh Mac → fully configured, one command
+├── doctor.sh    # brew bundle check + verifies tools the configs need
 ├── install.sh   # stow everything + clone zsh plugins
 ├── macos.sh     # macOS system prefs as code (defaults write)
 └── uninstall.sh
@@ -41,15 +41,17 @@ curl -fsSL https://raw.githubusercontent.com/ankitsxchdeva/dots/main/bootstrap.s
 1. `git clone git@github.com:ankitsxchdeva/dots.git ~/.dots`
 2. `cd ~/.dots && sh install.sh`
 
-`install.sh` symlinks the configs into place and clones the zsh plugins
-(`zsh-syntax-highlighting`, `zsh-autosuggestions`). Vim plugins auto-install on
-first launch via vim-plug (or run `vim +PlugInstall +qa`).
+`install.sh` backs up any conflicting real file as `<file>.bak.<timestamp>`,
+symlinks the configs into place, clones the zsh plugins
+(`zsh-syntax-highlighting`, `zsh-autosuggestions`), and installs the git
+pre-commit hook (leak guard). Vim plugins auto-install on first launch via
+vim-plug (or run `vim +PlugInstall +qa`).
 
 The zsh config is split: `~/.zprofile` holds environment (PATH, `EDITOR`,
 toolchain homes) so it is inherited by every shell, and `~/.zshrc` holds the
 interactive bits (aliases, functions, prompt, completion, plugins). If you
-already have a hand-written `~/.zprofile`, remove it before re-stowing so stow
-can link this one in: `rm ~/.zprofile && sh install.sh`.
+already have a hand-written `~/.zprofile`, `install.sh` moves it aside as
+`~/.zprofile.bak.<timestamp>` before stowing — reconcile from the backup.
 
 ## macOS
 
@@ -79,9 +81,10 @@ It sets, among others: Dock auto-hide at smallest size, menu-bar auto-hide,
 Finder (path/status bar, list view, folders-on-top, show hidden), natural
 scrolling off, tap-to-click, fast key repeat (no press-and-hold), Caps Lock →
 Control, screenshots as PNG in `~/Documents` (matching the `scrot` alias), and
-Google DNS on Wi-Fi. The screenshots in [`apple/finder/`](apple/finder) and
-[`apple/general/keyboard/`](apple/general/keyboard) are now *verification* —
-your machine should match them after running the script.
+Google DNS on Wi-Fi. Running the script *is* the verification for these — the
+only reference screenshots kept are for the genuinely manual bits: Karabiner
+([`apple/general/keyboard/`](apple/general/keyboard)) and Magnet
+([`apple/magnet/`](apple/magnet)).
 
 ### Manual leftovers
 
@@ -101,7 +104,6 @@ a checklist at the end:
 
 - **Magnet** — install from the App Store; window-snap configs are in
   [`apple/magnet/`](apple/magnet).
-- **Alfred** — set its preferences (sync) folder to `~/.dots/alfred/`.
 - **MonitorControl** (`brew install --cask monitorcontrol`) — control external
   display brightness/volume from the menu bar.
 - **Firefox**:

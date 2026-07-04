@@ -2,8 +2,8 @@
 #
 # macos.sh — apply macOS system preferences as code.
 #
-# Scripts the settings documented (with screenshots) in README.md so a fresh
-# Mac configures itself instead of being clicked through System Settings.
+# Scripts the settings documented in README.md so a fresh Mac configures
+# itself instead of being clicked through System Settings.
 # Safe to re-run: every command is idempotent. Nothing here is destructive —
 # it only writes preference keys and restarts the affected UI agents.
 #

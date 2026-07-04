@@ -21,10 +21,10 @@
 	path = ~/.gitconfig.local
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 # ─── sane modern defaults ────────────────────────────────────────────
 [pull]
@@ -63,7 +63,6 @@
 	br = branch
 	cm = commit -m
 	ca = commit --amend
-	can = commit --amend --no-edit
 	aa = add -A
 	unstage = restore --staged
 	last = log -1 HEAD --stat

@@ -21,7 +21,7 @@
 # ── Install mechanism ────────────────────────────────────────────────
 brew "stow"           # install.sh symlinks every dotfile with this
 brew "git"            # the repo IS a git config; bootstrap/install clone with it
-brew "gh"             # .gitconfig credential helper hard-codes /opt/homebrew/bin/gh
+brew "gh"             # .gitconfig credential helper (gh auth git-credential)
 
 # ── Shell experience (.zshrc / .zprofile wire these up) ──────────────
 brew "fzf"            # sourced (fzf --zsh) + Nord theme + Ctrl-R/Ctrl-T binds
@@ -41,6 +41,9 @@ cask "ghostty"                  # the terminal these dotfiles theme (ghostty/con
                                 #   ↳ drop this if the machine uses another terminal
 cask "font-fira-code-nerd-font" # ghostty font-family + eza/lazygit nerd-font glyphs
 
+# ── Claude Code (stowed claude/ config) ──────────────────────────────
+brew "jq"             # statusline + hooks parse hook JSON with it
+
 
 # ═══ OPTIONAL — uncomment per machine ════════════════════════════════
 # Nothing below is needed for the dotfiles to function.
@@ -48,7 +51,6 @@ cask "font-fira-code-nerd-font" # ghostty font-family + eza/lazygit nerd-font gl
 # ── Extra CLI niceties ───────────────────────────────────────────────
 #brew "fd"             # friendlier find
 #brew "tree"
-#brew "jq"             # JSON wrangling
 #brew "wget"
 #brew "watch"
 #brew "coreutils"
@@ -67,6 +69,9 @@ cask "font-fira-code-nerd-font" # ghostty font-family + eza/lazygit nerd-font gl
 #brew "ghc"
 #brew "llvm"
 #brew "clang-format"
+#brew "shfmt"          # claude auto-format hook: shell
+#brew "black"          # claude auto-format hook: python
+#brew "prettier"       # claude auto-format hook: js/ts/json/css/html/md
 #brew "cmake"
 #brew "svn"
 
@@ -102,15 +107,8 @@ cask "font-fira-code-nerd-font" # ghostty font-family + eza/lazygit nerd-font gl
 #cask "qflipper"             # Flipper Zero companion
 #cask "parallels"
 #cask "microsoft-teams"
-#cask "alfred"
-#cask "teamviewer"
-#cask "pomotroid"
-#cask "qbittorrent"
 #cask "kicad"                # massive — slow download/install
-#cask "minecraft"
-#cask "league-of-legends"
 #cask "via"
-#cask "eagle"
 
 # ── Work / DC (work machine only) ────────────────────────────────────
 #cask "slack"
