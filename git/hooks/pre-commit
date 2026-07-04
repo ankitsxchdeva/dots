@@ -4,13 +4,19 @@
 # with:  git commit --no-verify
 set -u
 
-patt='connectmls|Dynaconn|AnkitSachdeva|/Documents/dc|-----BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|xox[baprs]-[0-9A-Za-z-]+|(password|secret|api[_-]?key)[[:space:]]*[:=]'
+patt='-----BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|xox[baprs]-[0-9A-Za-z-]+|(password|secret|api[_-]?key)[[:space:]]*[:=]'
 
-# Inspect only ADDED lines (^+, not the +++ header). Exclude this hook itself so
-# its own pattern list can't trip the check.
-hits=$(git diff --cached -U0 --no-color -- . ':(exclude)git/hooks/pre-commit' \
+# Work/personal-specific strings live in ~/.git-deny-patterns (one per line,
+# never tracked) so this hook stays publishable.
+if [ -f ~/.git-deny-patterns ]; then
+  extra=$(grep -v '^[[:space:]]*$' ~/.git-deny-patterns | paste -sd'|' -)
+  [ -n "$extra" ] && patt="$patt|$extra"
+fi
+
+# Inspect only ADDED lines (^+, not the +++ header).
+hits=$(git diff --cached -U0 --no-color \
         | grep -E '^\+[^+]' \
-        | grep -inE "$patt" \
+        | grep -inE -e "$patt" \
         | grep -viE 'HIST_IGNORE_SPACE|handy for secrets')
 
 if [ -n "$hits" ]; then
