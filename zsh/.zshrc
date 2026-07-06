@@ -121,7 +121,10 @@ if (( $+commands[eza] )); then
     alias tree="eza --tree --icons=auto"
 fi
 if (( $+commands[bat] )); then
-    alias cat="bat --paging=never"
+    alias cat="bat --paging=never --style=numbers"
+    # For a clean, decoration-free copy: use `copy <file>` (whole file), or in
+    # Ghostty hold ⌥ Option while drag-selecting for a rectangular (column) copy.
+    copy() { bat --style=plain --color=never "$@" | pbcopy; }
     export BAT_THEME="Nord"                              # match the Nord stack
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # syntax-highlighted man pages
     export MANROFFOPT="-c"                               # fix formatting gaps in man output
