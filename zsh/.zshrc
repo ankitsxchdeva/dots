@@ -88,6 +88,10 @@ _comp_options+=(globdots)
 # Plugins (zsh-syntax-highlighting is sourced at the bottom of this file)
 [ -f ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
     source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Try history first, then fall back to completion. The `completion` strategy is
+# cwd-aware (it asks zsh's completion system), so a suggested file arg reflects
+# the *current* dir instead of a stale path from wherever the command last ran.
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # FZF + ripgrep
 if type rg > /dev/null; then
