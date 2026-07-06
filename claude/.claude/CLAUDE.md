@@ -12,6 +12,8 @@ CLAUDE.md and auto-memory take precedence where they conflict. This file holds
 - State what you actually did and verified — plainly, without hedging or overclaiming.
 
 ## Code
+- Before writing any code, `git pull` the current branch first if possible
+  (remote exists, clean tree, no rebase/merge in progress). Skip cleanly if not.
 - Read the surrounding code first; match its style, naming, and idioms.
 - Prefer the simplest thing that works. No premature abstraction or speculative
   generality (KISS, YAGNI). Explicit over clever.
