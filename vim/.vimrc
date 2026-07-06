@@ -33,6 +33,9 @@ set undodir=~/.vim/undodir
 set undofile
 set autoread
 set nocompatible
+" Mouse drag selects via visual mode (skips line numbers); y copies to clipboard
+set mouse=a
+set clipboard=unnamed
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
 
