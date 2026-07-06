@@ -33,9 +33,14 @@ set undodir=~/.vim/undodir
 set undofile
 set autoread
 set nocompatible
-" Mouse drag selects via visual mode (skips line numbers); y copies to clipboard
+" Mouse drag selects via visual mode (skips line numbers); releasing the
+" button copies the selection to the clipboard, so no y or Cmd+C needed
+" (Cmd+C can't see vim's selection — it only copies a terminal selection)
 set mouse=a
 set clipboard=unnamed
+xnoremap <silent> <LeftRelease> ygv
+xnoremap <silent> <2-LeftRelease> ygv
+xnoremap <silent> <3-LeftRelease> ygv
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 autocmd FileType markdown setlocal spell
 
