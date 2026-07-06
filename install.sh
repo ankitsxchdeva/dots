@@ -33,6 +33,11 @@ backup_conflicts() {
     done
 }
 
+clean_ds_store() {
+    # Finder drops .DS_Store files into package dirs; stow chokes on them.
+    find . -name '.DS_Store' -not -path './.git/*' -delete
+}
+
 stow_home() {
     # `claude` folds CLAUDE.md, settings, statusline, hooks and commands into
     # the existing ~/.claude dir, leaving Claude Code's runtime state untouched.
@@ -68,6 +73,7 @@ install_git_hooks() {
 
 main() {
     cd "$(dirname "$0")"
+    clean_ds_store
     stow_home
     stow_config
     install_plugins
