@@ -80,7 +80,7 @@ cd ~/.dots && ./macos.sh
 It sets, among others: Dock auto-hide at smallest size, menu-bar auto-hide,
 Finder (path/status bar, list view, folders-on-top, show hidden), natural
 scrolling off, tap-to-click, fast key repeat (no press-and-hold), Caps Lock →
-Control, screenshots as PNG in `~/Documents` (matching the `scrot` alias), and
+Control, screenshots as PNG in `~/Desktop` (matching the `scrot` alias), and
 Google DNS on Wi-Fi. Running the script *is* the verification for these — the
 only reference screenshots kept are for the genuinely manual bits: Karabiner
 ([`apple/general/keyboard/`](apple/general/keyboard)) and Magnet

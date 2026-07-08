@@ -1,5 +1,6 @@
 {
   "skillListingBudgetFraction": 0.02,
+  "model": "opus[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {

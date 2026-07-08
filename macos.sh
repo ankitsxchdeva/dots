@@ -66,8 +66,8 @@ input() {
 }
 
 screenshots() {
-    log "Screenshots — PNG, saved to ~/Documents (matches the 'scrot' alias)"
-    defaults write com.apple.screencapture location -string "${HOME}/Documents"
+    log "Screenshots — PNG, saved to ~/Desktop (matches the 'scrot' alias)"
+    defaults write com.apple.screencapture location -string "${HOME}/Desktop"
     defaults write com.apple.screencapture type -string "png"
     defaults write com.apple.screencapture disable-shadow -bool true
 }
