@@ -1,0 +1,231 @@
+# Nord flavor for Yazi.  Stowed to ~/.config/yazi/flavors/nord.yazi/
+#
+# Chrome only: the UI (panes, tabs, mode, status, popups, dir/special-file
+# icons) is remapped to the Nord palette to match the rest of this setup
+# (tmux / lazygit / fzf / bat / delta / vim). The per-language file-icon
+# brand colors are inherited from Yazi's built-in theme, untouched.
+#
+# File-preview syntax colors come from tmtheme.xml in this folder, which Yazi
+# auto-loads when the flavor is active — it's the same Nord theme `bat` uses
+# (BAT_THEME=Nord), so previews match `cat`/`bat` exactly.
+#
+# Nord palette
+#   Polar Night  nord0 #2e3440  nord1 #3b4252  nord2 #434c5e  nord3 #4c566a
+#   Snow Storm   nord4 #d8dee9  nord5 #e5e9f0  nord6 #eceff4
+#   Frost        nord7 #8fbcbb  nord8 #88c0d0  nord9 #81a1c1  nord10 #5e81ac
+#   Aurora       red #bf616a  orange #d08770  yellow #ebcb8b  green #a3be8c  purple #b48ead
+
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#88c0d0" }
+
+# Find
+find_keyword  = { fg = "#ebcb8b", bold = true, italic = true, underline = true }
+find_position = { fg = "#b48ead", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#a3be8c", bg = "#a3be8c" }
+marker_cut      = { fg = "#bf616a", bg = "#bf616a" }
+marker_marked   = { fg = "#88c0d0", bg = "#88c0d0" }
+marker_selected = { fg = "#ebcb8b", bg = "#ebcb8b" }
+
+# Count
+count_copied   = { fg = "#2e3440", bg = "#a3be8c" }
+count_cut      = { fg = "#2e3440", bg = "#bf616a" }
+count_selected = { fg = "#2e3440", bg = "#ebcb8b" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#4c566a" }
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#2e3440", bg = "#81a1c1", bold = true }
+inactive = { fg = "#81a1c1", bg = "#3b4252" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#2e3440", bg = "#81a1c1", bold = true }
+normal_alt  = { fg = "#81a1c1", bg = "#3b4252" }
+
+# Select mode
+select_main = { fg = "#2e3440", bg = "#88c0d0", bold = true }
+select_alt  = { fg = "#88c0d0", bg = "#3b4252" }
+
+# Unset mode
+unset_main = { fg = "#2e3440", bg = "#d08770", bold = true }
+unset_alt  = { fg = "#d08770", bg = "#3b4252" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+# Permissions
+perm_sep   = { fg = "#4c566a" }
+perm_type  = { fg = "#81a1c1" }
+perm_read  = { fg = "#ebcb8b" }
+perm_write = { fg = "#bf616a" }
+perm_exec  = { fg = "#a3be8c" }
+
+# Progress
+progress_label  = { fg = "#eceff4", bold = true }
+progress_normal = { fg = "#a3be8c", bg = "#434c5e" }
+progress_error  = { fg = "#ebcb8b", bg = "#bf616a" }
+
+# : }}}
+
+
+# : Pick {{{
+
+[pick]
+border   = { fg = "#81a1c1" }
+active   = { fg = "#b48ead", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#81a1c1" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border = { fg = "#81a1c1" }
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+border  = { fg = "#81a1c1" }
+title   = {}
+hovered = { fg = "#b48ead", bold = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+mask            = { bg = "#3b4252" }
+cand            = { fg = "#88c0d0" }
+rest            = { fg = "#4c566a" }
+desc            = { fg = "#b48ead" }
+separator       = "  "
+separator_style = { fg = "#4c566a" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on      = { fg = "#88c0d0" }
+run     = { fg = "#b48ead" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#3b4252", bg = "#d8dee9" }
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border   = { fg = "#81a1c1" }
+title    = { fg = "#81a1c1" }
+tbl_col  = { fg = "#88c0d0" }
+tbl_cell = { fg = "#b48ead", bg = "#434c5e" }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info  = { fg = "#a3be8c" }
+title_warn  = { fg = "#ebcb8b" }
+title_error = { fg = "#bf616a" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+	# Image
+	{ mime = "image/*", fg = "#88c0d0" },
+	# Media
+	{ mime = "{audio,video}/*", fg = "#ebcb8b" },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#b48ead" },
+	# Document
+	{ mime = "application/{pdf,doc,rtf}", fg = "#a3be8c" },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", fg = "#4c566a" },
+	# Fallback
+	{ url = "*", fg = "#d8dee9" },
+	{ url = "*/", fg = "#81a1c1" },
+]
+
+# : }}}
+
+[icon]
+
+dirs = [
+	{ name = ".config", text = "", fg = "#b48ead" },
+	{ name = ".git", text = "", fg = "#88c0d0" },
+	{ name = ".github", text = "", fg = "#81a1c1" },
+	{ name = ".npm", text = "", fg = "#81a1c1" },
+	{ name = "Desktop", text = "", fg = "#88c0d0" },
+	{ name = "Development", text = "", fg = "#88c0d0" },
+	{ name = "Documents", text = "", fg = "#88c0d0" },
+	{ name = "Downloads", text = "", fg = "#88c0d0" },
+	{ name = "Library", text = "", fg = "#88c0d0" },
+	{ name = "Movies", text = "", fg = "#88c0d0" },
+	{ name = "Music", text = "", fg = "#88c0d0" },
+	{ name = "Pictures", text = "", fg = "#88c0d0" },
+	{ name = "Public", text = "", fg = "#88c0d0" },
+	{ name = "Videos", text = "", fg = "#88c0d0" },
+]
+conds = [
+	# Special files
+	{ if = "orphan", text = "", fg = "#d8dee9" },
+	{ if = "link", text = "", fg = "#4c566a" },
+	{ if = "block", text = "", fg = "#d08770" },
+	{ if = "char", text = "", fg = "#d08770" },
+	{ if = "fifo", text = "", fg = "#d08770" },
+	{ if = "sock", text = "", fg = "#d08770" },
+	{ if = "sticky", text = "", fg = "#d08770" },
+	{ if = "dummy", text = "", fg = "#bf616a" },
+
+	# Fallback
+	{ if = "dir & hovered", text = "", fg = "#81a1c1" },
+	{ if = "dir", text = "", fg = "#81a1c1" },
+	{ if = "exec", text = "", fg = "#a3be8c" },
+	{ if = "!dir", text = "", fg = "#d8dee9" },
+]

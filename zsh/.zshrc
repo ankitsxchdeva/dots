@@ -135,6 +135,19 @@ if (( $+commands[bat] )); then
 fi
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
+# yazi file manager (Nord flavor in ~/.config/yazi). `y` opens it and cd's the
+# shell to wherever you quit with q; plain `yazi` leaves the cwd unchanged.
+if (( $+commands[yazi] )); then
+    y() {
+        local tmp cwd
+        tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+        yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d '' cwd < "$tmp"
+        [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+    }
+fi
+
 # Work / machine-local aliases (server shortcuts, project cd's, …). Not tracked.
 [ -f ~/.server_aliases ] && source ~/.server_aliases
 

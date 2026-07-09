@@ -1,0 +1,9 @@
+# yazi theme — Stowed to ~/.config/yazi/theme.toml
+#
+# Load the bundled Nord flavor (flavors/nord.yazi/) for both light and dark
+# terminals. The flavor carries all the colors; keep overrides out of here so
+# there's a single source of truth. Schema: https://yazi-rs.github.io/docs/configuration/theme
+
+[flavor]
+dark  = "nord"
+light = "nord"

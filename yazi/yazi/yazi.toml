@@ -1,0 +1,19 @@
+# yazi — Stowed to ~/.config/yazi/yazi.toml  (found there because
+# $XDG_CONFIG_HOME=~/.config — see ~/.zprofile). Colors live in theme.toml +
+# the Nord flavor; this file is behavior only. Schema keys match yazi v26.
+# Reference: https://yazi-rs.github.io/docs/configuration/yazi
+
+[mgr]
+ratio          = [ 1, 3, 4 ]   # parent : current : preview — wide preview pane
+sort_by        = "natural"      # foo2 before foo10 (human-friendly numeric sort)
+sort_dir_first = true           # directories on top, like eza --group-directories-first
+sort_sensitive = false
+show_hidden    = false          # toggle at runtime with . (dotfiles off by default)
+show_symlink   = true           # show " -> target" next to symlinks
+linemode       = "size"         # right-align file sizes in the list
+
+[preview]
+wrap        = "yes"   # wrap long lines in the text preview
+tab_size    = 4       # match the editor (vim shiftwidth=4)
+max_width   = 900
+max_height  = 1200

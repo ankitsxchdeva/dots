@@ -31,6 +31,7 @@ brew "eza"            # ls/la/ll/lt/tree aliases (needs a Nerd Font for --icons)
 brew "zoxide"         # smarter cd (z)
 brew "git-delta"      # .gitconfig pager + diffFilter (syntax-theme Nord)
 brew "lazygit"        # `lg` alias + stowed lazygit/config.yml (Nord TUI)
+brew "yazi"           # `y` file-manager TUI + stowed yazi/ (Nord flavor); needs a Nerd Font
 
 # ── Editor & multiplexer (dedicated stowed configs) ──────────────────
 brew "vim"            # $EDITOR + stowed .vimrc
@@ -50,6 +51,11 @@ brew "jq"             # statusline + hooks parse hook JSON with it
 
 # ── Extra CLI niceties ───────────────────────────────────────────────
 #brew "fd"             # friendlier find
+# yazi preview enhancers (optional — yazi works without them, previews get richer):
+#brew "poppler"        #   ↳ PDF previews
+#brew "ffmpeg"         #   ↳ video thumbnails (also listed under Media below)
+#brew "sevenzip"       #   ↳ archive contents preview
+#brew "imagemagick"    #   ↳ wider image-format support
 #brew "tree"
 #brew "wget"
 #brew "watch"

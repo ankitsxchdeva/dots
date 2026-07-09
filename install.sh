@@ -47,8 +47,8 @@ stow_home() {
 
 stow_config() {
     # starship disabled (native zsh prompt instead)
-    backup_conflicts ~/.config ghostty lazygit
-    stow --restow -vt ~/.config ghostty lazygit
+    backup_conflicts ~/.config ghostty lazygit yazi
+    stow --restow -vt ~/.config ghostty lazygit yazi
 }
 
 install_plugins() {
