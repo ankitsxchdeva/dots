@@ -110,6 +110,7 @@ brew "jq"             # statusline + hooks parse hook JSON with it
 #cask "obs"
 #cask "cursor"
 #cask "chatgpt"
+#cask "obsidian"             # markdown notes / knowledge base
 #cask "qflipper"             # Flipper Zero companion
 #cask "parallels"
 #cask "microsoft-teams"
