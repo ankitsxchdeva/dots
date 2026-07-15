@@ -56,5 +56,6 @@
   "effortLevel": "xhigh",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "model": "claude-fable-5[1m]"
 }
