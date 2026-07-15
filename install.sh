@@ -12,6 +12,19 @@ phys() {
     ( cd "$(dirname "$1")" && printf '%s/%s\n' "$(pwd -P)" "$(basename "$1")" )
 }
 
+# True if stow itself would skip this path — it IS the package's
+# .stow-local-ignore, or is listed in it. Then it's not ours to back up either.
+stow_ignored() {
+    local pkg="$1" rel="$2" pat
+    [ "$rel" = ".stow-local-ignore" ] && return 0
+    [ -f "$pkg/.stow-local-ignore" ] || return 1
+    while IFS= read -r pat; do
+        [ -n "$pat" ] || continue
+        case "$rel" in "$pat"|"$pat"/*) return 0 ;; esac
+    done < "$pkg/.stow-local-ignore"
+    return 1
+}
+
 # Back up any target that already exists as a real, unmanaged regular file so
 # `stow` won't abort on the conflict. The old content is preserved as
 # <file>.bak.<timestamp> for manual reconciliation. Repo is the source of truth.
@@ -21,6 +34,7 @@ backup_conflicts() {
     for pkg in "$@"; do
         find "$pkg" -type f | while IFS= read -r file; do
             rel="${file#"$pkg"/}"
+            stow_ignored "$pkg" "$rel" && continue
             dest="$target/$rel"
             [ -e "$dest" ] || continue          # nothing there
             [ -L "$dest" ] && continue          # already a symlink

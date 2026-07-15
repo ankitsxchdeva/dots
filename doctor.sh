@@ -18,8 +18,8 @@ brew bundle check --file=apple/Brewfile --verbose || status=1
 log "Checking tools the stowed configs depend on"
 for formula in $(sed -n '/═══ REQUIRED/,/═══ OPTIONAL/p' apple/Brewfile | awk -F'"' '/^brew /{print $2}'); do
     case "$formula" in                       # formula name ≠ binary name
-        ripgrep)   bin=rg ;;
-        git-delta) bin=delta ;;
+        ripgrep)   bin="rg" ;;
+        git-delta) bin="delta" ;;
         *)         bin=$formula ;;
     esac
     command -v "$bin" >/dev/null || { warn "missing: $bin (brew \"$formula\")"; status=1; }

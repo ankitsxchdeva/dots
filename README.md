@@ -40,7 +40,7 @@ curl -fsSL https://raw.githubusercontent.com/ankitsxchdeva/dots/main/bootstrap.s
 ### Manual
 
 1. `git clone git@github.com:ankitsxchdeva/dots.git ~/.dots`
-2. `cd ~/.dots && sh install.sh`
+2. `cd ~/.dots && ./install.sh`
 
 `install.sh` backs up any conflicting real file as `<file>.bak.<timestamp>`,
 symlinks the configs into place, clones the zsh plugins

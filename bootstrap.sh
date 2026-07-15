@@ -22,9 +22,13 @@ if ! command -v brew >/dev/null 2>&1; then
     NONINTERACTIVE=1 /bin/bash -c \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-# Make brew available for the rest of this run (Apple Silicon path).
-[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-[ -x /usr/local/bin/brew ]    && eval "$(/usr/local/bin/brew shellenv)"
+# Make brew available for the rest of this run (Apple Silicon first, Intel
+# fallback — elif so the Intel prefix can't shadow /opt/homebrew if both exist).
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # ── Clone (or update) the repo ───────────────────────────────────────────
 if [ -d "$DOTS/.git" ]; then
