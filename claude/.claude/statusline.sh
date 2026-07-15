@@ -52,7 +52,8 @@ esac
 branch=""; dirty=""
 if git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
-  [ -n "$(git -C "$dir" status --porcelain 2>/dev/null)" ] && dirty="*"
+  # --no-optional-locks: don't touch index.lock from a statusline render
+  [ -n "$(git -C "$dir" --no-optional-locks status --porcelain 2>/dev/null)" ] && dirty="*"
 fi
 
 # ── context: grey, red only when nearly full ─────────────────────────────────

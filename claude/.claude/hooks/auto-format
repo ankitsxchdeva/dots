@@ -2,20 +2,46 @@
 # auto-format — run the right formatter on a file right after Claude edits it.
 # PostToolUse(Edit|Write) hook. Best-effort: if the formatter isn't installed,
 # skip silently. Never fails the tool (always exits 0).
+#
+# Opinionated formatters (prettier, black, clang-format, shfmt) only run when
+# the repo opts in with a config file — a whole-file reformat in a project that
+# doesn't use them just makes noisy diffs. gofmt/rustfmt are their languages'
+# standards, so they always run.
 set -u
 command -v jq >/dev/null 2>&1 || exit 0
 
 f=$(cat | jq -r '.tool_input.file_path // empty' 2>/dev/null)
 [ -n "$f" ] && [ -f "$f" ] || exit 0
+dir=$(cd "$(dirname "$f")" && pwd) || exit 0
+
+# Print the first of the named files found in $1 or an ancestor directory.
+find_up() {
+    local d="$1" n; shift
+    while :; do
+        for n in "$@"; do
+            [ -e "$d/$n" ] && { printf '%s/%s' "$d" "$n"; return 0; }
+        done
+        [ "$d" = / ] && return 1
+        d=$(dirname "$d")
+    done
+}
 
 case "$f" in
   *.go)   command -v gofmt   >/dev/null 2>&1 && gofmt -w "$f" ;;
   *.rs)   command -v rustfmt >/dev/null 2>&1 && rustfmt "$f" 2>/dev/null ;;
-  *.py)   command -v black   >/dev/null 2>&1 && black -q "$f" 2>/dev/null ;;
-  *.sh)   command -v shfmt   >/dev/null 2>&1 && shfmt -w "$f" 2>/dev/null ;;
+  *.py)   cfg=$(find_up "$dir" pyproject.toml) && grep -qs '^\[tool\.black\]' "$cfg" &&
+          command -v black   >/dev/null 2>&1 && black -q "$f" 2>/dev/null ;;
+  *.sh)   find_up "$dir" .editorconfig >/dev/null &&    # shfmt reads .editorconfig
+          command -v shfmt   >/dev/null 2>&1 && shfmt -w "$f" 2>/dev/null ;;
   *.c|*.h|*.cpp|*.hpp|*.cc)
+          find_up "$dir" .clang-format _clang-format >/dev/null &&
           command -v clang-format >/dev/null 2>&1 && clang-format -i "$f" 2>/dev/null ;;
   *.js|*.ts|*.tsx|*.jsx|*.json|*.css|*.html|*.md)
+          { find_up "$dir" .prettierrc .prettierrc.json .prettierrc.yml .prettierrc.yaml \
+                .prettierrc.js .prettierrc.cjs .prettierrc.toml \
+                prettier.config.js prettier.config.cjs >/dev/null ||
+            { pkg=$(find_up "$dir" package.json) && grep -qs '"prettier"' "$pkg"; }
+          } &&
           command -v prettier >/dev/null 2>&1 && prettier -w "$f" >/dev/null 2>&1 ;;
 esac
 exit 0
