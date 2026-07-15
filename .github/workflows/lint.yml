@@ -1,0 +1,23 @@
+# Lint every script the dotfiles ship. These scripts mostly run on fresh
+# machines (bootstrap/install) where breakage would otherwise go unnoticed
+# until the worst possible moment.
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck scripts + hooks
+        run: |
+          shellcheck -S warning ./*.sh git/hooks/pre-commit \
+            claude/.claude/hooks/* claude/.claude/statusline.sh
+      - name: zsh syntax check
+        run: |
+          sudo apt-get install -y --no-install-recommends zsh >/dev/null
+          zsh -n zsh/.zshrc zsh/.zprofile
