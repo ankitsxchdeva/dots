@@ -27,7 +27,6 @@ alias   vi="vim"
 alias   ls="ls -p"
 alias   la="ls -a -p"
 alias   clr="clear"
-alias   rf="rm -rf"
 
 # Utils
 alias   weather="curl -s wttr.in/Austin+TX | head -n 7 | tail -n 5"
@@ -76,8 +75,10 @@ setopt PUSHD_SILENT
 
 # Autocomplete
 autoload -Uz compinit
-# Only run the slow security check once a day; use the cache otherwise
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit; else compinit -C; fi
+# Only run the slow security check once a day; use the cache otherwise.
+# touch the dump after a full run — compinit only rewrites it when the function
+# list changed, so without this the >24h branch would run every shell forever.
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit && touch ~/.zcompdump; else compinit -C; fi
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'

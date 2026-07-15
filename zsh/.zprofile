@@ -31,10 +31,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # the older macOS system copies (e.g. system python3 is 3.9; brew's is current).
 typeset -U path
 path=(
-  "$HOME/.local/bin" /Library/TeX/texbin
+  "$HOME/.local/bin" "$HOME/.cargo/bin" /Library/TeX/texbin
   "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
   /usr/local/bin /usr/bin /bin /usr/sbin /sbin
-  "$HOME/.cargo/bin"
 )
 
 # Machine-local / work-specific environment: toolchain homes (JAVA_HOME,
