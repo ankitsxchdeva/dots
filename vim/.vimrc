@@ -86,7 +86,9 @@ if has('termguicolors')
   set termguicolors
 endif
 set cursorline
-colorscheme nord
+" silent! — on a fresh machine the scheme isn't installed until the VimEnter
+" PlugInstall autocmd runs, so the very first launch would error out here
+silent! colorscheme nord
 set laststatus=2
 set noshowmode
 let g:lightline = {
