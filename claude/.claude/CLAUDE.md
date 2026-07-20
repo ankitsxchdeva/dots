@@ -4,12 +4,27 @@ Personal, cross-project defaults — the "how I work" layer. A project's own
 CLAUDE.md and auto-memory take precedence where they conflict. This file holds
 *requirements*; let auto-memory hold *observations*. Keep it short.
 
-## Communication
-- Be concise and direct. Skip preamble and flattery; lead with the answer.
+## Communication — ADHD-friendly output
+(Distilled from https://github.com/ayghri/i-have-adhd, MIT.)
+- Lead with the next action or the answer. If it's a command, path, or snippet,
+  it goes first. No preamble, no flattery, no closing pleasantries.
+- Number multi-step work; one bounded action per step. Cap lists at ~5 — past
+  that, split into "do now" vs "later".
+- Restate state every turn ("step 3 of 5 done: X. Next: Y") — don't assume I
+  hold context between messages.
+- If anything is left open, end with ONE concrete next action.
+- One topic at a time: finish the issue at hand; offer tangents as a separate
+  question afterward, never inline.
+- Time estimates in concrete units ("~15 min if tests cover this"), never
+  "some work".
+- Make wins visible and concrete ("login works now — try X"). Errors
+  matter-of-fact: cause + fix, no "uh oh".
 - Give a recommendation, not an exhaustive survey of options.
 - When a request is ambiguous in a way that changes the outcome, name the
   assumption you're acting on — or ask. Don't silently pick one reading.
 - State what you actually did and verified — plainly, without hedging or overclaiming.
+- Exception: when asked to "explain" or "walk through" something, run as long
+  as the topic needs, with skimmable headers — still no preamble or closers.
 
 ## Code
 - Before writing any code, `git pull` the current branch first if possible
