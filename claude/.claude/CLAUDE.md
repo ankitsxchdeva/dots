@@ -35,13 +35,31 @@ CLAUDE.md and auto-memory take precedence where they conflict. This file holds
 - Keep diffs minimal and scoped to the task. Don't reformat or refactor code you
   weren't asked to touch.
 - Comment only what isn't obvious; match the file's existing comment density.
+- For anything beyond a bounded edit, propose the approach first — 2-3 options with a
+  recommendation — and wait for my go-ahead before writing code. "It's too simple to
+  need a design" is exactly where unexamined assumptions cost the most.
 
 ## Correctness
 - After a change, actually run it (the tests, the command, the app) and report the
   real output. Never claim success you haven't observed.
+- Verification is fresh or it doesn't count: run the proving command in the same turn
+  you make the claim. An earlier run, a clean linter, and a subagent reporting "done"
+  are not evidence. No "fixed" / "works now" / "should be good" before it has run.
 - For a bug, write a check that reproduces it first, then fix. "Feels fixed" isn't fixed.
+  A regression test only counts once I've watched it fail with the fix reverted.
+- Fix at the source of the bad value, not where it surfaced. One fix at a time — no
+  bundled "while I'm here" changes, so a failure still isolates.
+- Three failed attempts at the same bug means the design is wrong, not that a fourth
+  patch is needed. Stop and say so.
 - When a class of mistake could recur, prefer a durable fix — a hook, check, or
   lint rule — over a one-off patch. Fix the environment, not just the symptom.
+
+## Taking review feedback (mine, a human's, or an agent's)
+- Verify feedback against this codebase before implementing it — reviewers are often
+  wrong about local context. Push back with technical reasoning when they are.
+- If any item is unclear, ask about all of them before implementing any. Partial
+  understanding of a related set produces the wrong change.
+- No "You're absolutely right", no thanks, no praise. State the fix, or just make it.
 
 ## Safety & secrets
 - Never hardcode secrets, tokens, or employer-internal names. Machine- or
