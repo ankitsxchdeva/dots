@@ -55,8 +55,10 @@ clean_ds_store() {
 stow_home() {
     # `claude` folds CLAUDE.md, settings, statusline, hooks and commands into
     # the existing ~/.claude dir, leaving Claude Code's runtime state untouched.
-    backup_conflicts ~ claude git tmux vim zsh
-    stow --restow -vt ~ claude git tmux vim zsh
+    # `pi` folds AGENTS.md, prompts, skills and extensions into ~/.pi/agent the
+    # same way, leaving auth.json, sessions and machine-local settings alone.
+    backup_conflicts ~ claude git pi tmux vim zsh
+    stow --restow -vt ~ claude git pi tmux vim zsh
 }
 
 stow_config() {
@@ -85,6 +87,38 @@ install_git_hooks() {
     ln -sf ../../git/hooks/pre-commit "$dots/.git/hooks/pre-commit"
 }
 
+install_launchd() {
+    # Daily upstream poll for the upstream-watch pi skill: fetches remote refs
+    # for the ~/src reference clones and writes ~/.pi/agent/upstream-status.json.
+    # Generated here (not tracked) so $HOME expands per-machine.
+    local dst="$HOME/Library/LaunchAgents/local.pi-upstream-watch.plist"
+    [ -f "$dst" ] && return 0
+    cat > "$dst" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.pi-upstream-watch</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>$HOME/.pi/agent/skills/upstream-watch/scripts/check-updates.sh</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>86400</integer>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>StandardOutPath</key>
+    <string>/tmp/pi-upstream-watch.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/pi-upstream-watch.log</string>
+</dict>
+</plist>
+EOF
+    launchctl bootstrap "gui/$(id -u)" "$dst" 2>/dev/null || true
+    echo "launchd: local.pi-upstream-watch installed (daily upstream poll)"
+}
+
 main() {
     cd "$(dirname "$0")"
     clean_ds_store
@@ -92,6 +126,7 @@ main() {
     stow_config
     install_plugins
     install_git_hooks
+    install_launchd
     echo "Installation complete!"
 }
 

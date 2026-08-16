@@ -13,6 +13,20 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 ├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
 ├── yazi/       # yazi file-manager TUI (Nord)    → ~/.config/yazi
 ├── claude/     # Claude Code hooks + statusline  → ~/.claude
+├── pi/         # pi agent: AGENTS.md, prompts, skills, extensions → ~/.pi/agent
+│               #   extensions: tab-title, auto-format, magic-keywords (ultrathink/
+│               #   orchestrate/workflowz), task (subagents), advisor (2nd model),
+│               #   memory (per-repo facts), safety (/careful /freeze /guard),
+│               #   playwright-mcp (browser_* tools via Playwright MCP),
+│               #   cheatsheet (/cheatsheet platform map), upstream-watch
+│               #   (session-start notice when reference clones fall behind)
+│               #   skills: screen-untrusted-repo, upstream-watch (+ launchd
+│               #   daily GitHub poll → ~/.pi/agent/upstream-status.json)
+│               #   prompts: commit, pr, review + gstack-ported sprint workflow
+│               #   (office-hours, plan-ceo-review, plan-eng-review, investigate,
+│               #   cso, qa, retro)
+├── sync-upstreams.sh # pull reference clones (~/src/oh-my-pi, ~/src/gstack) and
+│               #   diff the files the pi config ports from — re-port on change
 ├── git/        # .gitconfig + global gitignore   → ~
 ├── tmux/       # .tmux.conf (Nord status line)   → ~
 ├── vim/        # .vimrc (vim-plug, Nord)         → ~
