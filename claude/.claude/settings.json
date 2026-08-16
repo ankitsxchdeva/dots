@@ -53,9 +53,8 @@
     "frontend-design@claude-plugins-official": true,
     "usage-pulse@usage-pulse": true
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "dark-ansi",
-  "model": "claude-fable-5[1m]"
+  "theme": "dark-ansi"
 }
