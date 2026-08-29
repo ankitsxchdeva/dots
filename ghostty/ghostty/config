@@ -9,6 +9,11 @@ font-thicken = true
 cursor-style = block
 cursor-style-blink = false
 
+# SSH: install Ghostty's terminfo + env on remote hosts so TERM=xterm-ghostty
+# doesn't break readline (double-echoed chars) on machines without the entry.
+# Defaults (cursor,sudo,title) are restated since this key replaces them.
+shell-integration-features = cursor,sudo,title,ssh-terminfo,ssh-env
+
 background-opacity = 0.985
 background-blur = 40
 unfocused-split-opacity = 0.90
