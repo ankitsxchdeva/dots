@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# GENERATED from pi/.pi/agent/skills/screen-untrusted-repo/scripts/screen.sh by sync-claude-pi.sh — do not edit directly
 # screen.sh — triage an untrusted repo BEFORE building/running it or pointing an
 # AI agent at it. Read-only: never installs, builds, or executes project code.
 # Usage: bash screen.sh <path-to-repo>   (defaults to current directory)

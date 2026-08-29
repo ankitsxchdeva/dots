@@ -82,6 +82,16 @@ already have a hand-written `~/.zprofile`, `install.sh` moves it aside as
    - The Brewfile flags which casks are work-only vs. personal — comment out the
      ones you don't want before bundling.
 
+### Repo hygiene (CI-enforced)
+
+- `sync-claude-pi.sh` — the pi prompts `commit`/`pr`/`review` and the
+  `screen-untrusted-repo` skill are the canonical sources; their claude/
+  counterparts are generated. Edit the pi/ file, run the script, commit both.
+- `npx tsc --noEmit` — typechecks `pi/.pi/agent/extensions/*.ts` against the
+  published pi SDK (`npm install` first; CI runs it via `npm ci`).
+
+Both run as GitHub Actions jobs on every push, alongside shellcheck.
+
 ### System settings — scripted
 
 `macos.sh` scripts the system preferences (`defaults write`) so you don't have

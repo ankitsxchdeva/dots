@@ -7,10 +7,10 @@ Open a pull request for the current branch with a clear title and a real test pl
 
 ## Context
 Run these first and read the output:
-- `git rev-parse --abbrev-ref HEAD`
-- `git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "(none — needs first push)"`
-- `git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##' || echo main`
-- `git log --oneline @{u}..HEAD 2>/dev/null | head -20 || echo "(no upstream yet)"`
+- Branch: `git rev-parse --abbrev-ref HEAD`
+- Upstream: `git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "(none — needs first push)"`
+- Default base: `git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##' || echo main`
+- Commits on this branch: `git log --oneline @{u}..HEAD 2>/dev/null | head -20 || echo "(no upstream yet)"`
 
 ## Rules — no mistakes
 1. NEVER open a PR from `main`/`master`. If I'm on it, STOP.

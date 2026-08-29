@@ -5,12 +5,13 @@ argument-hint: "[optional base ref, default main]"
 ## Goal
 Review my changes the way a careful senior reviewer would. Find problems. Do not change code.
 
-## Scope
-Run `git --no-pager diff HEAD --stat` for the changed files (uncommitted vs HEAD).
+## Context
+Run these first and read the output:
+- Changed files (uncommitted vs HEAD): `git --no-pager diff HEAD --stat`
 
-If that is empty, everything is committed — review `git diff ${1:-main}...HEAD`
-instead. Read the FULL diff with git before reporting; don't review from the
-stat alone.
+If that is empty, everything is committed — review `git diff <base>...HEAD`
+instead (base = $ARGUMENTS, default `main`). Read the FULL diff with git before
+reporting; don't review from the stat alone.
 
 ## Rules — no mistakes
 1. Do NOT edit, fix, stage, or commit anything. Output a report only.

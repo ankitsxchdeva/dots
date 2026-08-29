@@ -3,6 +3,7 @@ description: Commit staged changes as one clean conventional commit — review-f
 argument-hint: "[optional summary override]"
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git rev-parse:*), Bash(git branch:*)
 ---
+<!-- GENERATED from pi/.pi/agent/prompts/commit.md by sync-claude-pi.sh — do not edit directly -->
 ## Goal
 Create exactly one clean commit from the work that is ready. Conventional Commits style.
 

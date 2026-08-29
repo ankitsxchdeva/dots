@@ -3,6 +3,7 @@ description: Open a pull request for the current branch — push-safe, base-awar
 argument-hint: "[optional PR title]"
 allowed-tools: Bash(git:*), Bash(gh:*)
 ---
+<!-- GENERATED from pi/.pi/agent/prompts/pr.md by sync-claude-pi.sh — do not edit directly -->
 ## Goal
 Open a pull request for the current branch with a clear title and a real test plan.
 
@@ -22,6 +23,8 @@ Open a pull request for the current branch with a clear title and a real test pl
    last commit. $ARGUMENTS overrides if I provided a title.
 5. Body: a short **## Summary** (what changed + why) and a **## Test plan** (how it
    was verified). Only claim tests you actually ran — no invented verification.
+   Before drafting: run the project's test suite if one exists and put the real
+   result in the test plan. If there is no suite, say so explicitly.
 6. Scan `git diff <base>...HEAD` for secrets before creating the PR.
 7. End the body with the "🤖 Generated with Claude Code" footer.
 8. After creating, print the PR URL. Do NOT merge.

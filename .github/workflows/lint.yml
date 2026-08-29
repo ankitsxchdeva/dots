@@ -21,3 +21,24 @@ jobs:
         run: |
           sudo apt-get install -y --no-install-recommends zsh >/dev/null
           zsh -n zsh/.zshrc zsh/.zprofile
+
+  typecheck-pi-extensions:
+    # The pi extensions are TypeScript loaded at runtime by pi — a type error
+    # would only surface as a broken live session. Catch it here instead.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+
+  claude-mirrors-in-sync:
+    # claude/.claude/{commands,skills} are generated from their canonical pi/
+    # sources by sync-claude-pi.sh — fail if someone edits one side only.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./sync-claude-pi.sh --check

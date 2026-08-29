@@ -3,12 +3,12 @@ description: Review the current diff — correctness bugs first, then cleanups. 
 argument-hint: "[optional base ref, default main]"
 allowed-tools: Bash(git:*)
 ---
+<!-- GENERATED from pi/.pi/agent/prompts/review.md by sync-claude-pi.sh — do not edit directly -->
 ## Goal
 Review my changes the way a careful senior reviewer would. Find problems. Do not change code.
 
-## Scope
-Changed files (uncommitted vs HEAD):
-!`git --no-pager diff HEAD --stat`
+## Context
+- Changed files (uncommitted vs HEAD): !`git --no-pager diff HEAD --stat`
 
 If that is empty, everything is committed — review `git diff <base>...HEAD`
 instead (base = $ARGUMENTS, default `main`). Read the FULL diff with git before

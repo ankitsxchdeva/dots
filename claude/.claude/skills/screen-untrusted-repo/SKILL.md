@@ -2,6 +2,7 @@
 name: screen-untrusted-repo
 description: Screen an untrusted or unfamiliar codebase for prompt injection and malicious auto-run scripts BEFORE building it, installing dependencies, or pointing an AI agent at it. Use when about to work in a repo you did not create — cloned repos, downloaded code, take-home assignments, or a live interview codebase.
 ---
+<!-- GENERATED from pi/.pi/agent/skills/screen-untrusted-repo/SKILL.md by sync-claude-pi.sh — do not edit directly -->
 
 # Screen an untrusted repo
 

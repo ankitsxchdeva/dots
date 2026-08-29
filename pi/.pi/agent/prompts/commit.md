@@ -7,9 +7,9 @@ Create exactly one clean commit from the work that is ready. Conventional Commit
 
 ## Context
 Run these first and read the output before doing anything else:
-- `git rev-parse --abbrev-ref HEAD`
-- `git status -sb`
-- `git diff --cached --stat`
+- Branch: `git rev-parse --abbrev-ref HEAD`
+- Status: `git status -sb`
+- Staged (names): `git diff --cached --stat`
 
 ## Rules — no mistakes
 1. NEVER `git add -A` / `git add .` blindly. If nothing is staged but there are
