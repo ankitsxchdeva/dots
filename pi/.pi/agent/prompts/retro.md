@@ -18,7 +18,9 @@ same-length window. For day windows, anchor at local midnight:
 - `git log --since="<start>" --name-only --format="" | sort | uniq -c | sort -rn | head -15` —
   hotspots (most-touched files).
 - `git log --since="<start>" --format="%ad" --date=short | sort -u | wc -l` —
-  active days (shipping streak).
+  active days. Streak: consecutive commit days counting back from the newest
+  commit date, not today (don't trust the clock); newest commit older than
+  yesterday = broken streak — report 0 and note the last shipping day.
 - Commit type mix: feat / fix / chore / docs / test (conventional prefix or
   best-effort classification). High fix:feat ratio = quality signal to discuss.
 - Test health: are new codepaths landing with tests? `git log --since="<start>"
