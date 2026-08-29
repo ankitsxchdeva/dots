@@ -92,10 +92,14 @@ export default function (pi: ExtensionAPI) {
 		// Incremental transcript: this turn's assistant message + tool activity.
 		const m = event.message;
 		const parts: string[] = [];
-		for (const c of m.content) {
-			if (c.type === "text") parts.push(`assistant text: ${c.text}`);
-			else if (c.type === "toolCall") parts.push(`tool call: ${c.name}(${JSON.stringify(c.arguments).slice(0, 300)})`);
-			else if (c.type === "thinking") parts.push(`assistant thinking: ${c.thinking.slice(0, 500)}`);
+		// turn_end can fire on non-assistant messages (e.g. !bash executions),
+		// which have no .content — skip those rather than crash the advisor.
+		if (m.role === "assistant") {
+			for (const c of m.content) {
+				if (c.type === "text") parts.push(`assistant text: ${c.text}`);
+				else if (c.type === "toolCall") parts.push(`tool call: ${c.name}(${JSON.stringify(c.arguments).slice(0, 300)})`);
+				else if (c.type === "thinking") parts.push(`assistant thinking: ${c.thinking.slice(0, 500)}`);
+			}
 		}
 		for (const r of event.toolResults) {
 			const text = r.content
