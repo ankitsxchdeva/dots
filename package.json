@@ -1,0 +1,13 @@
+{
+  "name": "dots-pi-extensions",
+  "private": true,
+  "type": "module",
+  "description": "Typecheck scaffolding for pi/.pi/agent/extensions — not a runnable package. Used by `npx tsc --noEmit` locally and in CI.",
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.84.3",
+    "@earendil-works/pi-coding-agent": "^0.84.3",
+    "@types/node": "^22",
+    "typebox": "^1.3.7",
+    "typescript": "^5"
+  }
+}
