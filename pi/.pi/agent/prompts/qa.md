@@ -5,7 +5,9 @@ argument-hint: "[URL | --quick | --report-only] (no URL on a feature branch = di
 ## Goal
 Test the app like a QA lead with a real browser: find bugs, prove them with
 evidence, and (unless `--report-only`) fix them with regression tests. Ported
-from gstack's /qa. Uses the `browser_*` tools — never judge from HTML alone.
+from gstack's /qa. Drives a real browser via the Playwright CLI from `bash`
+(`npx -y @playwright/cli@latest <command>` — see AGENTS.md "Browser & web").
+Never judge from HTML alone.
 
 ## Mode detection
 - **URL given** → Full mode: systematic exploration, 5–10 well-evidenced
@@ -15,7 +17,7 @@ from gstack's /qa. Uses the `browser_*` tools — never judge from HTML alone.
   2. Map changed files → affected pages/routes (controllers → paths, views →
      pages, models → pages using them, API files → direct endpoints).
   3. Find the running app: try localhost:3000, :4000, :5173, :8000, :8080 with
-     `browser_navigate`. Nothing? Ask for the URL.
+     `open`. Nothing? Ask for the URL.
   4. Test each affected page + adjacent regressions, cross-referencing commit
      messages for *intent* — verify the change does what it claims.
   5. No obvious routes from the diff → don't skip the browser; smoke-test
@@ -24,23 +26,24 @@ from gstack's /qa. Uses the `browser_*` tools — never judge from HTML alone.
   links, health score.
 
 ## Workflow
-1. **Orient:** `browser_navigate` → `browser_snapshot` (read the page as a
-   user sees it) → `browser_console_messages` level=error. Map navigation via
+1. **Orient:** `open <url>` → `snapshot` (read the page as a
+   user sees it) → `console error`. Map navigation via
    snapshot links/buttons. Detect framework (Next/Rails/SPA…) for the report.
 2. **Authenticate (if needed):** fill the login form via snapshot refs. Never
    put real passwords in the report. 2FA/CAPTCHA → ask the user to complete it.
 3. **Explore per page,** deeper on core flows (signup, checkout, dashboard,
    search) than secondary pages:
-   - Visual scan — `browser_take_screenshot` for layout issues.
+   - Visual scan — `screenshot` for layout issues (saves a PNG under
+     `.playwright-cli/`; view it with the `read` tool).
    - Interactive elements — click buttons/links; do they work?
    - Forms — submit empty, invalid, edge-case input.
    - Navigation — paths in and out; dead links.
    - States — empty, loading, error, overflow (47-char names!).
    - Console — new JS errors after each interaction.
-   - Responsiveness — `browser_resize` 375x812, screenshot, back to 1280x720.
+   - Responsiveness — `resize 375 812`, screenshot, back to 1280x720.
 4. **Document each issue IMMEDIATELY when found** (never batch):
    - Interactive bug: screenshot before → action → screenshot result →
-     `browser_snapshot` after. Repro steps referencing evidence.
+     `snapshot` after. Repro steps referencing evidence.
    - Static bug: single screenshot + what's wrong.
    Severity: critical (data loss/security/broken core flow), high (feature
    broken, workaround exists), medium (degraded UX), low (cosmetic).
@@ -56,4 +59,4 @@ from gstack's /qa. Uses the `browser_*` tools — never judge from HTML alone.
 QA report: health score, issues table (id · severity · category · page ·
 evidence), per-issue repro with screenshots, fixes applied (commit + test
 per fix), Top 3, verdict. With `--report-only`: the same minus fixes.
-Close the browser (`browser_close`) when done.
+Close the browser (`close`, or `kill-all` if stuck) when done.

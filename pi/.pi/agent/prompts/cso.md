@@ -28,7 +28,7 @@ CI workflow files, exposed ports/configs. This is what an attacker sees.
 2. **Secrets archaeology** — hardcoded keys/tokens in code, config, git history
    (`git log -p -S 'api_key' -- . | head`), .env files committed, keys in logs.
 3. **Dependency supply chain** — lockfile present? Known-vulnerable versions
-   (osv.dev via browser_navigate if needed), typosquat-adjacent names, unused
+   (osv.dev via playwright-cli `open` if needed), typosquat-adjacent names, unused
    heavy deps, lifecycle scripts (postinstall).
 4. **CI/CD pipeline** — unpinned actions (`@main`/`@latest`), secrets in
    workflow logs, `pull_request_target` checking out untrusted code,

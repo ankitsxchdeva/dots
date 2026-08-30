@@ -23,8 +23,8 @@ Sprint workflow (use the one matching your stage):
 Tools (the model calls these):
   task               subagent fan-out — self-contained prompts, parallel
   remember           store durable project fact (auto-loads next session)
-  browser_*          Playwright: navigate, snapshot, click, type,
-                     screenshot, evaluate, console, network, resize
+  playwright-cli     real browser via bash: npx @playwright/cli —
+                     open, snapshot, click, fill, screenshot, console
 
 Keywords (in prose):
   ultrathink         deep reasoning (thinking → xhigh)

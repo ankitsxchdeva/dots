@@ -61,20 +61,24 @@ holds *requirements*, not observations. Keep it short.
   understanding of a related set produces the wrong change.
 - No "You're absolutely right", no thanks, no praise. State the fix, or just make it.
 
-## Browser & web — Playwright tools
+## Browser & web — Playwright CLI (via bash)
 - For any website task — UI testing, QA, visual debugging, or checking what a
-  page looks like — use the `browser_*` tools. Never judge a page from HTML or
+  page looks like — drive a real browser from `bash` with the Playwright CLI:
+  `npx -y @playwright/cli@latest <command>`. Never judge a page from HTML or
   curl output alone: HTML shows structure, the browser shows what it looks like.
-- Loop: `browser_navigate` → `browser_snapshot` (accessibility tree with refs)
-  → act (`browser_click`/`browser_type`/`browser_fill_form` with a ref) →
-  re-snapshot. Refs go stale after every action.
-- `browser_take_screenshot` when layout or design matters; `browser_evaluate`
-  for data the snapshot can't give; `browser_console_messages` after loads and
-  interactions — console errors are bugs.
+- Loop: `open <url>` → `snapshot` (accessibility tree with `[ref=eN]` handles)
+  → act (`click e5`, `fill e3 "text"`, `press Enter`) → re-snapshot. Refs go
+  stale after every action. `--help` lists every command; `--json` for
+  machine-readable output.
+- `screenshot` when layout or design matters — it saves a PNG under
+  `.playwright-cli/` in cwd; view it with the `read` tool. `eval <fn>` for
+  data the snapshot can't give (computed styles, scroll positions);
+  `console error` after loads and interactions — console errors are bugs.
 - After any frontend change: verify in the browser before declaring done.
-- Web research: navigate + snapshot and read the page like a user. Check
-  `browser_console_messages`/`browser_network_requests` when a page misbehaves.
-- `browser_close` when done.
+- Web research: `open` + `snapshot` and read the page like a user. Check
+  `console`/`requests` when a page misbehaves.
+- Headless by default (`--headed` to watch). `close` when done —
+  `kill-all` for stuck or zombie sessions.
 
 ## Power tools (pi-native, always available)
 - `task` — subagent fan-out for substantial or parallelizable work. Prompts

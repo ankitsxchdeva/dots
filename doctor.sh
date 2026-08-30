@@ -25,6 +25,16 @@ for formula in $(sed -n '/═══ REQUIRED/,/═══ OPTIONAL/p' apple/Brewf
     command -v "$bin" >/dev/null || { warn "missing: $bin (brew \"$formula\")"; status=1; }
 done
 
+log "Checking Playwright CLI (pi browser tooling)"
+if command -v npx >/dev/null 2>&1; then
+    npx -y @playwright/cli@latest --version >/dev/null 2>&1 \
+        || { warn "@playwright/cli won't run via npx — check node/npm"; status=1; }
+    ls -d ~/Library/Caches/ms-playwright/chromium-* >/dev/null 2>&1 \
+        || { warn "chromium missing — run: npx @playwright/cli install-browser chromium"; status=1; }
+else
+    warn "npx not found — @playwright/cli needs node"; status=1
+fi
+
 log "Checking for broken stow symlinks"
 while IFS= read -r link; do
     case "$(readlink "$link")" in

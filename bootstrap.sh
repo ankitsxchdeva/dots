@@ -50,6 +50,17 @@ command -v stow >/dev/null 2>&1 || { warn "stow is missing — cannot link dotfi
 log "Linking dotfiles (install.sh)"
 ./install.sh
 
+# ── Playwright CLI browser (pi agent's browser tooling) ─────────────────
+# Pre-install Chromium so the agent's first `npx @playwright/cli` call isn't
+# a multi-minute download. Requires node/npx (pi itself is node-based).
+if command -v npx >/dev/null 2>&1; then
+    log "Installing Chromium for @playwright/cli (pi browser tooling)"
+    npx -y @playwright/cli@latest install-browser chromium \
+      || warn "browser install failed — re-run: npx @playwright/cli install-browser chromium"
+else
+    warn "npx not found — skipping Playwright browser install (needs node)"
+fi
+
 # ── Optional: macOS system preferences ───────────────────────────────────
 # Skip the prompt when piped from curl with no TTY; the user can run it later.
 if [ -t 0 ]; then

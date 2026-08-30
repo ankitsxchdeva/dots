@@ -17,7 +17,7 @@ NO code changes — review and harden the plan.
    never re-argue scope in later sections.
 4. **Search check:** for each new pattern/component: does the framework have a
    built-in? Is the approach current best practice? Known footguns? (Use
-   browser_navigate if needed.) Custom-where-builtin-exists → flag.
+   browser via playwright-cli `open` if needed.) Custom-where-builtin-exists → flag.
 5. **Completeness check:** shortcut that saves human-hours but minutes with AI?
    Recommend the complete version (tests, edge cases, error paths).
 6. **Distribution check:** new artifact (binary/package/app) without a

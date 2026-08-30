@@ -17,9 +17,10 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 │               #   extensions: tab-title, auto-format, magic-keywords (ultrathink/
 │               #   orchestrate/workflowz), task (subagents), advisor (2nd model),
 │               #   memory (per-repo facts), safety (/careful /freeze /guard),
-│               #   playwright-mcp (browser_* tools via Playwright MCP),
 │               #   cheatsheet (/cheatsheet platform map), upstream-watch
 │               #   (session-start notice when reference clones fall behind)
+│               #   browser: real-browser work via @playwright/cli in bash
+│               #   (headless Chromium — see AGENTS.md "Browser & web")
 │               #   skills: screen-untrusted-repo, upstream-watch (+ launchd
 │               #   daily GitHub poll → ~/.pi/agent/upstream-status.json)
 │               #   prompts: commit, pr, review + gstack-ported sprint workflow
