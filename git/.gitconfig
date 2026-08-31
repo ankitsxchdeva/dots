@@ -10,7 +10,7 @@
 [delta]
 	navigate = true          ; n / N to move between diff hunks
 	line-numbers = true
-	syntax-theme = Nord
+	syntax-theme = ansi
 	hyperlinks = true
 [init]
 	defaultBranch = main

@@ -1,7 +1,7 @@
 # dots
 
 My macOS dotfiles, managed with [GNU stow](https://www.gnu.org/software/stow/).
-A Nord-themed terminal setup: zsh + a native (subprocess-free) prompt, tmux,
+A colophon-night themed terminal setup: zsh + a native (subprocess-free) prompt, tmux,
 vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 
 ## Layout
@@ -12,8 +12,8 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 │               #   colophon dynamic wallpaper (apple/wallpapers)
 ├── firefox/    # colophon firefox themes (manual install, see firefox/README.md)
 ├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
-├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
-├── yazi/       # yazi file-manager TUI (Nord)    → ~/.config/yazi
+├── lazygit/    # lazygit TUI config (colophon)   → ~/.config/lazygit
+├── yazi/       # yazi file-manager TUI (colophon)→ ~/.config/yazi
 ├── claude/     # Claude Code hooks + statusline  → ~/.claude
 ├── pi/         # pi agent: AGENTS.md, prompts, skills, extensions → ~/.pi/agent
 │               #   extensions: tab-title, auto-format, magic-keywords (ultrathink/
@@ -31,8 +31,8 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 ├── sync-upstreams.sh # pull reference clones (~/src/oh-my-pi, ~/src/gstack) and
 │               #   diff the files the pi config ports from — re-port on change
 ├── git/        # .gitconfig + global gitignore   → ~
-├── tmux/       # .tmux.conf (Nord status line)   → ~
-├── vim/        # .vimrc (vim-plug, Nord)         → ~
+├── tmux/       # .tmux.conf (colophon status)    → ~
+├── vim/        # .vimrc + colophon colorscheme   → ~
 ├── zsh/        # .zprofile (env) + .zshrc        → ~
 ├── misc/        # reference material — Makefile templates, keyboard (VIA) configs
 ├── bootstrap.sh # fresh Mac → fully configured, one command

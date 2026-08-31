@@ -1,6 +1,6 @@
 # yazi — Stowed to ~/.config/yazi/yazi.toml  (found there because
 # $XDG_CONFIG_HOME=~/.config — see ~/.zprofile). Colors live in theme.toml +
-# the Nord flavor; this file is behavior only. Schema keys match yazi v26.
+# the colophon-night flavor; this file is behavior only. Schema keys match yazi v26.
 # Reference: https://yazi-rs.github.io/docs/configuration/yazi
 
 [mgr]

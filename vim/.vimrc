@@ -67,7 +67,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'preservim/nerdtree'
-    Plug 'arcticicestudio/nord-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'junegunn/fzf.vim'
     Plug 'ankitsxchdeva/clang-format'
@@ -81,18 +80,20 @@ call plug#end()
 if !has('gui_running')
   set t_Co=256
 endif
-" True 24-bit color so Nord renders exactly (not a 256-color approximation)
+" True 24-bit color so colophon-night renders exactly (not a 256-colour
+" approximation). The scheme also carries cterm indices, so it degrades to the
+" same palette on a 16-colour terminal.
 if has('termguicolors')
   set termguicolors
 endif
 set cursorline
 " silent! — on a fresh machine the scheme isn't installed until the VimEnter
 " PlugInstall autocmd runs, so the very first launch would error out here
-silent! colorscheme nord
+silent! colorscheme colophon-night
 set laststatus=2
 set noshowmode
 let g:lightline = {
-            \ 'colorscheme': 'nord',
+            \ 'colorscheme': 'colophon_night',
             \ }
 
 " Cursor shape per mode: bar in insert, underline in replace, block in normal

@@ -5,7 +5,9 @@ ambient lane (art): tonal atmosphere is licensed. one oversized ambient datum
 (the disc), one hairline horizon, one small ink dot. two inks, two jobs:
 the accent dot carries the theme accent (signal indigo by day, wisteria by
 night); the editorial coral marks dawn and dusk. every neutral sits in the
-285-300 plum-lavender family. renders via imagemagick (`magick`).
+285-300 plum-lavender family, and every phase stays on its dark end -- the
+wall tracks the sun without ever going light. renders via imagemagick
+(`magick`).
 
 usage: python3 generate.py
 outputs: out/<size>-<phase>.png, out/solar.json
@@ -23,13 +25,18 @@ SIZES = {
 }
 
 # phase palette: (sky top, sky bottom, disc, accent dot, hairline)
+# Dark-only ladder: the sun still lifts the tone from night through day, but
+# never leaves the dark end of the plum-lavender family, so the desk never
+# flashes white at noon. Lightness order night < dawn < day > dusk > night.
 PHASES = {
-    "dawn":  ("#efeaf2", "#e4deeb", "#ded9ea", "#bf5a4a", "#d8d6e8"),
-    "day":   ("#f5f4fa", "#eceaf3", "#d8d6e8", "#355691", "#d8d6e8"),
-    "dusk":  ("#2a2731", "#221f28", "#4a4760", "#de9180", "#413f54"),
-    "night": ("#1e1c22", "#17161a", "#413f54", "#8b87c8", "#413f54"),
+    "dawn":  ("#26232e", "#1e1c25", "#494764", "#de9180", "#3a384c"),
+    "day":   ("#2e2b38", "#26232e", "#565273", "#6f92d6", "#454259"),
+    "dusk":  ("#221f28", "#1b1922", "#413f54", "#de9180", "#35334a"),
+    "night": ("#17151c", "#131118", "#35334a", "#8b87c8", "#2b2939"),
 }
 
+# `day` keeps isPrimary/isForLight so macOS still picks it for the light
+# appearance -- but that frame is now dark too, which is the whole point.
 SOLAR = [
     ("dawn",  {"isPrimary": False, "isForLight": False, "isForDark": False,
                "altitude": -1.0, "azimuth": 80.0}),

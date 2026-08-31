@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Nord statusline for Claude Code — subtle, compact, fast (three git calls).
+# colophon-night statusline for Claude Code — subtle, compact, fast (three git calls).
 # Low-contrast by design: mostly muted greys, with a colour accent ONLY when
 # something wants attention (risky permission mode, dirty tree, high context).
 #
@@ -11,13 +11,13 @@
 # ctx  : context-window usage; greys out, turns red only when nearly full.
 set -u
 
-# ── Nord, muted-first ────────────────────────────────────────────────────────
+# ── colophon-night, muted-first ──────────────────────────────────────────────
 c() { printf '\033[38;2;%sm' "$1"; }
-TXT=$(c '97;110;136')    # subtle but legible (Nord comment grey)
-MUT=$(c '76;86;106')     # dimmest — separators, secondary
-FROST=$(c '129;161;193') # the one soft accent (project)
-WARN=$(c '235;203;139')  # dirty flag
-RED=$(c '191;97;106')    # attention: risky mode / near-full context
+TXT=$(c '110;106;133')   # subtle but legible (palette 8, muted plum)
+MUT=$(c '65;63;84')      # dimmest — separators, secondary
+ACCENT=$(c '139;135;200') # the one soft accent (project) — wisteria
+WARN=$(c '217;168;92')   # dirty flag
+RED=$(c '217;112;102')   # attention: risky mode / near-full context
 R=$'\033[0m'
 
 json=$(cat)
@@ -63,7 +63,7 @@ pct=${pct:-0}
 # ── assemble (single-space separators, no bold) ──────────────────────────────
 sep=" ${MUT}·${R} "
 out="${mc}${ml}${R}"
-out+="${sep}${FROST}${proj}${R}"
+out+="${sep}${ACCENT}${proj}${R}"
 [ -n "$branch" ] && out+="  ${MUT}${R} ${TXT}${branch}${WARN}${dirty}${R}"
 out+="${sep}${cc}${pct}%${R}"
 out+="${sep}${TXT}${model}${R}"

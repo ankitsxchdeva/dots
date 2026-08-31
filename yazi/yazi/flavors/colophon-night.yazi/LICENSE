@@ -1,13 +1,14 @@
 MIT License
 
-The bundled syntax theme (tmtheme.xml) is the Nord Sublime Text theme:
+The bundled syntax theme (tmtheme.xml) is recolored from the Nord Sublime
+Text theme, whose structure and scope mapping it retains:
   Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
   Copyright (c) 2016-present Sven Greb <development@svengreb.de>
   https://github.com/arcticicestudio/nord-sublime-text
 
 flavor.toml is derived from Yazi's default theme and the yazi-rs/flavors
 template (both MIT, Copyright (c) 2020-present sxyazi <sxyazi@gmail.com>),
-remapped to the Nord palette.
+remapped to the colophon-night palette.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

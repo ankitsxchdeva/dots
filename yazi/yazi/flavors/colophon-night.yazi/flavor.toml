@@ -1,0 +1,227 @@
+# colophon-night flavor for Yazi.  Stowed to ~/.config/yazi/flavors/colophon-night.yazi/
+#
+# Chrome only: the UI (panes, tabs, mode, status, popups, dir/special-file
+# icons) is remapped to the colophon-night palette to match the rest of this
+# setup (ghostty / tmux / lazygit / fzf / vim). The per-language file-icon
+# brand colors are inherited from Yazi's built-in theme, untouched.
+#
+# File-preview syntax colors come from tmtheme.xml in this folder, which Yazi
+# auto-loads when the flavor is active.
+#
+# colophon-night palette (from ghostty/ghostty/themes/colophon-night)
+#   Ground    bg #1e1c22  raised #2a2733  selection #35334a  dim #413f54
+#   Ink       muted #6e6a85  fg #e8e4f4  bright #f5f4fa
+#   Accent    wisteria #8b87c8  deep #6f6bb0  cyan #9db8dc  bright cyan #b8cde9
+#   Data      red #d97066  orange #e0916d  yellow #d9a85c  green #7fb98a  orchid #b184c9
+
+[mgr]
+cwd = { fg = "#9db8dc" }
+
+# Find
+find_keyword  = { fg = "#d9a85c", bold = true, italic = true, underline = true }
+find_position = { fg = "#b184c9", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#7fb98a", bg = "#7fb98a" }
+marker_cut      = { fg = "#d97066", bg = "#d97066" }
+marker_marked   = { fg = "#9db8dc", bg = "#9db8dc" }
+marker_selected = { fg = "#d9a85c", bg = "#d9a85c" }
+
+# Count
+count_copied   = { fg = "#1e1c22", bg = "#7fb98a" }
+count_cut      = { fg = "#1e1c22", bg = "#d97066" }
+count_selected = { fg = "#1e1c22", bg = "#d9a85c" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#413f54" }
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#1e1c22", bg = "#8b87c8", bold = true }
+inactive = { fg = "#8b87c8", bg = "#2a2733" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#1e1c22", bg = "#8b87c8", bold = true }
+normal_alt  = { fg = "#8b87c8", bg = "#2a2733" }
+
+# Select mode
+select_main = { fg = "#1e1c22", bg = "#9db8dc", bold = true }
+select_alt  = { fg = "#9db8dc", bg = "#2a2733" }
+
+# Unset mode
+unset_main = { fg = "#1e1c22", bg = "#e0916d", bold = true }
+unset_alt  = { fg = "#e0916d", bg = "#2a2733" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+# Permissions
+perm_sep   = { fg = "#413f54" }
+perm_type  = { fg = "#8b87c8" }
+perm_read  = { fg = "#d9a85c" }
+perm_write = { fg = "#d97066" }
+perm_exec  = { fg = "#7fb98a" }
+
+# Progress
+progress_label  = { fg = "#f5f4fa", bold = true }
+progress_normal = { fg = "#7fb98a", bg = "#35334a" }
+progress_error  = { fg = "#d9a85c", bg = "#d97066" }
+
+# : }}}
+
+
+# : Pick {{{
+
+[pick]
+border   = { fg = "#8b87c8" }
+active   = { fg = "#b184c9", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#8b87c8" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border = { fg = "#8b87c8" }
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+border  = { fg = "#8b87c8" }
+title   = {}
+hovered = { fg = "#b184c9", bold = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+mask            = { bg = "#2a2733" }
+cand            = { fg = "#9db8dc" }
+rest            = { fg = "#413f54" }
+desc            = { fg = "#b184c9" }
+separator       = "  "
+separator_style = { fg = "#413f54" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on      = { fg = "#9db8dc" }
+run     = { fg = "#b184c9" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#2a2733", bg = "#e8e4f4" }
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border   = { fg = "#8b87c8" }
+title    = { fg = "#8b87c8" }
+tbl_col  = { fg = "#9db8dc" }
+tbl_cell = { fg = "#b184c9", bg = "#35334a" }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info  = { fg = "#7fb98a" }
+title_warn  = { fg = "#d9a85c" }
+title_error = { fg = "#d97066" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+	# Image
+	{ mime = "image/*", fg = "#9db8dc" },
+	# Media
+	{ mime = "{audio,video}/*", fg = "#d9a85c" },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#b184c9" },
+	# Document
+	{ mime = "application/{pdf,doc,rtf}", fg = "#7fb98a" },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", fg = "#413f54" },
+	# Fallback
+	{ url = "*", fg = "#e8e4f4" },
+	{ url = "*/", fg = "#8b87c8" },
+]
+
+# : }}}
+
+[icon]
+
+dirs = [
+	{ name = ".config", text = "", fg = "#b184c9" },
+	{ name = ".git", text = "", fg = "#9db8dc" },
+	{ name = ".github", text = "", fg = "#8b87c8" },
+	{ name = ".npm", text = "", fg = "#8b87c8" },
+	{ name = "Desktop", text = "", fg = "#9db8dc" },
+	{ name = "Development", text = "", fg = "#9db8dc" },
+	{ name = "Documents", text = "", fg = "#9db8dc" },
+	{ name = "Downloads", text = "", fg = "#9db8dc" },
+	{ name = "Library", text = "", fg = "#9db8dc" },
+	{ name = "Movies", text = "", fg = "#9db8dc" },
+	{ name = "Music", text = "", fg = "#9db8dc" },
+	{ name = "Pictures", text = "", fg = "#9db8dc" },
+	{ name = "Public", text = "", fg = "#9db8dc" },
+	{ name = "Videos", text = "", fg = "#9db8dc" },
+]
+conds = [
+	# Special files
+	{ if = "orphan", text = "", fg = "#e8e4f4" },
+	{ if = "link", text = "", fg = "#413f54" },
+	{ if = "block", text = "", fg = "#e0916d" },
+	{ if = "char", text = "", fg = "#e0916d" },
+	{ if = "fifo", text = "", fg = "#e0916d" },
+	{ if = "sock", text = "", fg = "#e0916d" },
+	{ if = "sticky", text = "", fg = "#e0916d" },
+	{ if = "dummy", text = "", fg = "#d97066" },
+
+	# Fallback
+	{ if = "dir & hovered", text = "", fg = "#8b87c8" },
+	{ if = "dir", text = "", fg = "#8b87c8" },
+	{ if = "exec", text = "", fg = "#7fb98a" },
+	{ if = "!dir", text = "", fg = "#e8e4f4" },
+]

@@ -24,14 +24,14 @@ brew "git"            # the repo IS a git config; bootstrap/install clone with i
 brew "gh"             # .gitconfig credential helper (gh auth git-credential)
 
 # ── Shell experience (.zshrc / .zprofile wire these up) ──────────────
-brew "fzf"            # sourced (fzf --zsh) + Nord theme + Ctrl-R/Ctrl-T binds
+brew "fzf"            # sourced (fzf --zsh) + colophon theme + Ctrl-R/Ctrl-T binds
 brew "ripgrep"        # rg — FZF_DEFAULT_COMMAND + fast grep
-brew "bat"            # cat alias, MANPAGER, BAT_THEME=Nord
+brew "bat"            # cat alias, MANPAGER, BAT_THEME=ansi (terminal palette)
 brew "eza"            # ls/la/ll/lt/tree aliases (needs a Nerd Font for --icons)
 brew "zoxide"         # smarter cd (z)
-brew "git-delta"      # .gitconfig pager + diffFilter (syntax-theme Nord)
-brew "lazygit"        # `lg` alias + stowed lazygit/config.yml (Nord TUI)
-brew "yazi"           # `y` file-manager TUI + stowed yazi/ (Nord flavor); needs a Nerd Font
+brew "git-delta"      # .gitconfig pager + diffFilter (syntax-theme ansi)
+brew "lazygit"        # `lg` alias + stowed lazygit/config.yml (colophon TUI)
+brew "yazi"           # `y` file-manager TUI + stowed yazi/ (colophon flavor); needs a Nerd Font
 
 # ── Editor & multiplexer (dedicated stowed configs) ──────────────────
 brew "vim"            # $EDITOR + stowed .vimrc

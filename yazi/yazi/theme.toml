@@ -1,9 +1,11 @@
 # yazi theme — Stowed to ~/.config/yazi/theme.toml
 #
-# Load the bundled Nord flavor (flavors/nord.yazi/) for both light and dark
-# terminals. The flavor carries all the colors; keep overrides out of here so
-# there's a single source of truth. Schema: https://yazi-rs.github.io/docs/configuration/theme
+# Load the bundled colophon-night flavor (flavors/colophon-night.yazi/) for
+# both light and dark terminals — the terminal is always dark here, so light
+# points at the same flavor rather than a light one. The flavor carries all the
+# colors; keep overrides out of here so there's a single source of truth.
+# Schema: https://yazi-rs.github.io/docs/configuration/theme
 
 [flavor]
-dark  = "nord"
-light = "nord"
+dark  = "colophon-night"
+light = "colophon-night"

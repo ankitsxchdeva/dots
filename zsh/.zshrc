@@ -98,13 +98,13 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 if type rg > /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --glob=!.git'
 fi
-# Nord-themed fzf with a clean bordered, top-down layout
+# colophon-night fzf with a clean bordered, top-down layout
 export FZF_DEFAULT_OPTS="
   --height 55% --layout=reverse --border=rounded --margin=0,1 --info=inline
   --prompt='  ' --pointer='▶' --marker='✓'
-  --color=bg+:#3b4252,bg:#2e3440,spinner:#81a1c1,hl:#616e88
-  --color=fg:#d8dee9,header:#616e88,info:#81a1c1,pointer:#88c0d0
-  --color=marker:#a3be8c,fg+:#eceff4,prompt:#88c0d0,hl+:#88c0d0,border:#4c566a"
+  --color=bg+:#2a2733,bg:#1e1c22,spinner:#8b87c8,hl:#6e6a85
+  --color=fg:#e8e4f4,header:#6e6a85,info:#8b87c8,pointer:#9db8dc
+  --color=marker:#7fb98a,fg+:#f5f4fa,prompt:#9db8dc,hl+:#9db8dc,border:#413f54"
 # Previews: bat for Ctrl-T files, eza tree for Alt-C dirs
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:300 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always --icons=auto {}'"
@@ -130,13 +130,13 @@ if (( $+commands[bat] )); then
     # For a clean, decoration-free copy: use `copy <file>` (whole file), or in
     # Ghostty hold ⌥ Option while drag-selecting for a rectangular (column) copy.
     copy() { bat --style=plain --color=never "$@" | pbcopy; }
-    export BAT_THEME="Nord"                              # match the Nord stack
+    export BAT_THEME="ansi"                              # follows the terminal ANSI palette (colophon-night)
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # syntax-highlighted man pages
     export MANROFFOPT="-c"                               # fix formatting gaps in man output
 fi
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
-# yazi file manager (Nord flavor in ~/.config/yazi). `y` opens it and cd's the
+# yazi file manager (colophon-night flavor in ~/.config/yazi). `y` opens it and cd's the
 # shell to wherever you quit with q; plain `yazi` leaves the cwd unchanged.
 if (( $+commands[yazi] )); then
     y() {
@@ -160,9 +160,9 @@ fi
 autoload -Uz add-zsh-hook
 zmodload zsh/datetime 2>/dev/null
 
-# Nord palette (also used by the greeting banner + `new` below)
-typeset -g _N_DIR='%F{#88c0d0}'  _N_OK='%F{#a3be8c}'   _N_WARN='%F{#ebcb8b}'
-typeset -g _N_ERR='%F{#bf616a}'  _N_MUT='%F{#4c566a}'  _N_FROST='%F{#81a1c1}' _R='%f'
+# colophon-night palette (also used by the greeting banner + `new` below)
+typeset -g _N_DIR='%F{#9db8dc}'  _N_OK='%F{#7fb98a}'   _N_WARN='%F{#d9a85c}'
+typeset -g _N_ERR='%F{#d97066}'  _N_MUT='%F{#413f54}'  _N_FROST='%F{#8b87c8}' _R='%f'
 
 # Time the previous command so we can show its duration when it ran long.
 _PROMPT_TIMER=0
@@ -194,7 +194,7 @@ add-zsh-hook precmd _set_prompt
 
 
 # ─────────────────────────────────────────────────────────────────────────
-#  GREETING — instant Nord banner, shown once per new window (login shells
+#  GREETING — instant colophon-night banner, shown once per new window (login shells
 #  only, so tmux splits and subshells stay quiet). No forks, no latency.
 # ─────────────────────────────────────────────────────────────────────────
 if [[ -o interactive && -o login ]]; then
@@ -249,7 +249,7 @@ new() {
 alias g="git"
 alias gs="git status -sb"
 alias gl="git lg"                 # pretty graph (see ~/.gitconfig alias)
-alias lg="lazygit"                # Nord-themed git TUI (config in ~/.config/lazygit)
+alias lg="lazygit"                # colophon-night git TUI (config in ~/.config/lazygit)
 alias ..="cd .."
 alias ...="cd ../.."
 alias path='print -l $path'       # one PATH entry per line
