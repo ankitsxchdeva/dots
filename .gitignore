@@ -1,3 +1,5 @@
 .DS_Store
 Brewfile.lock.json
 node_modules/
+# regenerable via apple/wallpapers/generate.py (~35MB of renders); heic stays tracked
+apple/wallpapers/out/*.png

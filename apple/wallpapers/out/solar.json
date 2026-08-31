@@ -1,0 +1,34 @@
+[
+  {
+    "fileName": "4k-uhd-dawn.png",
+    "isPrimary": false,
+    "isForLight": false,
+    "isForDark": false,
+    "altitude": -1.0,
+    "azimuth": 80.0
+  },
+  {
+    "fileName": "4k-uhd-day.png",
+    "isPrimary": true,
+    "isForLight": true,
+    "isForDark": false,
+    "altitude": 45.0,
+    "azimuth": 180.0
+  },
+  {
+    "fileName": "4k-uhd-dusk.png",
+    "isPrimary": false,
+    "isForLight": false,
+    "isForDark": false,
+    "altitude": 3.0,
+    "azimuth": 265.0
+  },
+  {
+    "fileName": "4k-uhd-night.png",
+    "isPrimary": false,
+    "isForLight": false,
+    "isForDark": true,
+    "altitude": -35.0,
+    "azimuth": 320.0
+  }
+]

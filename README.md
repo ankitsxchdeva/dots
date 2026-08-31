@@ -8,7 +8,9 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 
 ```
 .
-├── apple/      # macOS — Brewfile, terminal theme, reference screenshots
+├── apple/      # macOS — Brewfile, terminal theme, reference screenshots,
+│               #   colophon dynamic wallpaper (apple/wallpapers)
+├── firefox/    # colophon firefox themes (manual install, see firefox/README.md)
 ├── ghostty/    # ghostty terminal config        → ~/.config/ghostty
 ├── lazygit/    # lazygit TUI config (Nord)       → ~/.config/lazygit
 ├── yazi/       # yazi file-manager TUI (Nord)    → ~/.config/yazi
@@ -133,6 +135,8 @@ a checklist at the end:
 - **MonitorControl** (`brew install --cask monitorcontrol`) — control external
   display brightness/volume from the menu bar.
 - **Firefox**:
+  - Theme: `firefox/colophon-night` — load via `about:debugging` → *This Firefox*
+    → *Load Temporary Add-on*, or make it permanent per `firefox/README.md`.
   - Sign in / sync, then add the extensions you want and remove the bundled ones.
   - Enable **Compact** density (Customize Toolbar… → *Density → Compact*).
   - Default zoom **80%** (Settings → General → Zoom).
