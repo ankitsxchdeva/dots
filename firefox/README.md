@@ -22,19 +22,26 @@ family rule.
 
 ## keep it (permanent)
 
-unsigned themes cannot install permanently in release firefox. two honest
-paths:
+unsigned themes cannot install permanently in release firefox, so the themes
+are signed via AMO's unlisted (private) channel — not a public listing.
 
-1. **firefox color (easiest).** install the official "Firefox Color" add-on,
-   open its custom theme editor, and enter the hex values from
-   `colophon-night/manifest.json` slot by slot (names match one-to-one).
-   save. done, persists forever.
-2. **addons.mozilla.org (real theme).** zip a variant folder
-   (`cd colophon-night && zip -r ../colophon-night.xpi .`), submit it at
-   addons.mozilla.org/developers as a theme. once signed, install from your
-   own listing (it can stay unlisted/private).
+- `signed/colophon-night-1.0.0.xpi` — signed, ready. install:
+  `open -a Firefox ~/.dots/firefox/signed/colophon-night-1.0.0.xpi` and
+  confirm the prompt. persists across restarts; manage in about:addons →
+  themes.
+- colophon-paper — submitted and signed on AMO's side, but the signed file
+  was never downloaded locally. grab it from the dashboard
+  (addons.mozilla.org → manage my submissions) or bump the version and
+  re-sign (below).
 
-ready-made zips: `colophon-night.xpi`, `colophon-paper.xpi`.
+to re-sign after edits: bump `version` in the manifest (AMO rejects duplicate
+uploads), then:
+
+    source ~/.amo-sign.local   # AMO api creds, local-only, chmod 600
+    npx web-ext sign --channel unlisted --source-dir colophon-night --artifacts-dir signed
+
+api creds come from addons.mozilla.org/developers/addon/api/key and can be
+regenerated there any time.
 
 ## slot map (core)
 

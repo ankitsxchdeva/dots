@@ -3,6 +3,11 @@
   "name": "Colophon Night",
   "version": "1.0.0",
   "description": "night plum, pale lavender ink, one wisteria accent. the colophon design language, dark theme.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "colophon-night@ankitsachdeva.com"
+    }
+  },
   "homepage_url": "https://ankitsachdeva.com/design/",
   "theme": {
     "colors": {

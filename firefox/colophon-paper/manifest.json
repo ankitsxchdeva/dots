@@ -3,6 +3,11 @@
   "name": "Colophon Paper",
   "version": "1.0.0",
   "description": "lavender paper, plum ink, one signal indigo accent. the colophon design language, light theme.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "colophon-paper@ankitsachdeva.com"
+    }
+  },
   "homepage_url": "https://ankitsachdeva.com/design/",
   "theme": {
     "colors": {
