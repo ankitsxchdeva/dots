@@ -1,10 +1,8 @@
 # colophon dynamic wallpaper
 
 a quiet wall in the plum-lavender family, on the ambient lane (art:
-atmosphere is licensed). one oversized ambient datum (the disc), one hairline
-horizon, one small ink dot. two inks, two jobs: the dot carries the theme
-accent (signal indigo by day, wisteria by night); editorial coral marks dawn
-and dusk. no pure black, no pure white, nothing shouts.
+atmosphere is licensed). no elements at all: one two-stop vertical gradient
+per solar phase, nothing on it. no pure black, no pure white, nothing shouts.
 
 ## files
 
