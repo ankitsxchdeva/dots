@@ -21,7 +21,7 @@ Sprint workflow (use the one matching your stage):
   /retro [window]    engineering retro from git data
 
 Tools (the model calls these):
-  task               subagent fan-out — self-contained prompts, parallel
+  task               subagent fan-out — typed agents (scout, reviewer, ...), parallel
   remember           store durable project fact (auto-loads next session)
   playwright-cli     real browser via bash: npx @playwright/cli —
                      open, snapshot, click, fill, screenshot, console

@@ -84,6 +84,9 @@ holds *requirements*, not observations. Keep it short.
 - `task` — subagent fan-out for substantial or parallelizable work. Prompts
   must be self-contained (goal, paths, constraints, acceptance criteria);
   fan out parallel calls in one message. Trivial edits stay inline.
+  Pick the most specific `agent` type: scout (read-only code research),
+  librarian (external libs/APIs), reviewer / security-reviewer (read-only
+  verdicts), designer (UI/UX), sonic (mechanical edits), task (generic).
 - `remember` — store durable project facts (conventions, gotchas, decisions,
   user preferences). They auto-load next session. Facts only — never anything
   derivable by reading the code, never secrets.
