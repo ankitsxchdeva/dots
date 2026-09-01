@@ -32,6 +32,10 @@ holds *requirements*, not observations. Keep it short.
 - Read the surrounding code first; match its style, naming, and idioms.
 - Prefer the simplest thing that works. No premature abstraction or speculative
   generality (KISS, YAGNI). Explicit over clever.
+- Reuse ladder before writing new code, in order: existing repo helper → stdlib →
+  native platform API → already-installed dependency.
+- One guard in the shared function beats a guard in every caller — validate at
+  the source, not at N call sites.
 - Keep diffs minimal and scoped to the task. Don't reformat or refactor code you
   weren't asked to touch.
 - Comment only what isn't obvious; match the file's existing comment density.
@@ -45,6 +49,9 @@ holds *requirements*, not observations. Keep it short.
 - Verification is fresh or it doesn't count: run the proving command in the same turn
   you make the claim. An earlier run, a clean linter, and a subagent reporting "done"
   are not evidence. No "fixed" / "works now" / "should be good" before it has run.
+- Never claim an API, tool, or command "can't do X" without evidence: a verbatim
+  error, a doc quote, or a cheap probe you actually ran. Run the probe before
+  asking me.
 - For a bug, write a check that reproduces it first, then fix. "Feels fixed" isn't fixed.
   A regression test only counts once I've watched it fail with the fix reverted.
 - Fix at the source of the bad value, not where it surfaced. One fix at a time — no
@@ -90,6 +97,8 @@ holds *requirements*, not observations. Keep it short.
 - `remember` — store durable project facts (conventions, gotchas, decisions,
   user preferences). They auto-load next session. Facts only — never anything
   derivable by reading the code, never secrets.
+- Session-close learning review always runs: if there were no durable learnings,
+  say "No durable learnings this session" explicitly instead of skipping silently.
 - Keywords in prose: `ultrathink` (deep reasoning), `orchestrate` (parallel
   subagent execution contract), `workflowz` (deterministic multi-subagent
   workflow with adversarial verification).

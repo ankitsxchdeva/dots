@@ -25,6 +25,34 @@ Never judge from HTML alone.
 - **`--quick`** → 30-second smoke: homepage + top 5 nav, console errors, broken
   links, health score.
 
+## Test framework
+Before running any test command, read AGENTS.md, CLAUDE.md, and TESTING.md
+first — if one documents a test command, that's the answer: no detection, use
+it. Otherwise gather markers. Markers (config files, lockfiles, declared test
+scripts, test deps) are EVIDENCE for the question you ask — never a command to
+run blind. NEVER probe-run a guessed command: a probe on a project that never
+had that runner fails loudly and teaches nothing, and installing a second
+framework beside a working one is worse. Map markers to the command to OFFER:
+
+| Marker | Candidate command |
+|--------|-------------------|
+| `manage.py` | `python manage.py test` (`pytest` if pytest-django is in deps) |
+| `pytest.ini` / pytest in `pyproject.toml` | `pytest` |
+| `go.mod` | `go test ./...` |
+| `Cargo.toml` | `cargo test` |
+| `pom.xml` / `build.gradle` | `mvn test` / `./gradlew test` |
+| `Gemfile` / `.rspec` | `bundle exec rspec`, `bin/rails test`, or `rake test` |
+| `package.json` with a test script | that script, via the lockfile's package manager |
+| `Makefile` with a `test:` target | `make test` |
+
+Any existing-test evidence (a marker above, or test files in the repo) means
+the project already has tests — don't bootstrap. Get the command from the docs
+or ask, offering the candidates above, and persist the chosen command (an
+AGENTS.md/CLAUDE.md `## Testing` section) so it's never asked again. Absent
+config files are NOT "no tests": Django keeps tests in `<app>/tests.py`, Go in
+`*_test.go` beside the source, Rust in `#[test]` blocks inside `src/`. No test
+evidence at all → say so and ask before installing anything.
+
 ## Workflow
 1. **Orient:** `open <url>` → `snapshot` (read the page as a
    user sees it) → `console error`. Map navigation via

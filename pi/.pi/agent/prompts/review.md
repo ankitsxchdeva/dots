@@ -25,7 +25,27 @@ reporting; don't review from the stat alone.
    unsure, say so — do not pad the report to look thorough.
 6. If the diff is genuinely clean, say so in one line. Do not manufacture findings.
 
+## Simplification lens — advisory (only if diff > 100 lines)
+Hunt unrequested *structure* only — never coverage, never tests. One-line
+findings: `file:line` · tag · what to cut · what replaces it · `lines_removable`
+(net lines the fix deletes). Exactly one tag per finding:
+- `delete` — dead code, unused flexibility. Replacement: nothing.
+- `stdlib` — hand-rolled what the standard library ships; name the function.
+- `native` — dependency or code duplicating a platform feature; name the feature.
+- `speculative` — one-implementation abstraction, config nobody sets, layer with one caller.
+- `shrink` — same logic in fewer lines, only if ≥5 saved; show the shorter form.
+
+Do NOT flag: tests, error paths, edge-case branches, validation, security,
+accessibility; harmless redundancy that aids readability; consistency-only
+changes; anything already addressed in the diff. Coverage gaps belong to
+passes 1–2, never here. If the lens runs and finds nothing: "Simplification:
+lean already — nothing to cut."
+
 ## Output
 - **🔴 Blocking** (correctness) — `file:line` · issue · suggested fix
 - **🟡 Consider** (quality) — `file:line` · note
-- **Verdict** — one line: ship it / fix blockers first.
+- **✂️ Advisory** (simplification, only if the lens ran) — one line each; never
+  blocking, never part of the verdict; if the user asks you to fix afterward,
+  these are ask-first, even when mechanical. With findings add
+  `net: -N lines possible` summed from `lines_removable`.
+- **Verdict** — one line: ship it / fix blockers first. Advisory findings never change it.
