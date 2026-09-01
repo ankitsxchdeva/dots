@@ -11,9 +11,9 @@
 set -eu
 
 sync_repo() {
-    local dir="$1"; shift
+    local dir="$1" url="$2"; shift 2
     if [ ! -d "$dir/.git" ]; then
-        echo "!! missing clone: $dir"
+        echo "!! missing clone: $dir (git clone $url $dir)"
         return 1
     fi
     local before after
@@ -30,14 +30,14 @@ sync_repo() {
     echo
 }
 
-sync_repo ~/src/oh-my-pi \
+sync_repo ~/src/oh-my-pi https://github.com/can1357/oh-my-pi \
     packages/coding-agent/src/prompts/advisor \
-    packages/coding-agent/src/prompts/agents/task.md \
+    packages/coding-agent/src/prompts/agents \
     packages/coding-agent/src/prompts/system/ultrathink-notice.md \
     packages/coding-agent/src/prompts/system/orchestrate-notice.md \
     packages/coding-agent/src/prompts/system/workflow-notice.md \
     docs/magic-keywords.md
 
-sync_repo ~/src/gstack \
+sync_repo ~/src/gstack https://github.com/garrytan/gstack \
     office-hours plan-ceo-review plan-eng-review investigate cso qa retro \
     careful freeze guard unfreeze
