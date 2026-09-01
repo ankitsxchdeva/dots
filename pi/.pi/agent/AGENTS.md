@@ -99,6 +99,9 @@ holds *requirements*, not observations. Keep it short.
   derivable by reading the code, never secrets.
 - Session-close learning review always runs: if there were no durable learnings,
   say "No durable learnings this session" explicitly instead of skipping silently.
+- Frustration is a rule gap: when I get frustrated or push back, distill one
+  durable rule that would have caught the behavior earlier and `remember` it —
+  then tell me what you added.
 - Keywords in prose: `ultrathink` (deep reasoning), `orchestrate` (parallel
   subagent execution contract), `workflowz` (deterministic multi-subagent
   workflow with adversarial verification).

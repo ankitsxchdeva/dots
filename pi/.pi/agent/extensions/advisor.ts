@@ -10,6 +10,8 @@
  * message + tool calls) and replies SILENT or one severity-prefixed note:
  * nit / concern / blocker. Notes are injected back as steering (blocker) or
  * follow-up (nit/concern) messages, so the main agent course-corrects.
+ * A turn ending mid-review is queued (latest only) and reviewed on catch-up
+ * instead of being dropped (omp 18.1.0 fixed the same concern-drop).
  *
  * System prompt adapted from
  *   ~/src/oh-my-pi/packages/coding-agent/src/prompts/advisor/system.md
@@ -18,7 +20,7 @@
  * dump, per-turn streaming, RFC 2119 conventions block.
  */
 
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, TurnEndEvent } from "@earendil-works/pi-coding-agent";
 import { uuidv7 } from "@earendil-works/pi-ai";
 
 const ADVISOR_SYSTEM = `You are an advisor: a peer-shadow reviewing another AI coding agent's work, turn by turn. You receive the incremental transcript of its latest turn (assistant message, tool calls, tool results).
@@ -50,6 +52,8 @@ export default function (pi: ExtensionAPI) {
 	let enabled = false;
 	let modelSpec = DEFAULT_MODEL;
 	let busy = false;
+	// Coalesced catch-up slot: the latest turn that ended while a review ran.
+	let pending: TurnEndEvent | null = null;
 
 	pi.registerCommand("advisor", {
 		description: "Second-model advisor: /advisor on [provider/model] | off | (status)",
@@ -84,72 +88,77 @@ export default function (pi: ExtensionAPI) {
 	});
 
 	pi.on("turn_end", async (event, ctx) => {
-		if (!enabled || busy) return;
-
-		// Loop guard: if the agent is responding to an advisor note, let it work —
-		// advice on advice-on-advice is how sessions spiral.
-		const branch = ctx.sessionManager.getBranch();
-		const lastUser = [...branch].reverse().find((e) => e.type === "message" && e.message.role === "user");
-		if (lastUser && lastUser.type === "message" && lastUser.message.role === "user") {
-			const c = lastUser.message.content;
-			const text = typeof c === "string" ? c : c.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join(" ");
-			if (text.trimStart().startsWith("[advisor ")) return;
+		if (!enabled) return;
+		if (busy) {
+			pending = event;
+			return;
 		}
-
-		// Incremental transcript: this turn's assistant message + tool activity.
-		const m = event.message;
-		const parts: string[] = [];
-		// turn_end can fire on non-assistant messages (e.g. !bash executions),
-		// which have no .content — skip those rather than crash the advisor.
-		if (m.role === "assistant") {
-			for (const c of m.content) {
-				if (c.type === "text") parts.push(`assistant text: ${c.text}`);
-				else if (c.type === "toolCall") parts.push(`tool call: ${c.name}(${excerpt(JSON.stringify(c.arguments), 300)})`);
-				else if (c.type === "thinking") parts.push(`assistant thinking: ${excerpt(c.thinking, 500)}`);
-			}
-		}
-		for (const r of event.toolResults) {
-			const text = r.content
-				.filter((c): c is { type: "text"; text: string } => c.type === "text")
-				.map((c) => c.text)
-				.join("\n");
-			parts.push(`tool result [${r.toolName}${r.isError ? ", error" : ""}]: ${excerpt(text, 500)}`);
-		}
-		const transcript = parts.join("\n").trim();
-		if (!transcript) return;
-
-		const model = ctx.modelRegistry.find(modelSpec.provider, modelSpec.id);
-		if (!model) return;
 
 		busy = true;
 		try {
-			const response = await ctx.modelRegistry.complete(
-				model,
-				{
-					systemPrompt: ADVISOR_SYSTEM,
-					messages: [
-						{ role: "user", content: [{ type: "text", text: transcript }], timestamp: Date.now() },
-					],
-				},
-				{ cacheRetention: "none", sessionId: uuidv7(), signal: ctx.signal },
-			);
-			const advice = response.content
-				.filter((c): c is { type: "text"; text: string } => c.type === "text")
-				.map((c) => c.text)
-				.join("\n")
-				.trim();
+			for (let ev: TurnEndEvent | null = event; ev && enabled; ev = pending, pending = null) {
+				// Loop guard: if the agent is responding to an advisor note, let it work —
+				// advice on advice-on-advice is how sessions spiral.
+				const branch = ctx.sessionManager.getBranch();
+				const lastUser = [...branch].reverse().find((e) => e.type === "message" && e.message.role === "user");
+				let skip = false;
+				if (lastUser && lastUser.type === "message" && lastUser.message.role === "user") {
+					const c = lastUser.message.content;
+					const text = typeof c === "string" ? c : c.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join(" ");
+					if (text.trimStart().startsWith("[advisor ")) skip = true;
+				}
 
-			if (!advice || /^SILENT\b/i.test(advice)) {
-				// Reviewed, no comment — neutral idle state so a silent verdict is visible.
-				ctx.ui.setStatus("advisor", `👁 ${modelSpec.id} · idle`);
-				return;
+				// Incremental transcript: this turn's assistant message + tool activity.
+				const m = ev.message;
+				const parts: string[] = [];
+				// turn_end can fire on non-assistant messages (e.g. !bash executions),
+				// which have no .content — skip those rather than crash the advisor.
+				if (!skip && m.role === "assistant") {
+					for (const c of m.content) {
+						if (c.type === "text") parts.push(`assistant text: ${c.text}`);
+						else if (c.type === "toolCall") parts.push(`tool call: ${c.name}(${excerpt(JSON.stringify(c.arguments), 300)})`);
+						else if (c.type === "thinking") parts.push(`assistant thinking: ${excerpt(c.thinking, 500)}`);
+					}
+					for (const r of ev.toolResults) {
+						const text = r.content
+							.filter((c): c is { type: "text"; text: string } => c.type === "text")
+							.map((c) => c.text)
+							.join("\n");
+						parts.push(`tool result [${r.toolName}${r.isError ? ", error" : ""}]: ${excerpt(text, 500)}`);
+					}
+				}
+				const transcript = parts.join("\n").trim();
+
+				const model = ctx.modelRegistry.find(modelSpec.provider, modelSpec.id);
+				if (transcript && model) {
+					const response = await ctx.modelRegistry.complete(
+						model,
+						{
+							systemPrompt: ADVISOR_SYSTEM,
+							messages: [
+								{ role: "user", content: [{ type: "text", text: transcript }], timestamp: Date.now() },
+							],
+						},
+						{ cacheRetention: "none", sessionId: uuidv7(), signal: ctx.signal },
+					);
+					const advice = response.content
+						.filter((c): c is { type: "text"; text: string } => c.type === "text")
+						.map((c) => c.text)
+						.join("\n")
+						.trim();
+
+					if (!advice || /^SILENT\b/i.test(advice)) {
+						// Reviewed, no comment — neutral idle state so a silent verdict is visible.
+						ctx.ui.setStatus("advisor", `👁 ${modelSpec.id} · idle`);
+					} else {
+						const severity = /^(blocker|concern|nit)/i.exec(advice)?.[1].toLowerCase() ?? "concern";
+						pi.sendUserMessage(`[advisor ${severity}] ${advice}`, {
+							deliverAs: severity === "blocker" ? "steer" : "followUp",
+						});
+						ctx.ui.setStatus("advisor", `advisor: ${severity}`);
+					}
+				}
 			}
-
-			const severity = /^(blocker|concern|nit)/i.exec(advice)?.[1].toLowerCase() ?? "concern";
-			pi.sendUserMessage(`[advisor ${severity}] ${advice}`, {
-				deliverAs: severity === "blocker" ? "steer" : "followUp",
-			});
-			ctx.ui.setStatus("advisor", `advisor: ${severity}`);
 		} catch (e) {
 			// Surface the first failure, then stop — a dead advisor failing
 			// silently forever is worse than no advisor.
