@@ -6,14 +6,16 @@
  *   /unfreeze         clear the freeze boundary
  *   /guard            careful + freeze to cwd in one step
  *
- * Re-ported from upstream HEAD e76f65a8 (2026-09-01). Three careful tiers per
+ * Re-ported from upstream HEAD a6b3a575 (2026-09-16). Three careful tiers per
  * careful/bin/check-careful.sh: HIGH hard-deny (recursive delete of exactly
  * /, ~, or $HOME; force-push to the default branch — simple commands only,
  * --force-with-lease exempt), a warn tier (destructive families + shell-
  * obfuscation tripwires), and an anchored safe-exception so one standalone
  * rm of build artifacts stays silent. User patterns are additive-only:
  * ~/.gstack/careful-patterns.txt and ~/.gstack/projects/<slug>/careful-
- * patterns.txt can ADD warn rules, never suppress a baseline one. Freeze
+ * patterns.txt can ADD warn rules, never suppress a baseline one. The state
+ * root is GSTACK_HOME || ~/.gstack — the Claude-plugin-only CLAUDE_PLUGIN_DATA
+ * leg is intentionally omitted. Freeze
  * semantics from freeze/bin/check-freeze.sh (edit/write only, exact-or-
  * trailing-separator match, symlinks resolved through the final component,
  * fail-closed on unreadable target paths).
@@ -271,19 +273,29 @@ export default function (pi: ExtensionAPI) {
 		}
 
 		if (freezeDir && (event.toolName === "edit" || event.toolName === "write")) {
-			const target = (event.input as { path?: unknown }).path;
-			// Fail closed: a boundary that allows what it cannot read is not a boundary.
-			if (typeof target !== "string" || target === "") {
+			// Fail-closed backstop (upstream freeze/bin/check-freeze.sh EXIT trap):
+			// any unexpected error denies — a boundary that allows what it cannot
+			// check is not a boundary.
+			try {
+				const target = (event.input as { path?: unknown }).path;
+				// Fail closed: a boundary that allows what it cannot read is not a boundary.
+				if (typeof target !== "string" || target === "") {
+					return {
+						block: true,
+						reason: `Frozen: unreadable target path — blocked (fail closed). Boundary: ${freezeDir} /unfreeze to clear.`,
+					};
+				}
+				const resolved = realpathFinal(path.resolve(ctx.cwd, target));
+				if (resolved !== freezeDir && !resolved.startsWith(freezeDir + path.sep)) {
+					return {
+						block: true,
+						reason: `Frozen: edits restricted to ${freezeDir} (got ${resolved}). /unfreeze to clear.`,
+					};
+				}
+			} catch (err) {
 				return {
 					block: true,
-					reason: `Frozen: unreadable target path — blocked (fail closed). Boundary: ${freezeDir} /unfreeze to clear.`,
-				};
-			}
-			const resolved = realpathFinal(path.resolve(ctx.cwd, target));
-			if (resolved !== freezeDir && !resolved.startsWith(freezeDir + path.sep)) {
-				return {
-					block: true,
-					reason: `Frozen: edits restricted to ${freezeDir} (got ${resolved}). /unfreeze to clear.`,
+					reason: `Frozen: safety check failed unexpectedly (${err}) — blocked, fail closed. /unfreeze to clear.`,
 				};
 			}
 		}

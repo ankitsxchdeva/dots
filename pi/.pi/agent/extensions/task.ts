@@ -12,6 +12,9 @@
  * (re-check upstream with sync-upstreams.sh). The `agent` param picks one;
  * default "task" is the generic worker. omp's @smol/@slow model roles are not
  * ported — `model` stays empty so agents inherit the configured default.
+ * designer and librarian were dropped upstream at a2d83061 (catalog
+ * simplification, not a prompt defect) — both are now fork-owned personas,
+ * no longer upstream-tracked.
  *
  * Fan out by issuing several task calls in one message — pi executes sibling
  * tool calls concurrently.

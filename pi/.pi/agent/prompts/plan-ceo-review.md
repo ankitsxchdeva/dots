@@ -16,13 +16,18 @@ If no design doc exists and the user is fuzzy on the problem, offer
 `/office-hours` first — sharper input makes this review sharper. Don't re-offer.
 
 ## Step 0F — Mode selection (ask, then COMMIT)
-Ask the user to pick ONE; then execute it faithfully — never drift:
+Ask the user to pick ONE; then execute it faithfully — never drift. Mode sets
+posture, not coverage — every review pass runs regardless of mode:
 - **SCOPE EXPANSION** — envision the platonic ideal. Push scope UP: "what makes
   this 10x better for 2x effort?" Every expansion is an explicit user opt-in.
 - **SELECTIVE EXPANSION** — hold scope as baseline, surface each expansion
   opportunity individually for cherry-picking.
-- **HOLD SCOPE** — accept scope; make it bulletproof. No silent changes.
-- **SCOPE REDUCTION** — surgeon mode: minimum viable version, cut ruthlessly.
+- **HOLD SCOPE** — accept scope; make it bulletproof. No silent changes;
+  repairs required to meet stated invariants and acceptance criteria are in
+  scope.
+- **SCOPE REDUCTION** — surgeon mode: minimum viable version. Propose each cut
+  individually for approval; approved cuts land in **NOT in scope**, the rest
+  stays.
 
 ## Prime directives
 1. **Zero silent failures.** Every failure mode must be visible — a silent
@@ -69,4 +74,16 @@ design for trust, subtraction default (Rams: as little design as possible).
   one-line rationale — never silently dropped).
 - **Vision note:** the 10x check — is the platonic ideal named, even if deferred?
 - **Verdict:** one line — ship the plan / revise first (what specifically).
-- One decision per question to the user; never batch.
+- One decision per question to the user; never batch. Each independent finding
+  gets its own question — never bundle unrelated repairs into one approach
+  option.
+- Carry decisions across passes: once a remedy is approved, later passes
+  reference it instead of re-asking. Honor prior approvals without asking again.
+- Preserve accepted requirements: report implementation gaps against stated
+  invariants — never resolve a gap by rewriting the guarantee, calling the
+  violation acceptable, or changing a test to expect the prohibited result.
+  Requirement changes need explicit user approval.
+- In HOLD SCOPE, only TODOs closing an evidenced gap in accepted scope are
+  surfaced — hypothetical futures are expansions, not TODOs.
+- If the user skips or interrupts a question, track it and list "Unresolved
+  decisions" at the end — never silently default to an option.

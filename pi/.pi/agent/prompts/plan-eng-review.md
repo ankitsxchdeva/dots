@@ -11,7 +11,7 @@ NO code changes — review and harden the plan.
 1. **Existing code:** what already partially or fully solves each sub-problem?
    Capture outputs from existing flows instead of building parallel ones.
 2. **Minimum changes:** flag anything deferrable without blocking the core goal.
-3. **Complexity check:** >8 files touched or >2 new classes/services = smell.
+3. **Complexity check:** 8+ files touched or >2 new classes/services = smell.
    STOP, name what's overbuilt, propose the minimal version, ask: reduce or
    proceed? Do not continue until the user answers. Once decided, COMMIT —
    never re-argue scope in later sections.
@@ -28,12 +28,20 @@ NO code changes — review and harden the plan.
 1. **Architecture** — component boundaries, coupling, data flow bottlenecks,
    scaling/SPOF, security architecture (auth, API boundaries), one realistic
    production failure scenario per new codepath, ASCII diagrams for key flows.
+   Async ordering: for flows sharing mutable state, show both completion
+   orders of overlapping awaits in one ASCII schedule; exclude an order only
+   by naming the mechanism that prevents it — single-threading and atomic
+   calls don't prevent interleaving across awaits.
 2. **Code quality** — DRY violations aggressively, error handling gaps, debt
    hotspots, over/under-engineering.
 3. **Tests** — detect the framework (package.json/pyproject/Gemfile/go.mod);
    test matrix for every new path; REGRESSION RULE: every bug fix needs a test
    that fails without the fix; write a Test Plan artifact (affected routes,
    key interactions, edge cases, critical paths) — /qa consumes it later.
+   Assertion exactness: each behavior needs an observable assertion that
+   rejects a specific wrong result, mapped to the plan's exact requirement —
+   never weaken an exact count to a lower bound; helper coverage doesn't
+   prove the caller's path.
 4. **Performance** — N+1 queries, memory, caching, high-complexity paths.
 
 ## Finding format (every finding, no exceptions)
@@ -44,7 +52,9 @@ NO code changes — review and harden the plan.
 - 3–4: appendix only. 1–2: only if P0.
 - **Pre-emit gate:** can't quote the motivating lines → unverified, force
   confidence ≤5. Framework-generated symbols (ORM Meta, decorators, migrations):
-  quote the meta-construct, not the absent literal name.
+  quote the meta-construct, not the absent literal name. For proposed work,
+  quote the motivating plan line (plan file:line); never describe a proposed
+  regression as an observed one.
 
 ## Required outputs
 - **"What already exists"** — existing flows reused vs unnecessarily rebuilt.
@@ -69,4 +79,9 @@ agreements/disagreements.
 - One issue per question to the user — never batch. Present 2–3 options with
   effort (human vs AI-assisted), risk, maintenance; state your recommendation
   and the preference it maps to (DRY, explicit > clever, minimal diff).
+- Present complete remedies: each option includes the validation and failure
+  handling that make it work. Approved remedies are recorded and referenced,
+  not re-asked; scope approval alone approves no individual finding.
+- If the user skips or interrupts a question, track it and list "Unresolved
+  decisions" at the end — never silently default to an option.
 - Zero findings in a section → "No issues, moving on."

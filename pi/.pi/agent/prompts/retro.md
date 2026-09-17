@@ -8,7 +8,9 @@ gstack's /retro.
 
 ## Parse the window
 Default 7d. `24h`/`14d`/`30d` adjust. `compare` = current window vs the prior
-same-length window. For day windows, anchor at local midnight:
+same-length window; the prior window ends one second before the current window
+starts (`git log --until` is inclusive — an exact boundary commit would be
+double-counted). For day windows, anchor at local midnight:
 `--since="YYYY-MM-DDT00:00:00"` (bare dates anchor at wall-clock time — wrong).
 
 ## Freshness pre-flight
@@ -37,6 +39,8 @@ re-run.
   --name-only --format="" | grep -c test` vs source files touched. Compare to
   the prior window for a trend.
 - TODOS.md delta: items closed vs added.
+- A metric with no data source is **unavailable**, not zero — never fabricate
+  a 0.
 
 ## Shortcut debt ledger
 Convention: a shortcut the user accepted gets a code comment at each cut

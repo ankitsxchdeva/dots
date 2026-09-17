@@ -17,7 +17,7 @@
  *   modes/{magic-keyword-boundary,markdown-prose}.ts (matcher, ported) and
  *   prompts/system/{ultrathink,orchestrate,workflow}-notice.md (adapted:
  *   mustache conditionals resolved, fork-only tools removed).
- *   Re-ported from upstream HEAD 7523a2d7 (2026-09-01). Re-check with omp-sync.sh.
+ *   Re-ported from upstream HEAD a2d83061 (2026-09-16). Re-check with omp-sync.sh.
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -66,6 +66,7 @@ const WORKFLOWZ_NOTICE = `Deterministic multi-subagent workflow request. Fan out
 
 - Explore inline FIRST — list files, scope the diff, find call sites — to discover the work-list; know its shape before fan-out, not at task start.
 - Decompose into independent, self-contained task assignments; run all independent tasks in parallel in one message.
+- Same-file edits: one task owns a file; serialize shared boundaries — two parallel tasks must never touch the same file.
 - Verify adversarially: spawn independent skeptic subagents prompted to REFUTE each key finding (default refuted when unsure); retain only survivors. Prefer perspective-diverse verifiers — correctness, security, performance, does-it-reproduce — over N identical refuters.
 - For judgment calls, use a judge panel: N angle-diverse attempts, then parallel judges scoring and a synthesis pass.
 - Loop until dry on unknown-size discovery: keep spawning finder rounds until K consecutive rounds yield nothing new; dedup each round against a SEEN set of all prior findings — not only confirmed ones — or the loop never converges.

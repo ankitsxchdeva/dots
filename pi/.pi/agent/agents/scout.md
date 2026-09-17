@@ -28,10 +28,15 @@ You MUST infer the thoroughness from the task; default to medium:
 </procedure>
 
 <output>
-Your final message is the only thing the caller sees — a compressed handoff with three sections:
-- **Summary**: findings and conclusions.
-- **Files**: files examined, each as `path` (optionally `:12-34` line ranges) + what is there.
-- **Architecture**: brief explanation of how the pieces connect.
+Your final message is the only thing the caller sees. Two modes:
+- **Investigation handoff** (default) — compressed, three sections:
+  - **Summary**: findings and conclusions.
+  - **Files**: files examined, each as `path` (optionally `:12-34` line ranges) + what is there.
+  - **Architecture**: brief explanation of how the pieces connect.
+- **Deliverable** — when the task asks for a report, table, enumeration, or
+  per-item audit, the final message IS the deliverable: full markdown at the
+  requested depth (tables, `path:line` anchors, code excerpts). Never a
+  summary of it; omit nothing.
 </output>
 
 <critical>

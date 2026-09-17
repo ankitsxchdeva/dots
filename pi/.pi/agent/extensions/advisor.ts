@@ -15,7 +15,9 @@
  *
  * System prompt adapted from
  *   ~/src/oh-my-pi/packages/coding-agent/src/prompts/advisor/system.md
- * (re-port 2026-09-01, upstream HEAD 7523a2d7; re-check with omp-sync.sh).
+ * (re-port 2026-09-01, upstream HEAD 7523a2d7; reviewed 2026-09-16 against
+ * a2d83061 — no applicable changes: the memory-context prompt requires omp's
+ * pluggable memory backends + tool-capable advisor, which this port drops).
  * Not ported: advise tool with session tool grants, WATCHDOG.yml, /advisor
  * dump, per-turn streaming, RFC 2119 conventions block.
  */

@@ -16,8 +16,9 @@ Never judge from HTML alone.
   1. `git diff main...HEAD --name-only` and `git log main..HEAD --oneline`.
   2. Map changed files → affected pages/routes (controllers → paths, views →
      pages, models → pages using them, API files → direct endpoints).
-  3. Find the running app: try localhost:3000, :4000, :5173, :8000, :8080 with
-     `open`. Nothing? Ask for the URL.
+  3. Find the running app: probe localhost:3000, :4000, :5173, :8000, :8080
+     with `curl -sI --max-time 3`, then `open` the one that answers. Nothing?
+     Ask for the URL.
   4. Test each affected page + adjacent regressions, cross-referencing commit
      messages for *intent* — verify the change does what it claims.
   5. No obvious routes from the diff → don't skip the browser; smoke-test
@@ -68,6 +69,9 @@ evidence at all → say so and ask before installing anything.
    - Navigation — paths in and out; dead links.
    - States — empty, loading, error, overflow (47-char names!).
    - Console — new JS errors after each interaction.
+   - Consent on non-local targets: if the URL isn't localhost, invocation is
+     consent to LOOK, not to ACT — get one explicit consent per run before the
+     first submit/create/delete/purchase/settings change.
    - Responsiveness — `resize 375 812`, screenshot, back to 1280x720.
 4. **Document each issue IMMEDIATELY when found** (never batch):
    - Interactive bug: screenshot before → action → screenshot result →
@@ -81,7 +85,13 @@ evidence at all → say so and ask before installing anything.
 6. **Wrap up:** health score (console 15%, broken links 15%, forms/flows 25%,
    visual/UX 20%, states/edge cases 15%, mobile 10% — 0 errors=100, 1–3=70,
    4–10=40, 10+=10 per category, weighted), Top 3 Things to Fix, console health
-   summary, metadata (date, duration, pages visited, framework).
+   summary, metadata (date, duration, pages visited, framework). Scoring
+   discipline: dedupe issues by root cause across pages; one primary category
+   per issue, no double deductions; exclude untested categories and label the
+   score "provisional" with the coverage note ("not scored" if none — compare
+   only identical coverage); console errors deduped by message+source,
+   warnings excluded; expected auth redirects and resource/API requests don't
+   count as broken links.
 
 ## Output
 QA report: health score, issues table (id · severity · category · page ·

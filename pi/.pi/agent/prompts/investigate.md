@@ -36,7 +36,8 @@ Match against known shapes:
 | Stale cache | old data, fixes on clear | caches at every layer |
 
 No match? Search the error — **sanitize first**: strip hostnames, IPs, paths,
-SQL, customer identifiers; search only "{framework} {generic error type}".
+SQL, customer identifiers; search only generic forms: "{framework} {generic
+error type}" or "{library} {component} known issues".
 
 ## Phase 3 — Hypothesis testing (before ANY fix)
 1. Add a temporary log/assertion at the suspected cause. Run the repro.
