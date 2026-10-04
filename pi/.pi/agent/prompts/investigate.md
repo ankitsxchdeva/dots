@@ -1,5 +1,5 @@
 ---
-description: Systematic root-cause debugging — Iron Law: no fixes without investigation. 3-strike rule, regression test mandatory.
+description: "Systematic root-cause debugging — Iron Law: no fixes without investigation. 3-strike rule, regression test mandatory."
 argument-hint: "[bug description or error]"
 ---
 ## Iron Law
@@ -61,7 +61,8 @@ error type}" or "{library} {component} known issues".
 5. Fix touches >5 files → flag the blast radius to the user before proceeding.
 
 ## Phase 5 — Verify & report
-Reproduce the original scenario; confirm fixed. Then:
+Reproduce the original scenario; confirm fixed. If a `/freeze` scope lock was
+applied in Phase 1, lift it (`/unfreeze`) before reporting. Then:
 ```
 DEBUG REPORT
 Symptom:         [what was observed]

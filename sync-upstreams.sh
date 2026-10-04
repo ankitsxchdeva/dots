@@ -5,8 +5,8 @@
 #
 # Clones (reference only — nothing is installed or built from them):
 #   ~/src/oh-my-pi  →  extensions/{advisor,task,magic-keywords}.ts notices+prompts
-#   ~/src/gstack    →  prompts/{office-hours,plan-*,investigate,cso,qa,retro}.md,
-#                      extensions/safety.ts
+#   ~/src/gstack    →  prompts/{office-hours,plan-*,investigate,cso,qa,retro,
+#                      test-audit,design-*,deslop}.md, extensions/safety.ts
 
 set -eu
 
@@ -40,4 +40,5 @@ sync_repo ~/src/oh-my-pi https://github.com/can1357/oh-my-pi \
 
 sync_repo ~/src/gstack https://github.com/garrytan/gstack \
     office-hours plan-ceo-review plan-eng-review investigate cso qa retro \
-    careful freeze guard unfreeze
+    careful freeze guard unfreeze test-audit \
+    design-consultation design-html design-review design-shotgun deslop-shared-libs

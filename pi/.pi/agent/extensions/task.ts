@@ -44,7 +44,6 @@ MUST hyperfocus assigned task; NEVER deviate.
 - MUST finish assigned work only; return minimum useful result; do not repeat filesystem writes.
 - SHOULD edit files, run commands, create files when task requires.
 - MUST be concise; NEVER filler, repetition, tool transcripts. The caller cannot see your tools; your final message is notes for the caller, not a summary for a human.
-- SHOULD prefer narrow lookups (grep/glob), then read needed ranges only; ignore beyond current scope.
 - AVOID full-file reads unless necessary.
 - SHOULD prefer editing existing files over creating new files.
 - NEVER create documentation files (*.md) unless explicitly requested.
@@ -115,12 +114,89 @@ function loadAgents(): Map<string, AgentDef> {
 	return agents;
 }
 
-function runPi(args: string[], signal: AbortSignal | undefined): Promise<string> {
+/** Compact one-line activity summary of a subagent tool call, for status UIs. */
+function formatActivity(toolName: string, args: any): string {
+	const p = (args?.path ?? args?.file_path ?? "") as string;
+	switch (toolName) {
+		case "bash": {
+			const cmd = String(args?.command ?? "").split("\n")[0];
+			return `$ ${cmd.length > 80 ? cmd.slice(0, 80) + "…" : cmd}`;
+		}
+		case "read":
+			return `read ${p}`;
+		case "edit":
+			return `edit ${p}`;
+		case "write":
+			return `write ${p}`;
+		case "grep":
+			return `grep /${args?.pattern ?? ""}/`;
+		case "find":
+			return `find ${args?.pattern ?? "*"}`;
+		case "ls":
+			return `ls ${p || "."}`;
+		default:
+			return toolName;
+	}
+}
+
+export interface SubagentProgress {
+	activity: string;
+	turns: number;
+	tokens: number; // input + output + cache read/write
+	model?: string;
+	lastText: string;
+}
+
+/**
+ * Spawn `pi --mode json` and parse the JSONL event stream. Emits progress on
+ * every tool_execution_start and assistant message_end so callers can stream
+ * live status at zero token cost. Resolves with the last assistant text.
+ */
+function runPi(
+	args: string[],
+	signal: AbortSignal | undefined,
+	onProgress?: (p: SubagentProgress) => void,
+): Promise<{ text: string; progress: SubagentProgress }> {
 	return new Promise((resolve, reject) => {
 		const child = spawn("pi", args, { stdio: ["ignore", "pipe", "pipe"] });
-		let out = "";
+		let buffer = "";
 		let err = "";
-		child.stdout.on("data", (d) => (out += d));
+		const progress: SubagentProgress = { activity: "starting", turns: 0, tokens: 0, lastText: "" };
+		const emit = () => onProgress?.({ ...progress });
+
+		const processLine = (line: string) => {
+			if (!line.trim()) return;
+			let event: any;
+			try {
+				event = JSON.parse(line);
+			} catch {
+				return;
+			}
+			if (event.type === "tool_execution_start") {
+				progress.activity = formatActivity(event.toolName, event.args);
+				emit();
+			} else if (event.type === "message_end" && event.message?.role === "assistant") {
+				const msg = event.message;
+				progress.turns++;
+				const u = msg.usage;
+				if (u) progress.tokens += (u.input || 0) + (u.output || 0) + (u.cacheRead || 0) + (u.cacheWrite || 0);
+				if (!progress.model && msg.model) progress.model = msg.model;
+				let hasToolCalls = false;
+				for (const part of msg.content ?? []) {
+					if (part.type === "toolCall") hasToolCalls = true;
+					else if (part.type === "text" && part.text.trim()) progress.lastText = part.text;
+				}
+				if (!hasToolCalls) progress.activity = "writing";
+				emit();
+			}
+		};
+
+		child.stdout.on("data", (d) => {
+			buffer += d.toString();
+			const lines = buffer.split("\n");
+			buffer = lines.pop() || "";
+			for (const line of lines) processLine(line);
+		});
 		child.stderr.on("data", (d) => (err += d));
 		const onAbort = () => child.kill("SIGTERM");
 		signal?.addEventListener("abort", onAbort, { once: true });
@@ -130,9 +206,11 @@ function runPi(args: string[], signal: AbortSignal | undefined): Promise<string>
 		});
 		child.on("close", (code) => {
 			signal?.removeEventListener("abort", onAbort);
-			if (code === 0) resolve(out.trim() || "(subagent produced no output)");
+			if (buffer.trim()) processLine(buffer);
+			if (code === 0) resolve({ text: progress.lastText.trim() || "(subagent produced no output)", progress });
 			else reject(new Error(`subagent exited ${code}: ${err.trim().slice(0, 500)}`));
 		});
+		emit();
 	});
 }
 
@@ -166,13 +244,13 @@ export default function (pi: ExtensionAPI) {
 				}),
 			),
 		}),
-		async execute(_toolCallId, params, signal) {
+		async execute(_toolCallId, params, signal, onUpdate) {
 			const name = params.agent ?? "task";
 			const def = agents.get(name);
 			if (!def) {
 				throw new Error(`unknown agent '${name}'. Available: ${[...agents.keys()].join(", ")}`);
 			}
-			const args = ["-p", "--no-session"];
+			const args = ["--mode", "json", "-p", "--no-session"];
 			if (def.tools) {
 				// allowlist implicitly excludes task (recursion guard) and remember
 				args.push("--tools", def.tools.join(","));
@@ -183,8 +261,16 @@ export default function (pi: ExtensionAPI) {
 			const model = params.model ?? def.model;
 			if (model) args.push("--model", model);
 			args.push("--append-system-prompt", def.body, SPAWNED_CONTRACT, params.prompt);
-			const text = await runPi(args, signal);
-			return { content: [{ type: "text", text }], details: {} };
+			const { text, progress } = await runPi(args, signal, (p) => {
+				onUpdate?.({
+					content: [{ type: "text", text: `${name}: ${p.activity}` }],
+					details: { agent: name, activity: p.activity, turns: p.turns, tokens: p.tokens, model: p.model },
+				});
+			});
+			return {
+				content: [{ type: "text", text }],
+				details: { agent: name, turns: progress.turns, tokens: progress.tokens, model: progress.model },
+			};
 		},
 	});
 }

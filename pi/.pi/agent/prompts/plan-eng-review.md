@@ -5,7 +5,9 @@ argument-hint: "[plan file or feature description]"
 ## Goal
 Turn a plan into something an eng manager would sign: architecture locked,
 failure modes mapped, tests planned. Ported from gstack's /plan-eng-review.
-NO code changes — review and harden the plan.
+NO code changes — review and harden the plan. Build no features, test
+suites or benchmarks; existing tests and bounded read-only probes of
+current behavior are valid evidence.
 
 ## Step 0 — Scope challenge (FIRST, hard stop if it trips)
 1. **Existing code:** what already partially or fully solves each sub-problem?
@@ -32,17 +34,37 @@ NO code changes — review and harden the plan.
    orders of overlapping awaits in one ASCII schedule; exclude an order only
    by naming the mechanism that prevents it — single-threading and atomic
    calls don't prevent interleaving across awaits.
-2. **Code quality** — DRY violations aggressively, error handling gaps, debt
-   hotspots, over/under-engineering.
-3. **Tests** — detect the framework (package.json/pyproject/Gemfile/go.mod);
-   test matrix for every new path; REGRESSION RULE: every bug fix needs a test
-   that fails without the fix; write a Test Plan artifact (affected routes,
-   key interactions, edge cases, critical paths) — /qa consumes it later.
-   Assertion exactness: each behavior needs an observable assertion that
-   rejects a specific wrong result, mapped to the plan's exact requirement —
-   never weaken an exact count to a lower bound; helper coverage doesn't
-   prove the caller's path.
-4. **Performance** — N+1 queries, memory, caching, high-complexity paths.
+2. **Code quality** — error handling gaps, debt hotspots,
+   over/under-engineering. Shared-code rubric (not blanket DRY): propose an
+   extraction only with 2+ verified first-party callers (file:line) after
+   checking existing helpers for reuse; similar-looking code is insufficient —
+   require common behavior plus reliability gain or net line savings including
+   tests; name the helper's contract, callers to migrate, and blast radius.
+3. **Tests** — detect the framework (package.json/pyproject/Gemfile/go.mod).
+   Coverage goal: every changed behavior protected by a test that would catch
+   a real regression — test count is not a goal; smoke/existence tests never
+   count. Value bar per proposed test: what observable behavior it protects,
+   what credible regression fails it, why existing coverage doesn't catch it
+   (prefer extending an existing test), and no test-only production seam —
+   test at the real boundary. REGRESSION RULE: a change putting existing
+   behavior at risk without regression coverage is a critical requirement —
+   ask HOW to cover it, never whether to skip; settle behavior-to-preserve,
+   intentional changes, and acceptance assertions in one dedicated question;
+   every bug fix needs a test that fails without the fix; a proposed rewrite
+   is regression risk, not observed breakage. Write a Test Plan artifact
+   (affected routes, key interactions, edge cases, critical paths) — /qa
+   consumes it later. Assertion exactness: each behavior needs an observable
+   assertion that rejects a specific wrong result, mapped to the plan's exact
+   requirement — never weaken an exact count to a lower bound; helper coverage
+   doesn't prove the caller's path; a test that breaks under a
+   behavior-preserving refactor asserts implementation — rewrite it at the
+   owning boundary unless exact output is the declared contract (goldens,
+   wire formats).
+4. **Performance** — N+1 queries, memory, caching, high-complexity paths; on
+   request/looped paths check unbounded queries or caches, missing indexes,
+   whole-file loads, blocking calls without timeouts. State each finding's
+   scale (rows, requests/s, bytes) or mark it unknown — never invent
+   benchmarks.
 
 ## Finding format (every finding, no exceptions)
 `[P0–P3] (confidence: N/10) file:line — description`
@@ -76,9 +98,13 @@ summary of plan + findings, asked to refute. Present verbatim, then synthesize
 agreements/disagreements.
 
 ## Interaction rules
-- One issue per question to the user — never batch. Present 2–3 options with
+- One independently selectable decision per question — never batch; if the
+  user could accept one remedy and reject another while both stay viable,
+  split them. One behavior's necessary code/tests/docs ride in that
+  behavior's approval — don't re-ask for them. Present 2–3 options with
   effort (human vs AI-assisted), risk, maintenance; state your recommendation
-  and the preference it maps to (DRY, explicit > clever, minimal diff).
+  and the preference it maps to (shared-code rubric, explicit > clever,
+  minimal diff).
 - Present complete remedies: each option includes the validation and failure
   handling that make it work. Approved remedies are recorded and referenced,
   not re-asked; scope approval alone approves no individual finding.

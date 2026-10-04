@@ -15,7 +15,12 @@
  * ~/.gstack/careful-patterns.txt and ~/.gstack/projects/<slug>/careful-
  * patterns.txt can ADD warn rules, never suppress a baseline one. The state
  * root is GSTACK_HOME || ~/.gstack — the Claude-plugin-only CLAUDE_PLUGIN_DATA
- * leg is intentionally omitted. Freeze
+ * leg is intentionally omitted. Reviewed 2026-10-03 against fe6d1ae62: freeze
+ * now persists across sessions (upstream semantics flip — a boundary stands
+ * until /unfreeze), stored at <state root>/pi-safety-state.json (single-
+ * writer JSON, atomic rename; upstream's owner-token/mutex machinery guards
+ * concurrent Claude sessions and is intentionally omitted — pi is single-
+ * process). Freeze
  * semantics from freeze/bin/check-freeze.sh (edit/write only, exact-or-
  * trailing-separator match, symlinks resolved through the final component,
  * fail-closed on unreadable target paths).
@@ -208,9 +213,39 @@ function realpathFinal(p: string): string {
 	}
 }
 
+/** Durable freeze boundary (upstream fe6d1ae62: freeze persists until
+ *  /unfreeze — session end no longer clears it). Single-writer JSON with
+ *  atomic rename; pi is single-process, so no owner tokens or mutex. */
+function safetyStateFile(): string {
+	return path.join(process.env.GSTACK_HOME || path.join(os.homedir(), ".gstack"), "pi-safety-state.json");
+}
+
+function loadPersistedFreeze(): string | null {
+	try {
+		const raw = JSON.parse(fs.readFileSync(safetyStateFile(), "utf8")) as { freezeDir?: unknown };
+		return typeof raw.freezeDir === "string" && raw.freezeDir !== "" ? raw.freezeDir : null;
+	} catch {
+		return null; // no state or unreadable — start unfrozen
+	}
+}
+
+function persistFreeze(dir: string | null): void {
+	const file = safetyStateFile();
+	try {
+		if (dir === null) {
+			fs.rmSync(file, { force: true });
+			return;
+		}
+		fs.mkdirSync(path.dirname(file), { recursive: true });
+		const tmp = `${file}.tmp`;
+		fs.writeFileSync(tmp, JSON.stringify({ freezeDir: dir }) + "\n");
+		fs.renameSync(tmp, file);
+	} catch { /* state loss is fail-visible via the status footer, not fatal */ }
+}
+
 export default function (pi: ExtensionAPI) {
 	let careful = false;
-	let freezeDir: string | null = null;
+	let freezeDir: string | null = loadPersistedFreeze();
 
 	/** Footer status so the rails are glanceable, not just set-and-forget. */
 	function refreshStatus(ctx: ExtensionContext): void {
@@ -234,8 +269,9 @@ export default function (pi: ExtensionAPI) {
 		description: "Restrict edit/write to a directory: /freeze [dir] (default: current directory)",
 		handler: async (args, ctx) => {
 			freezeDir = realpathFinal(path.resolve(ctx.cwd, args.trim() || "."));
+			persistFreeze(freezeDir);
 			refreshStatus(ctx);
-			ctx.ui.notify(`Edits frozen to ${freezeDir} — /unfreeze to clear`, "info");
+			ctx.ui.notify(`Edits frozen to ${freezeDir} (persists across sessions) — /unfreeze to clear`, "info");
 		},
 	});
 
@@ -243,6 +279,7 @@ export default function (pi: ExtensionAPI) {
 		description: "Clear the freeze boundary",
 		handler: async (_args, ctx) => {
 			freezeDir = null;
+			persistFreeze(null);
 			refreshStatus(ctx);
 			ctx.ui.notify("Freeze cleared — edits unrestricted", "info");
 		},
@@ -253,9 +290,19 @@ export default function (pi: ExtensionAPI) {
 		handler: async (_args, ctx) => {
 			careful = true;
 			freezeDir = realpathFinal(path.resolve(ctx.cwd, "."));
+			persistFreeze(freezeDir);
 			refreshStatus(ctx);
 			ctx.ui.notify(`guard ON — destructive commands ask; edits frozen to ${freezeDir}`, "info");
 		},
+	});
+
+	// A restored boundary must be loud, not silent (upstream: persistent
+	// freeze messaging) — the footer alone is easy to miss after days away.
+	pi.on("session_start", async (_event, ctx) => {
+		if (freezeDir && ctx.hasUI) {
+			refreshStatus(ctx);
+			ctx.ui.notify(`Freeze restored from previous session: ${freezeDir} — /unfreeze to clear`, "info");
+		}
 	});
 
 	pi.on("tool_call", async (event, ctx) => {
@@ -286,7 +333,10 @@ export default function (pi: ExtensionAPI) {
 					};
 				}
 				const resolved = realpathFinal(path.resolve(ctx.cwd, target));
-				if (resolved !== freezeDir && !resolved.startsWith(freezeDir + path.sep)) {
+				// Upstream fe6d1ae62 hardening: `/freeze /` must not degenerate
+				// into a "//" prefix test that denies everything.
+				const base = freezeDir.endsWith(path.sep) ? freezeDir : freezeDir + path.sep;
+				if (resolved !== freezeDir && !resolved.startsWith(base)) {
 					return {
 						block: true,
 						reason: `Frozen: edits restricted to ${freezeDir} (got ${resolved}). /unfreeze to clear.`,

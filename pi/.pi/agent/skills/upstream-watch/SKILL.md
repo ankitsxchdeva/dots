@@ -9,7 +9,7 @@ This config ports features from two reference clones — nothing is installed or
 built from them:
 
 - `~/src/oh-my-pi` → `extensions/{advisor,task,magic-keywords}.ts`
-- `~/src/gstack` → `prompts/{office-hours,plan-ceo-review,plan-eng-review,investigate,cso,qa,retro}.md`, `extensions/safety.ts`
+- `~/src/gstack` → `prompts/{office-hours,plan-ceo-review,plan-eng-review,investigate,cso,qa,retro,test-audit,design-consultation,design-html,design-review,design-shotgun,deslop}.md`, `extensions/safety.ts`
 
 ## Automatic polling
 

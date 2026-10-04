@@ -79,8 +79,8 @@ and a challenge of the protective controls that failed to stop it.
 ## Output — Security Posture Report
 - **Status line first:** `complete | partial | not assessed` + scope covered
   and gaps. An empty result reads "No supported findings in the assessed
-  scope" — never infer a clean bill of health from a failed tool or missing
-  scanner output.
+  scope" — or `not assessed` if nothing was assessed. Never infer a clean
+  result from a failed tool or missing scanner output.
 - **Findings** — `[CRITICAL|HIGH|MEDIUM|LOW] (confidence N/10) file:line —
   issue — exploit scenario — remediation`. Ranked, deduplicated.
 - **Attack surface summary** — counts from Phase 1.

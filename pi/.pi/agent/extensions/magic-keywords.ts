@@ -17,7 +17,12 @@
  *   modes/{magic-keyword-boundary,markdown-prose}.ts (matcher, ported) and
  *   prompts/system/{ultrathink,orchestrate,workflow}-notice.md (adapted:
  *   mustache conditionals resolved, fork-only tools removed).
- *   Re-ported from upstream HEAD a2d83061 (2026-09-16). Re-check with omp-sync.sh.
+ *   Re-ported from upstream HEAD a2d83061 (2026-09-16); reviewed 2026-10-03
+ *   against 6d8552d7f — no applicable notice changes. Accepted divergences:
+ *   matching runs on raw input (pi's input event fires pre-expansion;
+ *   upstream now matches post-expansion) — no local prompt template embeds
+ *   keywords, and stripping requires the input hook. jevify not ported
+ *   (omp eval-kernel only). Re-check with omp-sync.sh.
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";

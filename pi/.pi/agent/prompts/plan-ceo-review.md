@@ -56,33 +56,33 @@ AI compresses implementation 10–100x. "Full version ~150 LOC" vs "90% shortcut
    reuse, explicitly.
 3. **Dream-state mapping** — the 10-star version of this feature; then decide
    what's THIS release vs deferred.
-4. **Alternatives** — 2–3 implementation approaches with effort/risk if the
-   plan's approach isn't clearly best.
+4. **Alternatives** — only when a genuine approach choice is unresolved:
+   A) the plan's current approach, B) the smallest scoped alternative,
+   C) a larger approach/rewrite only with evidence. No real choice → skip;
+   don't invent alternatives.
 5. **Temporal interrogation** — what breaks at 10x users? 10x data? In 6 months?
 6. Per selected mode: expansion ideas / bulletproofing / cuts.
-
-## Cognitive instincts to apply (don't enumerate, internalize)
-Inversion reflex ("what would make this fail?"), focus as subtraction (Jobs:
-350 products → 10), speed calibration (slow only for irreversible + high
-magnitude), edge-case paranoia (47-char names, zero results, first-time user),
-design for trust, subtraction default (Rams: as little design as possible).
 
 ## Output
 - **Findings** ranked P0–P3 with `(confidence: N/10)` — quote the motivating
   plan/code lines for every finding; unquotable → confidence ≤5, appendix only.
-- **Scope decisions:** Accepted (opted-in) / **NOT in scope** (each with a
-  one-line rationale — never silently dropped).
+- **Scope decisions:** Accepted (opted-in) / **NOT in scope**, listing deferred
+  and rejected separately (deferred items also land in TODOS.md with context;
+  rejected do not). One-line rationale each — never silently dropped.
 - **Vision note:** the 10x check — is the platonic ideal named, even if deferred?
 - **Verdict:** one line — ship the plan / revise first (what specifically).
 - One decision per question to the user; never batch. Each independent finding
   gets its own question — never bundle unrelated repairs into one approach
-  option.
+  option. Resolve disposition (add/defer/keep) before implementation-policy
+  choices; code, tests, and docs establishing the same already-chosen behavior
+  ride with that decision — don't demand extra approvals for them.
 - Carry decisions across passes: once a remedy is approved, later passes
   reference it instead of re-asking. Honor prior approvals without asking again.
 - Preserve accepted requirements: report implementation gaps against stated
   invariants — never resolve a gap by rewriting the guarantee, calling the
   violation acceptable, or changing a test to expect the prohibited result.
-  Requirement changes need explicit user approval.
+  Low frequency, bounded impact, and documentation do not satisfy a stricter
+  requirement. Requirement changes need explicit user approval.
 - In HOLD SCOPE, only TODOs closing an evidenced gap in accepted scope are
   surfaced — hypothetical futures are expansions, not TODOs.
 - If the user skips or interrupts a question, track it and list "Unresolved

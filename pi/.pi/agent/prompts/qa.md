@@ -23,6 +23,13 @@ Never judge from HTML alone.
      messages for *intent* — verify the change does what it claims.
   5. No obvious routes from the diff → don't skip the browser; smoke-test
      homepage + top 5 nav targets.
+- **Target has no browser surface** (diff/target is an API, CLI, job,
+  worker, or webhook) → Functional mode: probe with the repo's own
+  documented commands/clients (README examples, `--help`, Makefile targets)
+  instead of forcing the browser. Contract checklist: success + durable
+  effect, invalid input, auth, exit code/stdout/stderr checked separately,
+  state transitions, retry/idempotency, partial-failure recovery. Report
+  pass/fail/blocked per contract — never a health score.
 - **`--quick`** → 30-second smoke: homepage + top 5 nav, console errors, broken
   links, health score.
 
@@ -61,7 +68,9 @@ evidence at all → say so and ask before installing anything.
 2. **Authenticate (if needed):** fill the login form via snapshot refs. Never
    put real passwords in the report. 2FA/CAPTCHA → ask the user to complete it.
 3. **Explore per page,** deeper on core flows (signup, checkout, dashboard,
-   search) than secondary pages:
+   search) than secondary pages. Establish the success baseline first — the
+   expected result/state of the happy path, not just "page loaded" — before
+   challenging inputs:
    - Visual scan — `screenshot` for layout issues (saves a PNG under
      `.playwright-cli/`; view it with the `read` tool).
    - Interactive elements — click buttons/links; do they work?
@@ -71,7 +80,9 @@ evidence at all → say so and ask before installing anything.
    - Console — new JS errors after each interaction.
    - Consent on non-local targets: if the URL isn't localhost, invocation is
      consent to LOOK, not to ACT — get one explicit consent per run before the
-     first submit/create/delete/purchase/settings change.
+     first submit/create/delete/purchase/settings change. Localhost is not
+     automatically safe either: dev servers proxy and forward — confirm where
+     writes actually land before the first mutating action.
    - Responsiveness — `resize 375 812`, screenshot, back to 1280x720.
 4. **Document each issue IMMEDIATELY when found** (never batch):
    - Interactive bug: screenshot before → action → screenshot result →
@@ -79,9 +90,22 @@ evidence at all → say so and ask before installing anything.
    - Static bug: single screenshot + what's wrong.
    Severity: critical (data loss/security/broken core flow), high (feature
    broken, workaround exists), medium (degraded UX), low (cosmetic).
-5. **Fix loop** (skip with `--report-only`): one bug at a time, atomic commit
-   per fix, **regression test for every fix** (fails without, passes with),
-   re-verify in the browser. Fix at the source; don't patch symptoms.
+5. **Fix loop** (skip with `--report-only`): one bug at a time.
+   - Test FIRST: before editing source, write the regression test and run it
+     — prove the defect (not a bad fixture or import) caused the failure.
+     Match 2–3 nearby tests' naming/imports/assertions. Prefer a row in an
+     existing table-driven test over a near-duplicate; never add a production
+     seam (export/flag/wrapper) that only the test needs. Ask why existing
+     coverage didn't catch this — if it should have, extend that test.
+   - Make the minimal fix at the source; don't patch symptoms.
+   - Verify: regression test red → green, original failing probe passes, one
+     adjacent happy path still works, and re-verify in the browser (after
+     screenshot vs. the before evidence).
+   - One atomic commit per fix containing BOTH fix and regression test.
+   Never delete a valid red test; if a fix regresses something, revert only
+   that fix (keep the test) and mark the issue deferred. STOP and ask after
+   two reverts or any edit to a file unrelated to the bug; hard stop at 50
+   fixes regardless.
 6. **Wrap up:** health score (console 15%, broken links 15%, forms/flows 25%,
    visual/UX 20%, states/edge cases 15%, mobile 10% — 0 errors=100, 1–3=70,
    4–10=40, 10+=10 per category, weighted), Top 3 Things to Fix, console health
@@ -91,7 +115,9 @@ evidence at all → say so and ask before installing anything.
    score "provisional" with the coverage note ("not scored" if none — compare
    only identical coverage); console errors deduped by message+source,
    warnings excluded; expected auth redirects and resource/API requests don't
-   count as broken links.
+   count as broken links. Final gate: after all fixes, re-run each affected
+   page once and recompute the health score; if the final score is worse
+   than the baseline, warn prominently — a fix regressed something.
 
 ## Output
 QA report: health score, issues table (id · severity · category · page ·
