@@ -104,10 +104,15 @@ install_launchd() {
     <array>
         <string>$HOME/.pi/agent/skills/upstream-watch/scripts/check-updates.sh</string>
     </array>
-    <key>StartInterval</key>
-    <integer>86400</integer>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
     <key>RunAtLoad</key>
-    <false/>
+    <true/>
     <key>StandardOutPath</key>
     <string>/tmp/pi-upstream-watch.log</string>
     <key>StandardErrorPath</key>
