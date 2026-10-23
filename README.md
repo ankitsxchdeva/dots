@@ -21,6 +21,8 @@ vim, ghostty, git, lazygit (`lg`), and yazi (`y`).
 │               #   memory (per-repo facts), safety (/careful /freeze /guard),
 │               #   cheatsheet (/cheatsheet platform map), upstream-watch
 │               #   (session-start notice when reference clones fall behind)
+│               #   visual-orchestra (vendored: /orchestra subagent board;
+│               #   upstream: github.com/ankitsxchdeva/visual-orchestra)
 │               #   browser: real-browser work via @playwright/cli in bash
 │               #   (headless Chromium — see AGENTS.md "Browser & web")
 │               #   skills: screen-untrusted-repo, upstream-watch (+ launchd
