@@ -258,7 +258,9 @@ export default function (pi: ExtensionAPI) {
 				args.push("--exclude-tools", "task,remember");
 			}
 			if (def.thinking) args.push("--thinking", def.thinking);
-			const model = params.model ?? def.model;
+			// Model ids are identifiers; strip anything outside the safe charset
+			// (k3 sometimes leaks literal "[0m" garbage into string params).
+			const model = (params.model ?? def.model)?.replace(/[^\w./:-]/g, "");
 			if (model) args.push("--model", model);
 			args.push("--append-system-prompt", def.body, SPAWNED_CONTRACT, params.prompt);
 			const { text, progress } = await runPi(args, signal, (p) => {
