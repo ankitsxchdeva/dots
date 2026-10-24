@@ -15,7 +15,7 @@ cursor-style-blink = false
 shell-integration-features = cursor,sudo,title,ssh-terminfo,ssh-env
 
 background-opacity = 0.985
-background-blur = 40
+background-blur = 20
 unfocused-split-opacity = 0.90
 window-colorspace = display-p3
 macos-titlebar-style = transparent
